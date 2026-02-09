@@ -473,7 +473,7 @@ class PostgreSQLDB:
                         await self.configure_age(connection, graph_name)
                     elif with_age and not graph_name:
                         raise ValueError("Graph name is required when with_age is True")
-                    if self.vector_index_type == "VCHORDRQ":
+                    if self.enable_vector and self.vector_index_type == "VCHORDRQ":
                         await self.configure_vchordrq(connection)
                     return await operation(connection)
 
