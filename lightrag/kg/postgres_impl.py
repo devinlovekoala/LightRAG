@@ -1760,7 +1760,8 @@ class ClientManager:
             "enable_vector": os.environ.get(
                 "POSTGRES_ENABLE_VECTOR",
                 config.get("postgres", "enable_vector", fallback="true"),
-            ).lower() in ("true", "1", "yes", "on"),
+            ).lower()
+            in ("true", "1", "yes", "on"),
             "vector_index_type": os.environ.get(
                 "POSTGRES_VECTOR_INDEX_TYPE",
                 config.get("postgres", "vector_index_type", fallback="HNSW"),
@@ -2374,7 +2375,9 @@ class PGVectorStorage(BaseVectorStorage):
 
     def __post_init__(self):
         if not self.db.enable_vector:
-            raise ValueError("Cannot use PGVectorStorage when POSTGRES_ENABLE_VECTOR=false. Configure an alternative vector backend.")
+            raise ValueError(
+                "Cannot use PGVectorStorage when POSTGRES_ENABLE_VECTOR=false. Configure an alternative vector backend."
+            )
 
         self._validate_embedding_func()
         self._max_batch_size = self.global_config["embedding_batch_num"]
