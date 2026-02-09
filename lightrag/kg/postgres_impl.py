@@ -145,8 +145,11 @@ class PostgreSQLDB:
         self.ssl_crl = config.get("ssl_crl")
 
         # Vector configuration
-        self.enable_vector = config.get(
-            "enable_vector", True
+        _ev = config.get("enable_vector", True)
+        self.enable_vector = (
+            _ev
+            if isinstance(_ev, bool)
+            else str(_ev).lower() in ("true", "1", "yes", "on")
         )  # True for backward compatibility, can be set to False to disable vector features
         self.vector_index_type = config.get("vector_index_type")
         self.hnsw_m = config.get("hnsw_m")
@@ -2374,11 +2377,6 @@ class PGVectorStorage(BaseVectorStorage):
     db: PostgreSQLDB | None = field(default=None)
 
     def __post_init__(self):
-        if not self.db.enable_vector:
-            raise ValueError(
-                "Cannot use PGVectorStorage when POSTGRES_ENABLE_VECTOR=false. Configure an alternative vector backend."
-            )
-
         self._validate_embedding_func()
         self._max_batch_size = self.global_config["embedding_batch_num"]
         config = self.global_config.get("vector_db_storage_cls_kwargs", {})
@@ -2844,6 +2842,11 @@ class PGVectorStorage(BaseVectorStorage):
             else:
                 # Use "default" for compatibility (lowest priority)
                 self.workspace = "default"
+
+            if not self.db.enable_vector:
+                raise ValueError(
+                    "Cannot use PGVectorStorage when POSTGRES_ENABLE_VECTOR=false. Configure an alternative vector backend."
+                )
 
             # Setup table (create if not exists and handle migration)
             await PGVectorStorage.setup_table(
