@@ -1024,7 +1024,9 @@ class Neo4JStorage(BaseGraphStorage):
 
         # Coerce to str first so membership checks below never raise TypeError
         # regardless of what upstream callers (e.g. API payloads) pass in.
-        entity_type = str(entity_type) if not isinstance(entity_type, str) else entity_type
+        entity_type = (
+            str(entity_type) if not isinstance(entity_type, str) else entity_type
+        )
 
         # Sanitize entity_type: strip backticks and handle comma-separated values.
         # This guards against dirty data from LLM extraction or database read-back.
