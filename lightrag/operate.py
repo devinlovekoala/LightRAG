@@ -1633,7 +1633,10 @@ async def _merge_nodes_then_upsert(
         existing_entity_type = already_node.get("entity_type")
         # Coerce to str before any string operations: non-string values from
         # API/custom graph paths would otherwise raise TypeError on the comma check.
-        if not isinstance(existing_entity_type, str) or not existing_entity_type.strip():
+        if (
+            not isinstance(existing_entity_type, str)
+            or not existing_entity_type.strip()
+        ):
             existing_entity_type = "UNKNOWN"
         # Sanitize entity_type read back from DB to prevent dirty data from propagating
         if "," in existing_entity_type:
