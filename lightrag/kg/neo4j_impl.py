@@ -1022,6 +1022,10 @@ class Neo4JStorage(BaseGraphStorage):
         if "entity_id" not in properties:
             raise ValueError("Neo4j: node properties must contain an 'entity_id' field")
 
+        # Coerce to str first so membership checks below never raise TypeError
+        # regardless of what upstream callers (e.g. API payloads) pass in.
+        entity_type = str(entity_type) if not isinstance(entity_type, str) else entity_type
+
         # Sanitize entity_type: strip backticks and handle comma-separated values.
         # This guards against dirty data from LLM extraction or database read-back.
         if "`" in entity_type or "," in entity_type or not entity_type.strip():
