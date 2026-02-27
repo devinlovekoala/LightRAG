@@ -415,6 +415,14 @@ async def _handle_single_entity_extraction(
             )
             return None
 
+        # Handle comma-separated entity types by taking the first value
+        if "," in entity_type:
+            original = entity_type
+            entity_type = entity_type.split(",")[0].strip()
+            logger.warning(
+                f"Entity type contains comma, taking first value: '{original}' -> '{entity_type}'"
+            )
+
         # Remove spaces and convert to lowercase
         entity_type = entity_type.replace(" ", "").lower()
 
@@ -1615,7 +1623,15 @@ async def _merge_nodes_then_upsert(
     # 1. Get existing node data from knowledge graph
     already_node = await knowledge_graph_inst.get_node(entity_name)
     if already_node:
-        already_entity_types.append(already_node.get("entity_type") or "UNKNOWN")
+        existing_entity_type = already_node.get("entity_type") or "UNKNOWN"
+        # Sanitize entity_type read back from DB to prevent dirty data from propagating
+        if "," in existing_entity_type:
+            original = existing_entity_type
+            existing_entity_type = existing_entity_type.split(",")[0].strip()
+            logger.warning(
+                f"Entity type read from DB contains comma, taking first value: '{original}' -> '{existing_entity_type}'"
+            )
+        already_entity_types.append(existing_entity_type)
 
         existing_source_id = already_node.get("source_id") or ""
         already_source_ids.extend(existing_source_id.split(GRAPH_FIELD_SEP))

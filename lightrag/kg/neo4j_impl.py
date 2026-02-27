@@ -1022,6 +1022,21 @@ class Neo4JStorage(BaseGraphStorage):
         if "entity_id" not in properties:
             raise ValueError("Neo4j: node properties must contain an 'entity_id' field")
 
+        # Sanitize entity_type: strip backticks and handle comma-separated values.
+        # This guards against dirty data from LLM extraction or database read-back.
+        if "`" in entity_type or "," in entity_type or not entity_type.strip():
+            original = entity_type
+            entity_type = entity_type.replace("`", "").strip()
+            if "," in entity_type:
+                entity_type = entity_type.split(",")[0].strip()
+            if not entity_type:
+                entity_type = "UNKNOWN"
+            logger.warning(
+                f"[{self.workspace}] Entity type sanitized in upsert_node: '{original}' -> '{entity_type}'"
+            )
+            properties = dict(properties)
+            properties["entity_type"] = entity_type
+
         try:
             async with self._driver.session(database=self._DATABASE) as session:
 
