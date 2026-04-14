@@ -100,6 +100,18 @@ def parse_args(*, fixed_variant: str | None = None) -> argparse.Namespace:
         default=None,
         help="Override the maximum extraction input tokens for this run only.",
     )
+    parser.add_argument(
+        "--llm-timeout",
+        type=int,
+        default=None,
+        help="Override LightRAG LLM timeout in seconds for this run only.",
+    )
+    parser.add_argument(
+        "--embedding-timeout",
+        type=int,
+        default=None,
+        help="Override LightRAG embedding timeout in seconds for this run only.",
+    )
     return parser.parse_args()
 
 
@@ -127,6 +139,8 @@ async def _run(args: argparse.Namespace) -> None:
         max_parallel_insert=args.max_parallel_insert,
         max_gleaning=args.max_gleaning,
         max_extract_input_tokens=args.max_extract_input_tokens,
+        llm_timeout=args.llm_timeout,
+        embedding_timeout=args.embedding_timeout,
     )
 
     rag = None

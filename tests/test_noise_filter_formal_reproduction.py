@@ -115,6 +115,8 @@ def test_build_runtime_overrides_ignores_missing_values():
         max_parallel_insert=1,
         max_gleaning=1,
         max_extract_input_tokens=12000,
+        llm_timeout=300,
+        embedding_timeout=60,
     )
 
     assert overrides == {
@@ -125,6 +127,8 @@ def test_build_runtime_overrides_ignores_missing_values():
         "max_parallel_insert": 1,
         "entity_extract_max_gleaning": 1,
         "max_extract_input_tokens": 12000,
+        "default_llm_timeout": 300,
+        "default_embedding_timeout": 60,
     }
 
 

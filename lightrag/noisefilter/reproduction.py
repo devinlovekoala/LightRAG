@@ -231,6 +231,8 @@ def build_runtime_overrides(
     max_parallel_insert: int | None = None,
     max_gleaning: int | None = None,
     max_extract_input_tokens: int | None = None,
+    llm_timeout: int | None = None,
+    embedding_timeout: int | None = None,
 ) -> dict[str, Any]:
     mappings = {
         "chunk_token_size": chunk_size,
@@ -240,6 +242,8 @@ def build_runtime_overrides(
         "max_parallel_insert": max_parallel_insert,
         "entity_extract_max_gleaning": max_gleaning,
         "max_extract_input_tokens": max_extract_input_tokens,
+        "default_llm_timeout": llm_timeout,
+        "default_embedding_timeout": embedding_timeout,
     }
 
     overrides: dict[str, Any] = {}
