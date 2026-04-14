@@ -462,6 +462,12 @@ class LightRAG:
     )
     """Maximum number of parallel insert operations."""
 
+    enable_noise_filter: bool = field(default=False)
+    """Enable confidence scoring on graph edges and confidence-aware retrieval."""
+
+    noise_filter_config: dict[str, Any] = field(default_factory=dict)
+    """Configuration for noise-aware scoring and retrieval."""
+
     max_graph_nodes: int = field(
         default=get_env_value("MAX_GRAPH_NODES", DEFAULT_MAX_GRAPH_NODES, int)
     )
@@ -531,6 +537,7 @@ class LightRAG:
         from lightrag.kg.shared_storage import (
             initialize_share_data,
         )
+        from lightrag.noisefilter.retriever import resolve_noise_filter_config
 
         # Handle deprecated parameters
         if self.log_level is not None:
@@ -589,6 +596,20 @@ class LightRAG:
         # Initialize ollama_server_infos if not provided
         if self.ollama_server_infos is None:
             self.ollama_server_infos = OllamaServerInfos()
+
+        resolved_noise_filter = resolve_noise_filter_config(
+            {
+                "enable_noise_filter": self.enable_noise_filter,
+                "noise_filter_config": self.noise_filter_config,
+            }
+        )
+        self.enable_noise_filter = resolved_noise_filter.enabled
+        self.noise_filter_config = {
+            "conf_threshold": resolved_noise_filter.conf_threshold,
+            "soft_mode": resolved_noise_filter.soft_mode,
+            "default_conf_score": resolved_noise_filter.default_conf_score,
+            **self.noise_filter_config,
+        }
 
         # Validate config
         if self.force_llm_summary_on_merge < 3:
@@ -2151,6 +2172,14 @@ class LightRAG:
                                     file_path=file_path,
                                 )
 
+                                await self._apply_noise_filter_scores(
+                                    edge_pairs=self._collect_noise_filter_edge_pairs(
+                                        chunk_results
+                                    ),
+                                    pipeline_status=pipeline_status,
+                                    pipeline_status_lock=pipeline_status_lock,
+                                )
+
                                 # Record processing end time
                                 processing_end_time = int(time.time())
 
@@ -2334,6 +2363,53 @@ class LightRAG:
                 pipeline_status["latest_message"] = error_msg
                 pipeline_status["history_messages"].append(error_msg)
             raise e
+
+    def _collect_noise_filter_edge_pairs(
+        self, chunk_results: list[tuple[dict[str, Any], dict[tuple[str, str], Any]]]
+    ) -> list[tuple[str, str]]:
+        edge_pairs: dict[tuple[str, str], tuple[str, str]] = {}
+        for _, maybe_edges in chunk_results:
+            for edge_key in maybe_edges.keys():
+                normalized = tuple(sorted(edge_key))
+                edge_pairs.setdefault(normalized, edge_key)
+        return sorted(edge_pairs.values())
+
+    async def _apply_noise_filter_scores(
+        self,
+        edge_pairs: list[tuple[str, str]] | None = None,
+        pipeline_status: dict | None = None,
+        pipeline_status_lock=None,
+    ) -> None:
+        if not self.enable_noise_filter:
+            return
+
+        from lightrag.noisefilter.confidence import ConfidenceScoringEngine
+
+        config = self.noise_filter_config or {}
+        scorer = ConfidenceScoringEngine(
+            embedding_model=self.embedding_func,
+            relation_chunks_storage=self.relation_chunks,
+            text_chunks_storage=self.text_chunks,
+            llm_response_cache=self.llm_response_cache,
+            w_freq=config.get("w_freq", 0.5),
+            w_cons=config.get("w_cons", 0.3),
+            w_sem=config.get("w_sem", 0.2),
+            freq_saturation=config.get("freq_saturation", 3),
+            semantic_fallback_score=config.get("semantic_fallback_score", 0.5),
+        )
+        result = await scorer.score_and_update_graph(
+            self.chunk_entity_relation_graph, edge_pairs=edge_pairs
+        )
+
+        log_message = (
+            f"Noise filter updated confidence scores for {len(result)} relations"
+        )
+        logger.info(log_message)
+
+        if pipeline_status is not None and pipeline_status_lock is not None:
+            async with pipeline_status_lock:
+                pipeline_status["latest_message"] = log_message
+                pipeline_status["history_messages"].append(log_message)
 
     async def _insert_done(
         self, pipeline_status=None, pipeline_status_lock=None
@@ -2539,6 +2615,15 @@ class LightRAG:
                 for dp in all_relationships_data
             }
             await self.relationships_vdb.upsert(data_for_vdb)
+
+            if self.enable_noise_filter:
+                edge_pairs = [
+                    tuple(sorted((dp["src_id"], dp["tgt_id"])))
+                    for dp in all_relationships_data
+                ]
+                await self._apply_noise_filter_scores(
+                    edge_pairs=sorted(set(edge_pairs))
+                )
 
         except Exception as e:
             logger.error(f"Error in ainsert_custom_kg: {e}")

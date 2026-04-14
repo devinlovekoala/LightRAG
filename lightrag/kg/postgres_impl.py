@@ -672,12 +672,27 @@ class PostgreSQLDB:
 
         """
         try:
+            # Apache AGE functions are exposed after loading the extension library per session.
+            try:
+                await connection.execute("LOAD 'age'")  # type: ignore
+            except asyncpg.exceptions.InsufficientPrivilegeError:
+                # Some managed PostgreSQL setups deny LOAD for non-superusers.
+                # In that case we continue and rely on server-side preloading.
+                logger.warning(
+                    "PostgreSQL user cannot LOAD 'age'; expecting AGE to be preloaded by server config"
+                )
             await connection.execute(  # type: ignore
                 'SET search_path = ag_catalog, "$user", public'
             )
             await connection.execute(  # type: ignore
                 f"select create_graph('{graph_name}')"
             )
+        except asyncpg.exceptions.UndefinedFunctionError as e:
+            raise RuntimeError(
+                "Apache AGE is not active for this session. "
+                "Ensure AGE is installed and enabled for the target database, and either grant permission to LOAD 'age' "
+                "or set shared_preload_libraries='age' on the PostgreSQL server then restart PostgreSQL."
+            ) from e
         except (
             asyncpg.exceptions.InvalidSchemaNameError,
             asyncpg.exceptions.UniqueViolationError,

@@ -68,6 +68,7 @@ from lightrag.constants import (
     DEFAULT_ENTITY_NAME_MAX_LENGTH,
 )
 from lightrag.kg.shared_storage import get_storage_keyed_lock
+from lightrag.noisefilter.retriever import NoiseAwareRetriever
 import time
 from dotenv import load_dotenv
 
@@ -4469,7 +4470,9 @@ async def _find_most_related_edges_from_entities(
         all_edges_data, key=lambda x: (x["rank"], x["weight"]), reverse=True
     )
 
-    return all_edges_data
+    return NoiseAwareRetriever.from_global_config(
+        knowledge_graph_inst.global_config
+    ).rank_local_edges(all_edges_data)
 
 
 async def _find_related_text_unit_from_entities(
@@ -4671,11 +4674,14 @@ async def _get_edge_data(
                 "src_id": k["src_id"],
                 "tgt_id": k["tgt_id"],
                 "created_at": k.get("created_at", None),
+                "distance": k.get("distance"),
                 **edge_props,
             }
             edge_datas.append(combined)
 
-    # Relations maintain vector search order (sorted by similarity)
+    edge_datas = NoiseAwareRetriever.from_global_config(
+        knowledge_graph_inst.global_config
+    ).rank_global_edges(edge_datas)
 
     use_entities = await _find_most_related_entities_from_relationships(
         edge_datas,

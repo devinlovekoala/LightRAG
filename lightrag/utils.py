@@ -3207,6 +3207,15 @@ def convert_to_user_format(
                     "description": original_relation.get("description", ""),
                     "keywords": original_relation.get("keywords", ""),
                     "weight": original_relation.get("weight", 1.0),
+                    "conf_score": original_relation.get("conf_score"),
+                    "conf_freq_score": original_relation.get("conf_freq_score"),
+                    "conf_consistency_score": original_relation.get(
+                        "conf_consistency_score"
+                    ),
+                    "conf_semantic_score": original_relation.get(
+                        "conf_semantic_score"
+                    ),
+                    "conf_support": original_relation.get("conf_support"),
                     "source_id": original_relation.get("source_id", ""),
                     "file_path": original_relation.get("file_path", "unknown_source"),
                     "created_at": original_relation.get("created_at", ""),
@@ -3221,6 +3230,13 @@ def convert_to_user_format(
                     "description": relation.get("description", ""),
                     "keywords": relation.get("keywords", ""),
                     "weight": relation.get("weight", 1.0),
+                    "conf_score": relation.get("conf_score"),
+                    "conf_freq_score": relation.get("conf_freq_score"),
+                    "conf_consistency_score": relation.get(
+                        "conf_consistency_score"
+                    ),
+                    "conf_semantic_score": relation.get("conf_semantic_score"),
+                    "conf_support": relation.get("conf_support"),
                     "source_id": relation.get("source_id", ""),
                     "file_path": relation.get("file_path", "unknown_source"),
                     "created_at": relation.get("created_at", ""),

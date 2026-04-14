@@ -9,6 +9,11 @@ if [ "$#" -eq 0 ]; then
     set -- tests
 fi
 
+# Keep pytest isolated from globally installed plugins (for example ROS plugins)
+# unless the caller explicitly overrides this variable.
+: "${PYTEST_DISABLE_PLUGIN_AUTOLOAD:=1}"
+export PYTEST_DISABLE_PLUGIN_AUTOLOAD
+
 declare -a TRIED=()
 
 run_python() {
@@ -32,8 +37,16 @@ run_python() {
     fi
 
     if "$resolved" -c "import pytest" >/dev/null 2>&1; then
+        local -a pytest_args=()
+
+        # Load pytest-asyncio explicitly when available so pytest.ini async options
+        # are recognized even with plugin autoload disabled.
+        if "$resolved" -c "import pytest_asyncio.plugin" >/dev/null 2>&1; then
+            pytest_args+=("-p" "pytest_asyncio.plugin")
+        fi
+
         printf "Using %s: %s\n" "$label" "$resolved"
-        exec "$resolved" -m pytest "$@"
+        exec "$resolved" -m pytest "${pytest_args[@]}" "$@"
     fi
 
     return 1
@@ -47,8 +60,14 @@ run_uv() {
     TRIED+=("uv-managed environment: uv run python -m pytest")
 
     if uv run python -c "import pytest" >/dev/null 2>&1; then
+        local -a pytest_args=()
+
+        if uv run python -c "import pytest_asyncio.plugin" >/dev/null 2>&1; then
+            pytest_args+=("-p" "pytest_asyncio.plugin")
+        fi
+
         printf "Using uv-managed environment\n"
-        exec uv run python -m pytest "$@"
+        exec uv run python -m pytest "${pytest_args[@]}" "$@"
     fi
 
     return 1

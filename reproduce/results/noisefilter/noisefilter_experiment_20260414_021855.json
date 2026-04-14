@@ -1,0 +1,626 @@
+{
+  "config": {
+    "noise_ratios": [
+      0.1,
+      0.2,
+      0.3
+    ],
+    "thresholds": [
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5
+    ],
+    "num_nodes": 24,
+    "clean_degree": 3,
+    "top_k": 5,
+    "seed": 7,
+    "injectors": [
+      "random",
+      "contradictory"
+    ]
+  },
+  "summary": {
+    "best_hard_by_f1": {
+      "random@0.10": {
+        "injector": "random",
+        "noise_ratio": 0.1,
+        "strategy": "hard",
+        "threshold": 0.1,
+        "filter_precision": 1.0,
+        "filter_recall": 1.0,
+        "filter_f1": 1.0,
+        "retrieval_noise_rate_at_k": 0.0,
+        "avg_returned_edges": 3.0
+      },
+      "random@0.20": {
+        "injector": "random",
+        "noise_ratio": 0.2,
+        "strategy": "hard",
+        "threshold": 0.1,
+        "filter_precision": 1.0,
+        "filter_recall": 1.0,
+        "filter_f1": 1.0,
+        "retrieval_noise_rate_at_k": 0.0,
+        "avg_returned_edges": 3.0
+      },
+      "random@0.30": {
+        "injector": "random",
+        "noise_ratio": 0.3,
+        "strategy": "hard",
+        "threshold": 0.1,
+        "filter_precision": 1.0,
+        "filter_recall": 1.0,
+        "filter_f1": 1.0,
+        "retrieval_noise_rate_at_k": 0.0,
+        "avg_returned_edges": 3.0
+      },
+      "contradictory@0.10": {
+        "injector": "contradictory",
+        "noise_ratio": 0.1,
+        "strategy": "hard",
+        "threshold": 0.1,
+        "filter_precision": 1.0,
+        "filter_recall": 1.0,
+        "filter_f1": 1.0,
+        "retrieval_noise_rate_at_k": 0.0,
+        "avg_returned_edges": 3.0
+      },
+      "contradictory@0.20": {
+        "injector": "contradictory",
+        "noise_ratio": 0.2,
+        "strategy": "hard",
+        "threshold": 0.1,
+        "filter_precision": 1.0,
+        "filter_recall": 1.0,
+        "filter_f1": 1.0,
+        "retrieval_noise_rate_at_k": 0.0,
+        "avg_returned_edges": 3.0
+      },
+      "contradictory@0.30": {
+        "injector": "contradictory",
+        "noise_ratio": 0.3,
+        "strategy": "hard",
+        "threshold": 0.1,
+        "filter_precision": 1.0,
+        "filter_recall": 1.0,
+        "filter_f1": 1.0,
+        "retrieval_noise_rate_at_k": 0.0,
+        "avg_returned_edges": 3.0
+      }
+    },
+    "best_overall_retrieval": {
+      "random@0.10": {
+        "injector": "random",
+        "noise_ratio": 0.1,
+        "strategy": "hard",
+        "threshold": 0.1,
+        "filter_precision": 1.0,
+        "filter_recall": 1.0,
+        "filter_f1": 1.0,
+        "retrieval_noise_rate_at_k": 0.0,
+        "avg_returned_edges": 3.0
+      },
+      "random@0.20": {
+        "injector": "random",
+        "noise_ratio": 0.2,
+        "strategy": "hard",
+        "threshold": 0.1,
+        "filter_precision": 1.0,
+        "filter_recall": 1.0,
+        "filter_f1": 1.0,
+        "retrieval_noise_rate_at_k": 0.0,
+        "avg_returned_edges": 3.0
+      },
+      "random@0.30": {
+        "injector": "random",
+        "noise_ratio": 0.3,
+        "strategy": "hard",
+        "threshold": 0.1,
+        "filter_precision": 1.0,
+        "filter_recall": 1.0,
+        "filter_f1": 1.0,
+        "retrieval_noise_rate_at_k": 0.0,
+        "avg_returned_edges": 3.0
+      },
+      "contradictory@0.10": {
+        "injector": "contradictory",
+        "noise_ratio": 0.1,
+        "strategy": "hard",
+        "threshold": 0.1,
+        "filter_precision": 1.0,
+        "filter_recall": 1.0,
+        "filter_f1": 1.0,
+        "retrieval_noise_rate_at_k": 0.0,
+        "avg_returned_edges": 3.0
+      },
+      "contradictory@0.20": {
+        "injector": "contradictory",
+        "noise_ratio": 0.2,
+        "strategy": "hard",
+        "threshold": 0.1,
+        "filter_precision": 1.0,
+        "filter_recall": 1.0,
+        "filter_f1": 1.0,
+        "retrieval_noise_rate_at_k": 0.0,
+        "avg_returned_edges": 3.0
+      },
+      "contradictory@0.30": {
+        "injector": "contradictory",
+        "noise_ratio": 0.3,
+        "strategy": "hard",
+        "threshold": 0.1,
+        "filter_precision": 1.0,
+        "filter_recall": 1.0,
+        "filter_f1": 1.0,
+        "retrieval_noise_rate_at_k": 0.0,
+        "avg_returned_edges": 3.0
+      }
+    }
+  },
+  "rows": [
+    {
+      "injector": "random",
+      "noise_ratio": 0.1,
+      "strategy": "baseline",
+      "threshold": null,
+      "filter_precision": 0.0,
+      "filter_recall": 0.0,
+      "filter_f1": 0.0,
+      "retrieval_noise_rate_at_k": 0.08860759493670886,
+      "avg_returned_edges": 3.2916666666666665
+    },
+    {
+      "injector": "random",
+      "noise_ratio": 0.1,
+      "strategy": "soft",
+      "threshold": null,
+      "filter_precision": 0.0,
+      "filter_recall": 0.0,
+      "filter_f1": 0.0,
+      "retrieval_noise_rate_at_k": 0.08860759493670886,
+      "avg_returned_edges": 3.2916666666666665
+    },
+    {
+      "injector": "random",
+      "noise_ratio": 0.1,
+      "strategy": "hard",
+      "threshold": 0.1,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "random",
+      "noise_ratio": 0.1,
+      "strategy": "hard",
+      "threshold": 0.2,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "random",
+      "noise_ratio": 0.1,
+      "strategy": "hard",
+      "threshold": 0.3,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "random",
+      "noise_ratio": 0.1,
+      "strategy": "hard",
+      "threshold": 0.4,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "random",
+      "noise_ratio": 0.1,
+      "strategy": "hard",
+      "threshold": 0.5,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "random",
+      "noise_ratio": 0.2,
+      "strategy": "baseline",
+      "threshold": null,
+      "filter_precision": 0.0,
+      "filter_recall": 0.0,
+      "filter_f1": 0.0,
+      "retrieval_noise_rate_at_k": 0.1566265060240964,
+      "avg_returned_edges": 3.4583333333333335
+    },
+    {
+      "injector": "random",
+      "noise_ratio": 0.2,
+      "strategy": "soft",
+      "threshold": null,
+      "filter_precision": 0.0,
+      "filter_recall": 0.0,
+      "filter_f1": 0.0,
+      "retrieval_noise_rate_at_k": 0.13253012048192772,
+      "avg_returned_edges": 3.4583333333333335
+    },
+    {
+      "injector": "random",
+      "noise_ratio": 0.2,
+      "strategy": "hard",
+      "threshold": 0.1,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "random",
+      "noise_ratio": 0.2,
+      "strategy": "hard",
+      "threshold": 0.2,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "random",
+      "noise_ratio": 0.2,
+      "strategy": "hard",
+      "threshold": 0.3,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "random",
+      "noise_ratio": 0.2,
+      "strategy": "hard",
+      "threshold": 0.4,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "random",
+      "noise_ratio": 0.2,
+      "strategy": "hard",
+      "threshold": 0.5,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "random",
+      "noise_ratio": 0.3,
+      "strategy": "baseline",
+      "threshold": null,
+      "filter_precision": 0.0,
+      "filter_recall": 0.0,
+      "filter_f1": 0.0,
+      "retrieval_noise_rate_at_k": 0.2222222222222222,
+      "avg_returned_edges": 3.75
+    },
+    {
+      "injector": "random",
+      "noise_ratio": 0.3,
+      "strategy": "soft",
+      "threshold": null,
+      "filter_precision": 0.0,
+      "filter_recall": 0.0,
+      "filter_f1": 0.0,
+      "retrieval_noise_rate_at_k": 0.2,
+      "avg_returned_edges": 3.75
+    },
+    {
+      "injector": "random",
+      "noise_ratio": 0.3,
+      "strategy": "hard",
+      "threshold": 0.1,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "random",
+      "noise_ratio": 0.3,
+      "strategy": "hard",
+      "threshold": 0.2,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "random",
+      "noise_ratio": 0.3,
+      "strategy": "hard",
+      "threshold": 0.3,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "random",
+      "noise_ratio": 0.3,
+      "strategy": "hard",
+      "threshold": 0.4,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "random",
+      "noise_ratio": 0.3,
+      "strategy": "hard",
+      "threshold": 0.5,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "contradictory",
+      "noise_ratio": 0.1,
+      "strategy": "baseline",
+      "threshold": null,
+      "filter_precision": 0.0,
+      "filter_recall": 0.0,
+      "filter_f1": 0.0,
+      "retrieval_noise_rate_at_k": 0.08860759493670886,
+      "avg_returned_edges": 3.2916666666666665
+    },
+    {
+      "injector": "contradictory",
+      "noise_ratio": 0.1,
+      "strategy": "soft",
+      "threshold": null,
+      "filter_precision": 0.0,
+      "filter_recall": 0.0,
+      "filter_f1": 0.0,
+      "retrieval_noise_rate_at_k": 0.08860759493670886,
+      "avg_returned_edges": 3.2916666666666665
+    },
+    {
+      "injector": "contradictory",
+      "noise_ratio": 0.1,
+      "strategy": "hard",
+      "threshold": 0.1,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "contradictory",
+      "noise_ratio": 0.1,
+      "strategy": "hard",
+      "threshold": 0.2,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "contradictory",
+      "noise_ratio": 0.1,
+      "strategy": "hard",
+      "threshold": 0.3,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "contradictory",
+      "noise_ratio": 0.1,
+      "strategy": "hard",
+      "threshold": 0.4,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "contradictory",
+      "noise_ratio": 0.1,
+      "strategy": "hard",
+      "threshold": 0.5,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "contradictory",
+      "noise_ratio": 0.2,
+      "strategy": "baseline",
+      "threshold": null,
+      "filter_precision": 0.0,
+      "filter_recall": 0.0,
+      "filter_f1": 0.0,
+      "retrieval_noise_rate_at_k": 0.16279069767441862,
+      "avg_returned_edges": 3.5833333333333335
+    },
+    {
+      "injector": "contradictory",
+      "noise_ratio": 0.2,
+      "strategy": "soft",
+      "threshold": null,
+      "filter_precision": 0.0,
+      "filter_recall": 0.0,
+      "filter_f1": 0.0,
+      "retrieval_noise_rate_at_k": 0.16279069767441862,
+      "avg_returned_edges": 3.5833333333333335
+    },
+    {
+      "injector": "contradictory",
+      "noise_ratio": 0.2,
+      "strategy": "hard",
+      "threshold": 0.1,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "contradictory",
+      "noise_ratio": 0.2,
+      "strategy": "hard",
+      "threshold": 0.2,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "contradictory",
+      "noise_ratio": 0.2,
+      "strategy": "hard",
+      "threshold": 0.3,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "contradictory",
+      "noise_ratio": 0.2,
+      "strategy": "hard",
+      "threshold": 0.4,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "contradictory",
+      "noise_ratio": 0.2,
+      "strategy": "hard",
+      "threshold": 0.5,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "contradictory",
+      "noise_ratio": 0.3,
+      "strategy": "baseline",
+      "threshold": null,
+      "filter_precision": 0.0,
+      "filter_recall": 0.0,
+      "filter_f1": 0.0,
+      "retrieval_noise_rate_at_k": 0.22826086956521738,
+      "avg_returned_edges": 3.8333333333333335
+    },
+    {
+      "injector": "contradictory",
+      "noise_ratio": 0.3,
+      "strategy": "soft",
+      "threshold": null,
+      "filter_precision": 0.0,
+      "filter_recall": 0.0,
+      "filter_f1": 0.0,
+      "retrieval_noise_rate_at_k": 0.21739130434782608,
+      "avg_returned_edges": 3.8333333333333335
+    },
+    {
+      "injector": "contradictory",
+      "noise_ratio": 0.3,
+      "strategy": "hard",
+      "threshold": 0.1,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "contradictory",
+      "noise_ratio": 0.3,
+      "strategy": "hard",
+      "threshold": 0.2,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "contradictory",
+      "noise_ratio": 0.3,
+      "strategy": "hard",
+      "threshold": 0.3,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "contradictory",
+      "noise_ratio": 0.3,
+      "strategy": "hard",
+      "threshold": 0.4,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    },
+    {
+      "injector": "contradictory",
+      "noise_ratio": 0.3,
+      "strategy": "hard",
+      "threshold": 0.5,
+      "filter_precision": 1.0,
+      "filter_recall": 1.0,
+      "filter_f1": 1.0,
+      "retrieval_noise_rate_at_k": 0.0,
+      "avg_returned_edges": 3.0
+    }
+  ]
+}
