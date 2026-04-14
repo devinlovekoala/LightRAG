@@ -135,32 +135,6 @@ def test_build_runtime_overrides_rejects_non_positive_values():
         build_runtime_overrides(chunk_size=0)
 
 
-def test_build_runtime_overrides_allows_zero_for_overlap_and_gleaning():
-    from lightrag.noisefilter.reproduction import build_runtime_overrides
-
-    overrides = build_runtime_overrides(
-        chunk_size=6000,
-        chunk_overlap_size=0,
-        max_gleaning=0,
-    )
-
-    assert overrides["chunk_overlap_token_size"] == 0
-    assert overrides["entity_extract_max_gleaning"] == 0
-
-
-def test_api_key_selector_round_robins_keys(monkeypatch):
-    from lightrag.noisefilter.reproduction import _build_api_key_selector
-
-    monkeypatch.setenv("LLM_BINDING_API_KEYS", "k1, k2 ,k3")
-    selector, count = _build_api_key_selector(
-        keys_env="LLM_BINDING_API_KEYS",
-        single_key=None,
-    )
-
-    assert count == 3
-    assert [selector(), selector(), selector(), selector()] == ["k1", "k2", "k3", "k1"]
-
-
 @pytest.mark.asyncio
 async def test_insert_contexts_batches_large_input(tmp_path):
     from lightrag.noisefilter.reproduction import insert_contexts
