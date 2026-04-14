@@ -4,10 +4,11 @@ import asyncio
 import json
 import os
 import re
+import threading
 from dataclasses import dataclass
 from functools import partial
 from pathlib import Path
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, Callable
 
 from dotenv import load_dotenv
 
@@ -48,6 +49,25 @@ class QARecord:
     question: str
     answers: list[str]
     metadata: dict[str, Any]
+
+
+@dataclass(slots=True)
+class RoundRobinValues:
+    values: list[str]
+    _index: int = 0
+    _lock: threading.Lock | None = None
+
+    def __post_init__(self) -> None:
+        self._lock = threading.Lock()
+
+    def next(self) -> str:
+        if not self.values:
+            raise ValueError("RoundRobinValues requires at least one value")
+        assert self._lock is not None
+        with self._lock:
+            value = self.values[self._index]
+            self._index = (self._index + 1) % len(self.values)
+            return value
 
 
 SUPPORTED_VARIANTS = {"baseline", "noisefilter"}
@@ -246,8 +266,14 @@ def build_runtime_overrides(
     for key, value in mappings.items():
         if value is None:
             continue
-        if value <= 0:
-            raise ValueError(f"{key} must be > 0 when provided, got {value}")
+        min_allowed = 1
+        if key in {"chunk_overlap_token_size", "entity_extract_max_gleaning"}:
+            min_allowed = 0
+        if value < min_allowed:
+            comparator = ">=" if min_allowed == 0 else ">"
+            raise ValueError(
+                f"{key} must be {comparator} {min_allowed} when provided, got {value}"
+            )
         overrides[key] = value
 
     return overrides
@@ -260,12 +286,36 @@ def _get_env(name: str, default: str | None = None) -> str | None:
     return value
 
 
+def _get_env_list(name: str) -> list[str]:
+    raw = os.getenv(name, "")
+    if not raw:
+        return []
+    return [item.strip() for item in raw.split(",") if item.strip()]
+
+
+def _build_api_key_selector(
+    *,
+    keys_env: str,
+    single_key: str | None,
+) -> tuple[Callable[[], str | None], int]:
+    keys = _get_env_list(keys_env)
+    if not keys and single_key:
+        keys = [single_key]
+    if not keys:
+        return lambda: None, 0
+    pool = RoundRobinValues(keys)
+    return pool.next, len(keys)
+
+
 def _build_llm_model_func():
     from lightrag.llm.openai import openai_complete_if_cache
 
     model = _get_env("LLM_MODEL", "gpt-4o-mini")
-    api_key = _get_env("LLM_BINDING_API_KEY") or _get_env("OPENAI_API_KEY")
     base_url = _get_env("LLM_BINDING_HOST")
+    get_api_key, key_count = _build_api_key_selector(
+        keys_env="LLM_BINDING_API_KEYS",
+        single_key=_get_env("LLM_BINDING_API_KEY") or _get_env("OPENAI_API_KEY"),
+    )
 
     async def llm_model_func(
         prompt, system_prompt=None, history_messages=None, **kwargs
@@ -275,11 +325,12 @@ def _build_llm_model_func():
             prompt,
             system_prompt=system_prompt,
             history_messages=history_messages or [],
-            api_key=api_key,
+            api_key=get_api_key(),
             base_url=base_url,
             **kwargs,
         )
 
+    setattr(llm_model_func, "_api_key_count", key_count)
     return llm_model_func
 
 
@@ -289,8 +340,10 @@ def _build_embedding_func() -> EmbeddingFunc:
 
     embedding_model = _get_env("EMBEDDING_MODEL", "text-embedding-3-small")
     embedding_base_url = _get_env("EMBEDDING_BINDING_HOST")
-    embedding_api_key = _get_env("EMBEDDING_BINDING_API_KEY") or _get_env(
-        "OPENAI_API_KEY"
+    get_api_key, key_count = _build_api_key_selector(
+        keys_env="EMBEDDING_BINDING_API_KEYS",
+        single_key=_get_env("EMBEDDING_BINDING_API_KEY")
+        or _get_env("OPENAI_API_KEY"),
     )
     embedding_dim = int(_get_env("EMBEDDING_DIM", "1536"))
     max_embed_tokens = int(
@@ -299,16 +352,22 @@ def _build_embedding_func() -> EmbeddingFunc:
         or "8192"
     )
 
-    return EmbeddingFunc(
-        embedding_dim=embedding_dim,
-        max_token_size=max_embed_tokens,
-        func=partial(
-            openai_embed.func,
+    async def embedding_func(texts: list[str], **kwargs: Any):
+        return await openai_embed.func(
+            texts,
             model=embedding_model,
             base_url=embedding_base_url,
-            api_key=embedding_api_key,
-        ),
+            api_key=get_api_key(),
+            **kwargs,
+        )
+
+    embedding_func_wrapper = EmbeddingFunc(
+        embedding_dim=embedding_dim,
+        max_token_size=max_embed_tokens,
+        func=embedding_func,
     )
+    setattr(embedding_func_wrapper, "_api_key_count", key_count)
+    return embedding_func_wrapper
 
 
 async def create_formal_rag(
