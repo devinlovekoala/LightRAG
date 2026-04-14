@@ -42,6 +42,12 @@ def parse_args(*, fixed_variant: str | None = None) -> argparse.Namespace:
     )
     parser.add_argument("--retries", type=int, default=3)
     parser.add_argument("--retry-delay", type=float, default=10.0)
+    parser.add_argument(
+        "--batch-size",
+        type=int,
+        default=50,
+        help="Number of contexts inserted per batch. Use 0 to insert all at once.",
+    )
     parser.add_argument("--conf-threshold", type=float, default=0.3)
     parser.add_argument(
         "--hard-filter",
@@ -80,6 +86,7 @@ async def _run(args: argparse.Namespace) -> None:
         inserted = await insert_contexts(
             rag,
             paths.context_file,
+            batch_size=args.batch_size,
             retries=args.retries,
             retry_delay_seconds=args.retry_delay,
         )
@@ -88,6 +95,7 @@ async def _run(args: argparse.Namespace) -> None:
         print(f"  variant: {paths.variant}")
         print(f"  working_dir: {paths.working_dir}")
         print(f"  inserted_contexts: {inserted}")
+        print(f"  batch_size: {args.batch_size}")
     finally:
         await finalize_rag(rag)
 

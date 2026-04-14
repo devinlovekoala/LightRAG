@@ -48,6 +48,7 @@ def test_build_formal_run_paths_uses_stable_layout(tmp_path):
 
     assert paths.context_file == tmp_path / "datasets" / "unique_contexts" / "agriculture_unique_contexts.json"
     assert paths.questions_file == tmp_path / "datasets" / "questions" / "agriculture_questions.txt"
+    assert paths.qa_file == tmp_path / "datasets" / "qa" / "agriculture_qa.json"
     assert paths.working_dir == tmp_path / "rag_storage" / "formal_runs" / "agriculture" / "baseline"
     assert paths.result_file == tmp_path / "reproduce" / "results" / "formal" / "agriculture" / "baseline" / "hybrid_results.json"
     assert paths.error_file == tmp_path / "reproduce" / "results" / "formal" / "agriculture" / "baseline" / "hybrid_errors.json"
@@ -73,3 +74,54 @@ def test_resolve_variant_settings_rejects_unknown_variant():
 
     with pytest.raises(ValueError):
         resolve_variant_settings("unknown")
+
+
+def test_load_qa_records_accepts_list_payload(tmp_path):
+    from lightrag.noisefilter.reproduction import load_qa_records
+
+    qa_file = tmp_path / "qa.json"
+    qa_file.write_text(
+        """
+[
+  {
+    "query_id": 7,
+    "question": "What is LightRAG?",
+    "answers": ["A graph-based RAG framework."],
+    "metadata": {"domain": "cs"}
+  }
+]
+""".strip(),
+        encoding="utf-8",
+    )
+
+    records = load_qa_records(qa_file)
+
+    assert len(records) == 1
+    assert records[0].query_id == 7
+    assert records[0].question == "What is LightRAG?"
+    assert records[0].answers == ["A graph-based RAG framework."]
+    assert records[0].metadata["domain"] == "cs"
+
+
+@pytest.mark.asyncio
+async def test_insert_contexts_batches_large_input(tmp_path):
+    from lightrag.noisefilter.reproduction import insert_contexts
+
+    context_file = tmp_path / "contexts.json"
+    context_file.write_text(
+        '["ctx1", "ctx2", "ctx3", "ctx4", "ctx5"]',
+        encoding="utf-8",
+    )
+
+    class FakeRAG:
+        def __init__(self):
+            self.batches = []
+
+        async def ainsert(self, batch):
+            self.batches.append(list(batch))
+
+    rag = FakeRAG()
+    inserted = await insert_contexts(rag, context_file, batch_size=2, retries=1)
+
+    assert inserted == 5
+    assert rag.batches == [["ctx1", "ctx2"], ["ctx3", "ctx4"], ["ctx5"]]

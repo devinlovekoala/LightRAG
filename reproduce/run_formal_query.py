@@ -11,6 +11,7 @@ from lightrag.noisefilter.reproduction import (
     build_formal_run_paths,
     create_formal_rag,
     finalize_rag,
+    load_qa_records,
     resolve_variant_settings,
     run_queries,
     save_json_records,
@@ -52,6 +53,11 @@ def parse_args(*, fixed_variant: str | None = None) -> argparse.Namespace:
         default="reproduce/results/formal",
         help="Root directory for query outputs.",
     )
+    parser.add_argument(
+        "--disable-qa",
+        action="store_true",
+        help="Ignore datasets/qa/{dataset}_qa.json even when it exists.",
+    )
     parser.add_argument("--conf-threshold", type=float, default=0.3)
     parser.add_argument(
         "--hard-filter",
@@ -84,6 +90,10 @@ async def _run(args: argparse.Namespace) -> None:
 
     rag = None
     try:
+        qa_records = None
+        if not args.disable_qa and paths.qa_file.exists():
+            qa_records = load_qa_records(paths.qa_file)
+
         rag = await create_formal_rag(
             working_dir=paths.working_dir,
             variant_settings=settings,
@@ -92,6 +102,7 @@ async def _run(args: argparse.Namespace) -> None:
             rag,
             questions_file=paths.questions_file,
             query_mode=paths.query_mode,
+            qa_records=qa_records,
         )
         save_json_records(paths.result_file, results)
         save_json_records(paths.error_file, errors)
@@ -105,6 +116,9 @@ async def _run(args: argparse.Namespace) -> None:
         print(f"  query_count: {len(results) + len(errors)}")
         print(f"  success_count: {len(results)}")
         print(f"  error_count: {len(errors)}")
+        print(
+            f"  qa_records: {len(qa_records) if qa_records is not None else 'disabled'}"
+        )
     finally:
         await finalize_rag(rag)
 
