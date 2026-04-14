@@ -8,6 +8,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from lightrag.noisefilter.reproduction import (
+    build_runtime_overrides,
     build_formal_run_paths,
     create_formal_rag,
     finalize_rag,
@@ -67,6 +68,54 @@ def parse_args(*, fixed_variant: str | None = None) -> argparse.Namespace:
     parser.add_argument("--w-freq", type=float, default=0.5)
     parser.add_argument("--w-cons", type=float, default=0.3)
     parser.add_argument("--w-sem", type=float, default=0.2)
+    parser.add_argument(
+        "--chunk-size",
+        type=int,
+        default=None,
+        help="Override LightRAG chunk token size for this run only.",
+    )
+    parser.add_argument(
+        "--chunk-overlap-size",
+        type=int,
+        default=None,
+        help="Override LightRAG chunk overlap token size for this run only.",
+    )
+    parser.add_argument(
+        "--max-async",
+        type=int,
+        default=None,
+        help="Override LightRAG LLM concurrency for this run only.",
+    )
+    parser.add_argument(
+        "--embedding-max-async",
+        type=int,
+        default=None,
+        help="Override embedding concurrency for this run only.",
+    )
+    parser.add_argument(
+        "--max-parallel-insert",
+        type=int,
+        default=None,
+        help="Override document-level insert concurrency for this run only.",
+    )
+    parser.add_argument(
+        "--max-gleaning",
+        type=int,
+        default=None,
+        help="Override extraction gleaning attempts for this run only.",
+    )
+    parser.add_argument(
+        "--max-extract-input-tokens",
+        type=int,
+        default=None,
+        help="Override the maximum extraction input tokens for this run only.",
+    )
+    parser.add_argument(
+        "--query-concurrency",
+        type=int,
+        default=4,
+        help="Number of concurrent formal queries to execute.",
+    )
     return parser.parse_args()
 
 
@@ -87,6 +136,15 @@ async def _run(args: argparse.Namespace) -> None:
         w_cons=args.w_cons,
         w_sem=args.w_sem,
     )
+    runtime_overrides = build_runtime_overrides(
+        chunk_size=args.chunk_size,
+        chunk_overlap_size=args.chunk_overlap_size,
+        llm_max_async=args.max_async,
+        embedding_max_async=args.embedding_max_async,
+        max_parallel_insert=args.max_parallel_insert,
+        max_gleaning=args.max_gleaning,
+        max_extract_input_tokens=args.max_extract_input_tokens,
+    )
 
     rag = None
     try:
@@ -97,12 +155,14 @@ async def _run(args: argparse.Namespace) -> None:
         rag = await create_formal_rag(
             working_dir=paths.working_dir,
             variant_settings=settings,
+            runtime_overrides=runtime_overrides,
         )
         results, errors = await run_queries(
             rag,
             questions_file=paths.questions_file,
             query_mode=paths.query_mode,
             qa_records=qa_records,
+            query_concurrency=args.query_concurrency,
         )
         save_json_records(paths.result_file, results)
         save_json_records(paths.error_file, errors)
@@ -119,6 +179,9 @@ async def _run(args: argparse.Namespace) -> None:
         print(
             f"  qa_records: {len(qa_records) if qa_records is not None else 'disabled'}"
         )
+        print(f"  query_concurrency: {args.query_concurrency}")
+        if runtime_overrides:
+            print(f"  runtime_overrides: {runtime_overrides}")
     finally:
         await finalize_rag(rag)
 

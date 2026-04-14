@@ -8,6 +8,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from lightrag.noisefilter.reproduction import (
+    build_runtime_overrides,
     build_formal_run_paths,
     create_formal_rag,
     finalize_rag,
@@ -57,6 +58,48 @@ def parse_args(*, fixed_variant: str | None = None) -> argparse.Namespace:
     parser.add_argument("--w-freq", type=float, default=0.5)
     parser.add_argument("--w-cons", type=float, default=0.3)
     parser.add_argument("--w-sem", type=float, default=0.2)
+    parser.add_argument(
+        "--chunk-size",
+        type=int,
+        default=None,
+        help="Override LightRAG chunk token size for faster or coarser indexing.",
+    )
+    parser.add_argument(
+        "--chunk-overlap-size",
+        type=int,
+        default=None,
+        help="Override LightRAG chunk overlap token size.",
+    )
+    parser.add_argument(
+        "--max-async",
+        type=int,
+        default=None,
+        help="Override LightRAG LLM concurrency for this run only.",
+    )
+    parser.add_argument(
+        "--embedding-max-async",
+        type=int,
+        default=None,
+        help="Override embedding concurrency for this run only.",
+    )
+    parser.add_argument(
+        "--max-parallel-insert",
+        type=int,
+        default=None,
+        help="Override document-level insert concurrency for this run only.",
+    )
+    parser.add_argument(
+        "--max-gleaning",
+        type=int,
+        default=None,
+        help="Override extraction gleaning attempts for this run only.",
+    )
+    parser.add_argument(
+        "--max-extract-input-tokens",
+        type=int,
+        default=None,
+        help="Override the maximum extraction input tokens for this run only.",
+    )
     return parser.parse_args()
 
 
@@ -76,12 +119,22 @@ async def _run(args: argparse.Namespace) -> None:
         w_cons=args.w_cons,
         w_sem=args.w_sem,
     )
+    runtime_overrides = build_runtime_overrides(
+        chunk_size=args.chunk_size,
+        chunk_overlap_size=args.chunk_overlap_size,
+        llm_max_async=args.max_async,
+        embedding_max_async=args.embedding_max_async,
+        max_parallel_insert=args.max_parallel_insert,
+        max_gleaning=args.max_gleaning,
+        max_extract_input_tokens=args.max_extract_input_tokens,
+    )
 
     rag = None
     try:
         rag = await create_formal_rag(
             working_dir=paths.working_dir,
             variant_settings=settings,
+            runtime_overrides=runtime_overrides,
         )
         inserted = await insert_contexts(
             rag,
@@ -96,6 +149,8 @@ async def _run(args: argparse.Namespace) -> None:
         print(f"  working_dir: {paths.working_dir}")
         print(f"  inserted_contexts: {inserted}")
         print(f"  batch_size: {args.batch_size}")
+        if runtime_overrides:
+            print(f"  runtime_overrides: {runtime_overrides}")
     finally:
         await finalize_rag(rag)
 

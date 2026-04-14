@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import asyncio
 from pathlib import Path
 
 import pytest
@@ -103,6 +104,37 @@ def test_load_qa_records_accepts_list_payload(tmp_path):
     assert records[0].metadata["domain"] == "cs"
 
 
+def test_build_runtime_overrides_ignores_missing_values():
+    from lightrag.noisefilter.reproduction import build_runtime_overrides
+
+    overrides = build_runtime_overrides(
+        chunk_size=6000,
+        chunk_overlap_size=200,
+        llm_max_async=2,
+        embedding_max_async=4,
+        max_parallel_insert=1,
+        max_gleaning=1,
+        max_extract_input_tokens=12000,
+    )
+
+    assert overrides == {
+        "chunk_token_size": 6000,
+        "chunk_overlap_token_size": 200,
+        "llm_model_max_async": 2,
+        "embedding_func_max_async": 4,
+        "max_parallel_insert": 1,
+        "entity_extract_max_gleaning": 1,
+        "max_extract_input_tokens": 12000,
+    }
+
+
+def test_build_runtime_overrides_rejects_non_positive_values():
+    from lightrag.noisefilter.reproduction import build_runtime_overrides
+
+    with pytest.raises(ValueError):
+        build_runtime_overrides(chunk_size=0)
+
+
 @pytest.mark.asyncio
 async def test_insert_contexts_batches_large_input(tmp_path):
     from lightrag.noisefilter.reproduction import insert_contexts
@@ -125,3 +157,42 @@ async def test_insert_contexts_batches_large_input(tmp_path):
 
     assert inserted == 5
     assert rag.batches == [["ctx1", "ctx2"], ["ctx3", "ctx4"], ["ctx5"]]
+
+
+@pytest.mark.asyncio
+async def test_run_queries_supports_concurrency(tmp_path):
+    from lightrag.noisefilter.reproduction import QARecord, run_queries
+
+    questions_file = tmp_path / "questions.txt"
+    questions_file.write_text("", encoding="utf-8")
+
+    class FakeRAG:
+        def __init__(self):
+            self.active = 0
+            self.max_active = 0
+
+        async def aquery(self, query, param):
+            self.active += 1
+            self.max_active = max(self.max_active, self.active)
+            await asyncio.sleep(0.01)
+            self.active -= 1
+            return f"answer:{query}:{param.mode}"
+
+    qa_records = [
+        QARecord(query_id=1, question="q1", answers=["a1"], metadata={}),
+        QARecord(query_id=2, question="q2", answers=["a2"], metadata={}),
+        QARecord(query_id=3, question="q3", answers=["a3"], metadata={}),
+    ]
+    rag = FakeRAG()
+
+    results, errors = await run_queries(
+        rag,
+        questions_file=questions_file,
+        query_mode="hybrid",
+        qa_records=qa_records,
+        query_concurrency=3,
+    )
+
+    assert not errors
+    assert [row["query_id"] for row in results] == [1, 2, 3]
+    assert rag.max_active >= 2

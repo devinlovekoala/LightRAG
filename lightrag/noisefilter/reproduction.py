@@ -222,6 +222,37 @@ def save_json_records(path: str | Path, rows: list[dict[str, Any]]) -> None:
         json.dump(rows, file, ensure_ascii=False, indent=2)
 
 
+def build_runtime_overrides(
+    *,
+    chunk_size: int | None = None,
+    chunk_overlap_size: int | None = None,
+    llm_max_async: int | None = None,
+    embedding_max_async: int | None = None,
+    max_parallel_insert: int | None = None,
+    max_gleaning: int | None = None,
+    max_extract_input_tokens: int | None = None,
+) -> dict[str, Any]:
+    mappings = {
+        "chunk_token_size": chunk_size,
+        "chunk_overlap_token_size": chunk_overlap_size,
+        "llm_model_max_async": llm_max_async,
+        "embedding_func_max_async": embedding_max_async,
+        "max_parallel_insert": max_parallel_insert,
+        "entity_extract_max_gleaning": max_gleaning,
+        "max_extract_input_tokens": max_extract_input_tokens,
+    }
+
+    overrides: dict[str, Any] = {}
+    for key, value in mappings.items():
+        if value is None:
+            continue
+        if value <= 0:
+            raise ValueError(f"{key} must be > 0 when provided, got {value}")
+        overrides[key] = value
+
+    return overrides
+
+
 def _get_env(name: str, default: str | None = None) -> str | None:
     value = os.getenv(name)
     if value is None or value == "":
@@ -284,6 +315,7 @@ async def create_formal_rag(
     *,
     working_dir: str | Path,
     variant_settings: VariantSettings,
+    runtime_overrides: dict[str, Any] | None = None,
 ) -> LightRAG:
     from lightrag import LightRAG
 
@@ -293,6 +325,7 @@ async def create_formal_rag(
         embedding_func=_build_embedding_func(),
         enable_noise_filter=variant_settings.enable_noise_filter,
         noise_filter_config=variant_settings.noise_filter_config,
+        **(runtime_overrides or {}),
     )
     await rag.initialize_storages()
     return rag
@@ -337,6 +370,7 @@ async def run_queries(
     questions_file: str | Path,
     query_mode: str,
     qa_records: list[QARecord] | None = None,
+    query_concurrency: int = 1,
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     from lightrag import QueryParam
 
@@ -352,39 +386,97 @@ async def run_queries(
         ]
 
     query_param = QueryParam(mode=query_mode)
-    results: list[dict[str, Any]] = []
-    errors: list[dict[str, Any]] = []
+    if query_concurrency <= 0:
+        raise ValueError(
+            f"query_concurrency must be > 0, got {query_concurrency}"
+        )
 
-    for query_id, query, answers, metadata in query_items:
-        try:
-            answer = await rag.aquery(query, param=query_param)
-            row = {
-                "query": query,
-                "mode": query_mode,
-                "result": answer,
-            }
-            if query_id is not None:
-                row["query_id"] = query_id
-            if answers:
-                row["ground_truth_answers"] = answers
-            if metadata:
-                row["metadata"] = metadata
-            results.append(row)
-        except Exception as exc:
-            row = {
-                "query": query,
-                "mode": query_mode,
-                "error": str(exc),
-            }
-            if query_id is not None:
-                row["query_id"] = query_id
-            if answers:
-                row["ground_truth_answers"] = answers
-            if metadata:
-                row["metadata"] = metadata
-            errors.append(row)
+    def _build_result_row(
+        *,
+        query_id: int | None,
+        query: str,
+        answers: list[str],
+        metadata: dict[str, Any],
+        payload_key: str,
+        payload_value: Any,
+    ) -> dict[str, Any]:
+        row = {
+            "query": query,
+            "mode": query_mode,
+            payload_key: payload_value,
+        }
+        if query_id is not None:
+            row["query_id"] = query_id
+        if answers:
+            row["ground_truth_answers"] = answers
+        if metadata:
+            row["metadata"] = metadata
+        return row
 
-    return results, errors
+    async def _run_one(
+        index: int,
+        query_id: int | None,
+        query: str,
+        answers: list[str],
+        metadata: dict[str, Any],
+        semaphore: asyncio.Semaphore | None,
+    ) -> tuple[int, bool, dict[str, Any]]:
+        async def _execute() -> tuple[int, bool, dict[str, Any]]:
+            try:
+                answer = await rag.aquery(query, param=query_param)
+                return (
+                    index,
+                    True,
+                    _build_result_row(
+                        query_id=query_id,
+                        query=query,
+                        answers=answers,
+                        metadata=metadata,
+                        payload_key="result",
+                        payload_value=answer,
+                    ),
+                )
+            except Exception as exc:
+                return (
+                    index,
+                    False,
+                    _build_result_row(
+                        query_id=query_id,
+                        query=query,
+                        answers=answers,
+                        metadata=metadata,
+                        payload_key="error",
+                        payload_value=str(exc),
+                    ),
+                )
+
+        if semaphore is None:
+            return await _execute()
+
+        async with semaphore:
+            return await _execute()
+
+    semaphore = (
+        None if query_concurrency == 1 else asyncio.Semaphore(query_concurrency)
+    )
+    tasks = [
+        asyncio.create_task(
+            _run_one(index, query_id, query, answers, metadata, semaphore)
+        )
+        for index, (query_id, query, answers, metadata) in enumerate(query_items)
+    ]
+
+    results: list[tuple[int, dict[str, Any]]] = []
+    errors: list[tuple[int, dict[str, Any]]] = []
+    for index, is_success, row in await asyncio.gather(*tasks):
+        if is_success:
+            results.append((index, row))
+        else:
+            errors.append((index, row))
+
+    results.sort(key=lambda item: item[0])
+    errors.sort(key=lambda item: item[0])
+    return [row for _, row in results], [row for _, row in errors]
 
 
 async def finalize_rag(rag: LightRAG | None) -> None:
