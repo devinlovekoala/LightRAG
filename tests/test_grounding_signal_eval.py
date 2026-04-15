@@ -6,12 +6,14 @@ from pathlib import Path
 import pytest
 
 from reproduce.evaluate_grounding_signals import (
+    build_hypotheses,
     build_comparison_summary,
     compute_anchor_scores,
     compute_average_precision,
     compute_roc_auc,
     evaluate_variant,
     load_edge_rows,
+    resolve_local_model_path,
     resolve_source_texts,
 )
 
@@ -71,6 +73,31 @@ def test_auc_helpers_handle_perfect_ranking() -> None:
     assert compute_average_precision(labels, scores) == pytest.approx(1.0)
 
 
+def test_resolve_local_model_path_prefers_existing_directory(tmp_path: Path) -> None:
+    model_dir = tmp_path / "model"
+    model_dir.mkdir()
+
+    assert resolve_local_model_path(str(model_dir)) == str(model_dir)
+
+
+def test_build_hypotheses_splits_sep_and_adds_keyword_templates() -> None:
+    hypotheses = build_hypotheses(
+        {
+            "src": "Rumbi Katedza",
+            "dst": "CKUT Radio",
+            "keywords": "radio production,presentation",
+            "description": (
+                "Rumbi Katedza produced radio shows for CKUT.<SEP>"
+                "Rumbi Katedza presented radio shows for CKUT."
+            ),
+        }
+    )
+
+    assert "Rumbi Katedza produced radio shows for CKUT." in hypotheses
+    assert "Rumbi Katedza presented radio shows for CKUT." in hypotheses
+    assert any("radio production" in hypothesis.lower() for hypothesis in hypotheses)
+
+
 def test_evaluate_variant_summarizes_signals() -> None:
     rows = [
         {
@@ -105,6 +132,8 @@ def test_evaluate_variant_summarizes_signals() -> None:
     def fake_nli(premise: str, hypothesis: str) -> float:
         if "works at" in premise.lower() and "works at" in hypothesis.lower():
             return 0.95
+        if "worked on radio shows" in premise.lower() and "worked on radio shows" in hypothesis.lower():
+            return 0.75
         if "sports event" in premise.lower():
             return 0.05
         return 0.4
@@ -115,6 +144,80 @@ def test_evaluate_variant_summarizes_signals() -> None:
     assert summary["label_counts"] == {"correct": 1, "wrong": 1, "ambiguous": 1}
     assert summary["signal_means_by_label"]["nli_support_score"]["correct"] > summary["signal_means_by_label"]["nli_support_score"]["wrong"]
     assert summary["binary_ranking"]["nli_support_score"]["roc_auc"] > 0.9
+
+
+def test_evaluate_variant_uses_best_hypothesis_template() -> None:
+    rows = [
+        {
+            "variant": "noisefilter",
+            "src": "Rumbi Katedza",
+            "dst": "CKUT Radio",
+            "keywords": "radio shows",
+            "description": "Rumbi Katedza produced and presented radio shows for CKUT from 1994 to 2000.",
+            "manual_label": "correct",
+            "chunk_ids": ["c1"],
+            "source_chunks": [
+                "From 1994 to 2000, she worked on radio shows for CKUT in Montreal."
+            ],
+        },
+        {
+            "variant": "noisefilter",
+            "src": "Alice",
+            "dst": "Beta",
+            "keywords": "founded",
+            "description": "Alice founded Beta.",
+            "manual_label": "wrong",
+            "chunk_ids": ["c2"],
+            "source_chunks": ["Completely unrelated sports event."],
+        },
+    ]
+
+    def fake_nli(premise: str, hypothesis: str) -> float:
+        if "radio shows" in premise.lower() and "radio shows" in hypothesis.lower():
+            return 0.8
+        if "produced and presented" in hypothesis.lower():
+            return 0.05
+        return 0.01
+
+    summary = evaluate_variant("noisefilter", rows, nli_scorer=fake_nli)
+
+    correct_row = next(
+        row for row in summary["evaluated_rows"] if row["manual_label"] == "correct"
+    )
+    assert correct_row["nli_support_score"] == pytest.approx(0.8)
+
+
+def test_evaluate_variant_uses_batch_nli_when_available() -> None:
+    rows = [
+        {
+            "variant": "noisefilter",
+            "src": "Alice",
+            "dst": "Acme",
+            "keywords": "employment",
+            "description": "Alice works at Acme.",
+            "manual_label": "correct",
+            "chunk_ids": ["c1"],
+            "source_chunks": ["Alice works at Acme."],
+        },
+        {
+            "variant": "noisefilter",
+            "src": "Alice",
+            "dst": "Beta",
+            "keywords": "founded",
+            "description": "Alice founded Beta.",
+            "manual_label": "wrong",
+            "chunk_ids": ["c2"],
+            "source_chunks": ["Sports event only."],
+        },
+    ]
+
+    class FakeBatchScorer:
+        def score_many(self, pairs):
+            return [0.9 if "works at" in hypothesis.lower() else 0.1 for _, hypothesis in pairs]
+
+    summary = evaluate_variant("noisefilter", rows, nli_scorer=FakeBatchScorer())
+
+    assert summary["binary_ranking"]["nli_support_score"]["roc_auc"] == pytest.approx(1.0)
 
 
 def test_build_comparison_summary_uses_signal_deltas() -> None:

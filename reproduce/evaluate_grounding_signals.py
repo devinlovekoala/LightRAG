@@ -20,6 +20,7 @@ SIGNAL_FIELDS = (
     "cooccurrence_score",
     "nli_support_score",
 )
+DESCRIPTION_SEP = "<SEP>"
 
 
 def _normalize_label(value: Any) -> str:
@@ -160,27 +161,92 @@ def compute_anchor_scores(
     }
 
 
-def build_hypothesis(row: dict[str, Any]) -> str:
-    description = str(row.get("description", "")).strip()
-    if description:
-        return description
+def _clean_hypothesis_text(text: str) -> str:
+    cleaned = " ".join(str(text or "").strip().split())
+    return cleaned.strip(" .") + "." if cleaned else ""
 
+
+def build_hypotheses(row: dict[str, Any]) -> list[str]:
     src = str(row.get("src", "")).strip()
     dst = str(row.get("dst", "")).strip()
     keywords = str(row.get("keywords", "")).strip()
+    description = str(row.get("description", "")).strip()
+
+    hypotheses: list[str] = []
+    seen: set[str] = set()
+
+    def add(text: str) -> None:
+        cleaned = _clean_hypothesis_text(text)
+        if cleaned and cleaned not in seen:
+            seen.add(cleaned)
+            hypotheses.append(cleaned)
+
+    if description:
+        for part in description.split(DESCRIPTION_SEP):
+            add(part)
+
     if keywords:
-        return f"{src} {keywords} {dst}".strip()
-    return f"{src} is related to {dst}".strip()
+        for keyword in [item.strip() for item in keywords.split(",") if item.strip()]:
+            add(f"{src} {keyword} {dst}")
+            add(f"{src} is associated with {dst} via {keyword}")
+
+    if src and dst:
+        add(f"{src} is related to {dst}")
+
+    return hypotheses
 
 
 def score_nli_support(
     source_texts: list[str],
-    hypothesis: str,
+    hypotheses: list[str],
     nli_scorer: Callable[[str, str], float] | None,
 ) -> float:
-    if not source_texts or nli_scorer is None:
+    if not source_texts or nli_scorer is None or not hypotheses:
         return 0.0
-    return max(float(nli_scorer(chunk_text, hypothesis)) for chunk_text in source_texts)
+    return max(
+        float(nli_scorer(chunk_text, hypothesis))
+        for chunk_text in source_texts
+        for hypothesis in hypotheses
+    )
+
+
+def score_nli_support_many(
+    rows: list[dict[str, Any]],
+    nli_scorer: Any,
+) -> list[float]:
+    if not rows or nli_scorer is None:
+        return [0.0 for _ in rows]
+
+    if not hasattr(nli_scorer, "score_many"):
+        return [
+            score_nli_support(
+                row.get("_source_texts", []),
+                row.get("_hypotheses", []),
+                nli_scorer,
+            )
+            for row in rows
+        ]
+
+    pair_offsets: list[tuple[int, int]] = []
+    pairs: list[tuple[str, str]] = []
+    for row in rows:
+        row_pairs = [
+            (chunk_text, hypothesis)
+            for chunk_text in row.get("_source_texts", [])
+            for hypothesis in row.get("_hypotheses", [])
+        ]
+        start = len(pairs)
+        pairs.extend(row_pairs)
+        pair_offsets.append((start, len(pairs)))
+
+    if not pairs:
+        return [0.0 for _ in rows]
+
+    scores = list(nli_scorer.score_many(pairs))
+    aggregated: list[float] = []
+    for start, end in pair_offsets:
+        aggregated.append(max(scores[start:end]) if end > start else 0.0)
+    return aggregated
 
 
 def _mean(values: list[float]) -> float:
@@ -238,7 +304,7 @@ def evaluate_variant(
     filtered_rows = [
         row for row in rows if _normalize_label(row.get("manual_label")) in LABELS
     ]
-    evaluated_rows: list[dict[str, Any]] = []
+    prepared_rows: list[dict[str, Any]] = []
 
     for row in filtered_rows:
         source_texts = resolve_source_texts(row, text_chunk_lookup)
@@ -247,17 +313,31 @@ def evaluate_variant(
             str(row.get("dst", "")),
             source_texts,
         )
-        hypothesis = build_hypothesis(row)
-        evaluated_row = {
+        hypotheses = build_hypotheses(row)
+        prepared_row = {
             **row,
             **anchor_scores,
-            "nli_support_score": score_nli_support(
-                source_texts, hypothesis, nli_scorer
-            ),
             "resolved_source_chunk_count": len(source_texts),
-            "hypothesis": hypothesis,
+            "hypothesis": hypotheses[0] if hypotheses else "",
+            "hypotheses": hypotheses,
+            "_source_texts": source_texts,
+            "_hypotheses": hypotheses,
         }
-        evaluated_rows.append(evaluated_row)
+        prepared_rows.append(prepared_row)
+
+    nli_scores = score_nli_support_many(prepared_rows, nli_scorer)
+    evaluated_rows: list[dict[str, Any]] = []
+    for row, nli_score in zip(prepared_rows, nli_scores):
+        evaluated_rows.append(
+            {
+                key: value
+                for key, value in {
+                    **row,
+                    "nli_support_score": nli_score,
+                }.items()
+                if key not in {"_source_texts", "_hypotheses"}
+            }
+        )
 
     label_counts = {
         label: sum(row["manual_label"] == label for row in evaluated_rows)
@@ -342,7 +422,8 @@ class LocalNLIScorer:
                 "Local NLI requires sentence-transformers. Install it in .venv first."
             ) from exc
 
-        self._model = CrossEncoder(model_name)
+        resolved_model_name = resolve_local_model_path(model_name)
+        self._model = CrossEncoder(resolved_model_name, local_files_only=True)
         self._batch_size = max(1, int(batch_size))
         self._label_to_index = self._resolve_label_mapping()
 
@@ -357,9 +438,12 @@ class LocalNLIScorer:
         return normalized
 
     def __call__(self, premise: str, hypothesis: str) -> float:
+        return float(self.score_many([(premise, hypothesis)])[0])
+
+    def score_many(self, pairs: list[tuple[str, str]]) -> list[float]:
         logits = np.asarray(
             self._model.predict(
-                [(premise, hypothesis)],
+                pairs,
                 batch_size=self._batch_size,
                 show_progress_bar=False,
             )
@@ -371,7 +455,10 @@ class LocalNLIScorer:
         entail_index = _match_label_index(self._label_to_index, "entail")
         if entail_index is None:
             raise RuntimeError("Unable to locate entailment label in NLI model config.")
-        return float(probs[entail_index])
+        if logits.shape[0] == 1:
+            return [float(probs[entail_index])]
+        probs = _softmax(logits)
+        return [float(row[entail_index]) for row in probs]
 
 
 def _match_label_index(label_to_index: dict[str, int], prefix: str) -> int | None:
@@ -386,6 +473,19 @@ def _softmax(logits: np.ndarray) -> np.ndarray:
     exp = np.exp(shifted)
     denom = np.sum(exp, axis=1, keepdims=True)
     return exp / denom
+
+
+def resolve_local_model_path(model_name: str) -> str:
+    candidate = Path(model_name).expanduser()
+    if candidate.exists():
+        return str(candidate)
+
+    try:
+        from huggingface_hub import snapshot_download
+
+        return snapshot_download(model_name, local_files_only=True)
+    except Exception:
+        return model_name
 
 
 def build_report(
@@ -476,6 +576,9 @@ def save_rows_csv(path: str | Path, payload: dict[str, Any]) -> None:
                     "chunk_ids": json.dumps(row.get("chunk_ids", []), ensure_ascii=False),
                     "source_chunks": json.dumps(
                         row.get("source_chunks", []), ensure_ascii=False
+                    ),
+                    "hypotheses": json.dumps(
+                        row.get("hypotheses", []), ensure_ascii=False
                     ),
                 }
             )
