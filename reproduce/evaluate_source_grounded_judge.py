@@ -4,12 +4,17 @@ import argparse
 import asyncio
 import csv
 import json
+import logging
 import os
+import sys
+import time
 from pathlib import Path
 from statistics import fmean
 from typing import Any, Awaitable, Callable
 
 from dotenv import load_dotenv
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from reproduce.evaluate_grounding_signals import (
     compute_average_precision,
@@ -20,6 +25,20 @@ from reproduce.evaluate_grounding_signals import (
 )
 
 load_dotenv(dotenv_path=".env", override=False)
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    datefmt="%H:%M:%S",
+)
+logger = logging.getLogger(__name__)
+
+_DEFAULT_TIMEOUT = int(os.getenv("LLM_TIMEOUT", "180"))
+_DEFAULT_MAX_RETRIES = 3
+_RETRY_BACKOFF_BASE = 2.0
+_DEFAULT_MAX_SOURCE_CHUNKS = int(os.getenv("JUDGE_MAX_SOURCE_CHUNKS", "3"))
+_DEFAULT_MAX_SOURCE_CHARS = int(os.getenv("JUDGE_MAX_SOURCE_CHARS", "2400"))
+_DEFAULT_REQUEST_DELAY_MS = int(os.getenv("JUDGE_REQUEST_DELAY_MS", "0"))
 
 JUDGE_VERDICTS = (
     "supported",
@@ -32,7 +51,10 @@ SYSTEM_PROMPT = """You are a strict fact-checking judge for graph edges.
 
 Decide whether a relation claim is supported by the provided source text only.
 Do not use external knowledge.
+`supported` requires explicit support from the source and at least one short exact evidence quote.
+If you cannot point to an exact supporting quote from the source text, do not choose supported.
 If the source text is truncated or only partially supports the claim, choose partially_supported.
+If the source text mentions related entities or topics but does not explicitly state the relation, choose not_supported.
 Return valid JSON only.
 """
 
@@ -66,6 +88,34 @@ def _normalize_verdict(raw: str | None) -> str:
     return verdict if verdict in JUDGE_VERDICTS else "not_supported"
 
 
+def _truncate_text(text: str, max_chars: int) -> str:
+    compact = " ".join(str(text or "").split())
+    if len(compact) <= max_chars:
+        return compact
+    if max_chars <= 16:
+        return compact[:max_chars]
+    return compact[: max_chars - 16].rstrip() + " [...truncated]"
+
+
+def prepare_source_texts(
+    source_texts: list[str],
+    *,
+    max_source_chunks: int = _DEFAULT_MAX_SOURCE_CHUNKS,
+    max_source_chars: int = _DEFAULT_MAX_SOURCE_CHARS,
+) -> list[str]:
+    prepared: list[str] = []
+    remaining_chars = max(0, max_source_chars)
+    for raw_text in source_texts[: max(1, max_source_chunks)]:
+        if remaining_chars < 32:
+            break
+        truncated = _truncate_text(raw_text, remaining_chars)
+        if len(truncated.strip()) < 32:
+            continue
+        prepared.append(truncated)
+        remaining_chars -= len(truncated)
+    return prepared
+
+
 def build_user_prompt(claim: str, source_texts: list[str]) -> str:
     rendered_sources = "\n\n".join(
         f"Source {index + 1}:\n{chunk_text}" for index, chunk_text in enumerate(source_texts)
@@ -80,9 +130,80 @@ Return valid JSON with this exact shape:
 {{
   "verdict": "supported | partially_supported | not_supported | contradicted",
   "support_score": 0.0,
+  "evidence": ["exact short quote from source"],
   "explanation": "short explanation"
 }}
 """
+
+
+def _normalize_evidence_snippets(raw: Any) -> list[str]:
+    if isinstance(raw, list):
+        values = raw
+    elif isinstance(raw, str):
+        values = [raw]
+    else:
+        return []
+
+    normalized: list[str] = []
+    seen: set[str] = set()
+    for value in values:
+        snippet = " ".join(str(value or "").split()).strip().strip('"')
+        if len(snippet) < 8:
+            continue
+        key = snippet.casefold()
+        if key in seen:
+            continue
+        seen.add(key)
+        normalized.append(snippet)
+    return normalized
+
+
+def _has_anchored_evidence(evidence_snippets: list[str], source_texts: list[str]) -> bool:
+    if not evidence_snippets or not source_texts:
+        return False
+    normalized_sources = [" ".join(text.split()).casefold() for text in source_texts]
+    for snippet in evidence_snippets:
+        normalized_snippet = " ".join(snippet.split()).casefold()
+        if any(normalized_snippet in source for source in normalized_sources):
+            return True
+    return False
+
+
+def calibrate_judge_result(
+    verdict: str,
+    support_score: float | None,
+    explanation: str,
+    evidence_snippets: list[str],
+    source_texts: list[str],
+) -> dict[str, Any]:
+    normalized_verdict = _normalize_verdict(verdict)
+    normalized_explanation = str(explanation or "").strip()
+    anchored_evidence = _has_anchored_evidence(evidence_snippets, source_texts)
+
+    if normalized_verdict == "supported" and not anchored_evidence:
+        normalized_verdict = "partially_supported"
+        prefix = "Downgraded from supported because no exact evidence quote was grounded in the provided source."
+        normalized_explanation = (
+            f"{prefix} {normalized_explanation}".strip()
+            if normalized_explanation
+            else prefix
+        )
+
+    normalized_score = score_verdict(normalized_verdict) if support_score is None else float(support_score)
+    if normalized_verdict == "supported":
+        normalized_score = max(normalized_score, 0.9)
+    elif normalized_verdict == "partially_supported":
+        normalized_score = min(normalized_score, 0.6)
+    else:
+        normalized_score = min(normalized_score, 0.1)
+
+    return {
+        "verdict": normalized_verdict,
+        "support_score": normalized_score,
+        "explanation": normalized_explanation,
+        "evidence": evidence_snippets,
+        "anchored_evidence": anchored_evidence,
+    }
 
 
 async def evaluate_variant_async(
@@ -99,9 +220,14 @@ async def evaluate_variant_async(
         if str(row.get("manual_label", "")).strip().lower()
         in {"correct", "wrong", "ambiguous"}
     ]
+    total = len(filtered_rows)
+    logger.info("[%s] Judging %d labeled rows (concurrency=%d)", variant, total, concurrency)
     semaphore = asyncio.Semaphore(max(1, concurrency))
+    completed = 0
+    start_time = time.monotonic()
 
     async def _judge_row(row: dict[str, Any]) -> dict[str, Any]:
+        nonlocal completed
         claim = build_claim(row)
         source_texts = resolve_source_texts(row, text_chunk_lookup)
         async with semaphore:
@@ -110,17 +236,29 @@ async def evaluate_variant_async(
         support_score = result.get("support_score")
         if support_score is None:
             support_score = score_verdict(verdict)
+        completed += 1
+        if completed % max(1, total // 10) == 0 or completed == total:
+            elapsed = time.monotonic() - start_time
+            rate = completed / elapsed if elapsed > 0 else 0.0
+            logger.info(
+                "[%s] Progress: %d/%d (%.0f%%) — %.2f rows/s — verdict=%s",
+                variant, completed, total, 100.0 * completed / total, rate, verdict,
+            )
         return {
             **row,
             "judge_claim": claim,
             "judge_verdict": verdict,
             "judge_support_score": float(support_score),
             "judge_explanation": str(result.get("explanation", "")).strip(),
+            "judge_evidence": json.dumps(result.get("evidence", []), ensure_ascii=False),
+            "judge_anchored_evidence": bool(result.get("anchored_evidence", False)),
             "resolved_source_chunk_count": len(source_texts),
         }
 
     judged_rows = await asyncio.gather(*[_judge_row(row) for row in filtered_rows])
-    return summarize_variant_rows(variant, judged_rows)
+    elapsed = time.monotonic() - start_time
+    logger.info("[%s] Done — %d rows judged in %.1fs", variant, total, elapsed)
+    return summarize_variant_rows(variant, list(judged_rows))
 
 
 def summarize_variant_rows(variant: str, rows: list[dict[str, Any]]) -> dict[str, Any]:
@@ -210,31 +348,108 @@ class RemoteSourceJudge:
         model: str,
         api_key: str,
         base_url: str | None = None,
+        timeout: float = _DEFAULT_TIMEOUT,
+        max_retries: int = _DEFAULT_MAX_RETRIES,
+        max_source_chunks: int = _DEFAULT_MAX_SOURCE_CHUNKS,
+        max_source_chars: int = _DEFAULT_MAX_SOURCE_CHARS,
+        request_delay_ms: int = _DEFAULT_REQUEST_DELAY_MS,
     ) -> None:
+        import httpx
         from openai import AsyncOpenAI
 
-        self._client = AsyncOpenAI(api_key=api_key, base_url=base_url)
+        self._client = AsyncOpenAI(
+            api_key=api_key,
+            base_url=base_url,
+            timeout=httpx.Timeout(timeout, connect=30.0),
+            max_retries=0,  # manual retry with backoff below
+        )
         self._model = model
+        self._max_retries = max_retries
+        self._max_source_chunks = max(1, max_source_chunks)
+        self._max_source_chars = max(256, max_source_chars)
+        self._request_delay_s = max(0.0, request_delay_ms / 1000.0)
+        self._next_request_at = 0.0
+        self._request_gate = asyncio.Lock()
+        logger.info(
+            "RemoteSourceJudge: model=%s base_url=%s timeout=%.0fs max_retries=%d max_source_chunks=%d max_source_chars=%d request_delay_ms=%d",
+            model,
+            base_url or "(default)",
+            timeout,
+            max_retries,
+            self._max_source_chunks,
+            self._max_source_chars,
+            request_delay_ms,
+        )
+
+    async def _wait_for_turn(self) -> None:
+        if self._request_delay_s <= 0:
+            return
+        async with self._request_gate:
+            now = time.monotonic()
+            wait = max(0.0, self._next_request_at - now)
+            if wait > 0:
+                await asyncio.sleep(wait)
+                now = time.monotonic()
+            self._next_request_at = now + self._request_delay_s
 
     async def __call__(self, claim: str, source_texts: list[str]) -> dict[str, Any]:
-        response = await self._client.chat.completions.create(
-            model=self._model,
-            temperature=0,
-            response_format={"type": "json_object"},
-            messages=[
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": build_user_prompt(claim, source_texts)},
-            ],
+        import httpx
+        from openai import APIConnectionError, APIStatusError, APITimeoutError
+
+        prepared_source_texts = prepare_source_texts(
+            source_texts,
+            max_source_chunks=self._max_source_chunks,
+            max_source_chars=self._max_source_chars,
         )
-        content = response.choices[0].message.content or "{}"
-        parsed = json.loads(content)
-        verdict = _normalize_verdict(parsed.get("verdict"))
-        score = parsed.get("support_score")
-        return {
-            "verdict": verdict,
-            "support_score": score_verdict(verdict) if score is None else float(score),
-            "explanation": str(parsed.get("explanation", "")).strip(),
-        }
+        messages = [
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": build_user_prompt(claim, prepared_source_texts)},
+        ]
+        last_exc: Exception | None = None
+        for attempt in range(1, self._max_retries + 1):
+            try:
+                await self._wait_for_turn()
+                response = await self._client.chat.completions.create(
+                    model=self._model,
+                    temperature=0,
+                    response_format={"type": "json_object"},
+                    messages=messages,
+                )
+                content = response.choices[0].message.content or "{}"
+                parsed = json.loads(content)
+                return calibrate_judge_result(
+                    parsed.get("verdict"),
+                    parsed.get("support_score"),
+                    str(parsed.get("explanation", "")).strip(),
+                    _normalize_evidence_snippets(parsed.get("evidence")),
+                    prepared_source_texts,
+                )
+            except (APITimeoutError, APIConnectionError, httpx.ReadTimeout, httpx.ConnectTimeout) as exc:
+                last_exc = exc
+                wait = _RETRY_BACKOFF_BASE ** (attempt - 1)
+                logger.warning(
+                    "Judge request timed out/failed (attempt %d/%d) — retrying in %.0fs: %s",
+                    attempt, self._max_retries, wait, exc,
+                )
+                await asyncio.sleep(wait)
+            except APIStatusError as exc:
+                last_exc = exc
+                if exc.status_code and exc.status_code < 500:
+                    logger.error("Judge API error %d (non-retryable): %s", exc.status_code, exc)
+                    break
+                wait = _RETRY_BACKOFF_BASE ** (attempt - 1)
+                logger.warning(
+                    "Judge API server error %d (attempt %d/%d) — retrying in %.0fs",
+                    exc.status_code, attempt, self._max_retries, wait,
+                )
+                await asyncio.sleep(wait)
+            except json.JSONDecodeError as exc:
+                logger.warning("Judge returned invalid JSON: %s", exc)
+                last_exc = exc
+                break
+
+        logger.error("Judge failed after %d attempts: %s", self._max_retries, last_exc)
+        return {"verdict": "not_supported", "support_score": 0.0, "explanation": f"error: {last_exc}"}
 
     async def close(self) -> None:
         await self._client.close()
@@ -248,15 +463,21 @@ async def build_report_async(
     concurrency: int,
 ) -> dict[str, Any]:
     variants: dict[str, dict[str, Any]] = {}
-    for variant, path in variant_files.items():
+    total_variants = len(variant_files)
+    for index, (variant, path) in enumerate(variant_files.items(), start=1):
+        logger.info("=== Variant %d/%d: %s (%s) ===", index, total_variants, variant, path)
         lookup = (
             load_text_chunks(text_chunk_files[variant])
             if variant in text_chunk_files
             else None
         )
+        if lookup is not None:
+            logger.info("[%s] Loaded %d text chunks", variant, len(lookup))
+        rows = load_edge_rows(path)
+        logger.info("[%s] Loaded %d edge rows from %s", variant, len(rows), path)
         variants[variant] = await evaluate_variant_async(
             variant,
-            load_edge_rows(path),
+            rows,
             judge_func=judge_func,
             text_chunk_lookup=lookup,
             concurrency=concurrency,
@@ -383,11 +604,47 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--variant-file", action="append", required=True)
     parser.add_argument("--text-chunks-file", action="append", default=[])
     parser.add_argument("--output-prefix", required=True)
-    parser.add_argument("--judge-model", default=os.getenv("LLM_MODEL", "gpt-4o-mini"))
-    parser.add_argument("--judge-host", default=os.getenv("LLM_BINDING_HOST"))
+    parser.add_argument(
+        "--judge-model",
+        default=os.getenv("JUDGE_MODEL") or os.getenv("LLM_MODEL", "gpt-4o-mini"),
+    )
+    parser.add_argument(
+        "--judge-host",
+        default=os.getenv("JUDGE_BINDING_HOST") or os.getenv("LLM_BINDING_HOST"),
+    )
     parser.add_argument(
         "--judge-api-key",
-        default=os.getenv("LLM_BINDING_API_KEY") or os.getenv("OPENAI_API_KEY"),
+        default=os.getenv("JUDGE_BINDING_API_KEY") or os.getenv("LLM_BINDING_API_KEY") or os.getenv("OPENAI_API_KEY"),
+    )
+    parser.add_argument(
+        "--judge-timeout",
+        type=float,
+        default=float(os.getenv("JUDGE_TIMEOUT") or os.getenv("LLM_TIMEOUT", "180")),
+        help="Per-request read timeout in seconds (default: JUDGE_TIMEOUT / LLM_TIMEOUT env or 180)",
+    )
+    parser.add_argument(
+        "--judge-max-retries",
+        type=int,
+        default=_DEFAULT_MAX_RETRIES,
+        help="Number of retry attempts on timeout/connection errors (default: 3)",
+    )
+    parser.add_argument(
+        "--max-source-chunks",
+        type=int,
+        default=_DEFAULT_MAX_SOURCE_CHUNKS,
+        help="Maximum number of source chunks passed to the judge per edge (default: 3)",
+    )
+    parser.add_argument(
+        "--max-source-chars",
+        type=int,
+        default=_DEFAULT_MAX_SOURCE_CHARS,
+        help="Maximum total source characters passed to the judge per edge (default: 2400)",
+    )
+    parser.add_argument(
+        "--request-delay-ms",
+        type=int,
+        default=_DEFAULT_REQUEST_DELAY_MS,
+        help="Delay inserted before each judge request to smooth TPM pressure (default: 0)",
     )
     parser.add_argument("--concurrency", type=int, default=4)
     return parser.parse_args()
@@ -396,16 +653,36 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     if not args.judge_api_key:
-        raise EnvironmentError("Missing judge API key.")
+        raise EnvironmentError(
+            "Missing judge API key. Set LLM_BINDING_API_KEY in .env or pass --judge-api-key."
+        )
 
     variant_files = _parse_mapping(args.variant_file)
     text_chunk_files = _parse_mapping(args.text_chunks_file)
+
+    logger.info(
+        "Starting source-grounded judge evaluation — model=%s host=%s timeout=%.0fs retries=%d concurrency=%d max_source_chunks=%d max_source_chars=%d request_delay_ms=%d",
+        args.judge_model,
+        args.judge_host or "(default)",
+        args.judge_timeout,
+        args.judge_max_retries,
+        args.concurrency,
+        args.max_source_chunks,
+        args.max_source_chars,
+        args.request_delay_ms,
+    )
+    logger.info("Variants: %s", list(variant_files.keys()))
 
     async def _run() -> dict[str, Any]:
         judge = RemoteSourceJudge(
             model=args.judge_model,
             api_key=args.judge_api_key,
             base_url=args.judge_host,
+            timeout=args.judge_timeout,
+            max_retries=args.judge_max_retries,
+            max_source_chunks=args.max_source_chunks,
+            max_source_chars=args.max_source_chars,
+            request_delay_ms=args.request_delay_ms,
         )
         try:
             return await build_report_async(
