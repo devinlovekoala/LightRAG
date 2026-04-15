@@ -1,0 +1,138 @@
+from __future__ import annotations
+
+import asyncio
+from pathlib import Path
+
+import pytest
+
+from reproduce.evaluate_source_grounded_judge import (
+    JUDGE_VERDICTS,
+    build_claim,
+    build_comparison_summary,
+    evaluate_variant_async,
+    score_verdict,
+    summarize_variant_rows,
+)
+
+
+def test_build_claim_prefers_description_then_keywords() -> None:
+    assert (
+        build_claim(
+            {
+                "src": "Alice",
+                "dst": "Acme",
+                "description": "Alice works at Acme.",
+                "keywords": "employment",
+            }
+        )
+        == "Alice works at Acme."
+    )
+    assert (
+        build_claim({"src": "Alice", "dst": "Acme", "description": "", "keywords": "employment"})
+        == "Alice employment Acme."
+    )
+
+
+def test_score_verdict_orders_supported_above_partial_and_rejected() -> None:
+    assert score_verdict("supported") > score_verdict("partially_supported")
+    assert score_verdict("partially_supported") > score_verdict("not_supported")
+    assert score_verdict("contradicted") == 0.0
+
+
+@pytest.mark.asyncio
+async def test_evaluate_variant_async_summarizes_judge_scores() -> None:
+    rows = [
+        {
+            "variant": "noisefilter",
+            "src": "Alice",
+            "dst": "Acme",
+            "description": "Alice works at Acme.",
+            "manual_label": "correct",
+            "source_chunks": ["Alice joined Acme in 2020."],
+            "chunk_ids": ["c1"],
+        },
+        {
+            "variant": "noisefilter",
+            "src": "Alice",
+            "dst": "Beta",
+            "description": "Alice founded Beta.",
+            "manual_label": "wrong",
+            "source_chunks": ["A sports event recap."],
+            "chunk_ids": ["c2"],
+        },
+        {
+            "variant": "noisefilter",
+            "src": "Alice",
+            "dst": "Gamma",
+            "description": "Alice advised Gamma.",
+            "manual_label": "ambiguous",
+            "source_chunks": ["Gamma was mentioned alongside Alice."],
+            "chunk_ids": ["c3"],
+        },
+    ]
+
+    async def fake_judge(claim: str, source_texts: list[str]) -> dict[str, str | float]:
+        if "works at" in claim.lower():
+            return {
+                "verdict": "supported",
+                "support_score": 0.95,
+                "explanation": "directly supported",
+            }
+        if "sports event" in source_texts[0].lower():
+            return {
+                "verdict": "not_supported",
+                "support_score": 0.05,
+                "explanation": "irrelevant source",
+            }
+        return {
+            "verdict": "partially_supported",
+            "support_score": 0.55,
+            "explanation": "partial overlap",
+        }
+
+    summary = await evaluate_variant_async(
+        "noisefilter",
+        rows,
+        judge_func=fake_judge,
+        concurrency=2,
+    )
+
+    assert summary["label_counts"] == {"correct": 1, "wrong": 1, "ambiguous": 1}
+    assert summary["judge_score_means_by_label"]["correct"] > summary["judge_score_means_by_label"]["wrong"]
+    assert summary["binary_ranking"]["roc_auc"] == pytest.approx(1.0)
+    assert summary["verdict_counts"]["supported"] == 1
+
+
+def test_summarize_variant_rows_aggregates_verdicts() -> None:
+    summary = summarize_variant_rows(
+        "baseline",
+        [
+            {"manual_label": "correct", "judge_verdict": "supported", "judge_support_score": 0.9},
+            {"manual_label": "wrong", "judge_verdict": "not_supported", "judge_support_score": 0.1},
+            {"manual_label": "ambiguous", "judge_verdict": "partially_supported", "judge_support_score": 0.5},
+        ],
+    )
+
+    assert summary["verdict_counts"]["supported"] == 1
+    assert summary["judge_score_means_by_label"]["ambiguous"] == pytest.approx(0.5)
+
+
+def test_build_comparison_summary_reports_auc_delta() -> None:
+    comparison = build_comparison_summary(
+        {
+            "baseline": {"strict_precision": 0.15, "lenient_precision": 0.50, "binary_ranking": {"roc_auc": 0.61, "average_precision": 0.28}},
+            "noisefilter": {"strict_precision": 0.22, "lenient_precision": 0.57, "binary_ranking": {"roc_auc": 0.78, "average_precision": 0.52}},
+        }
+    )
+
+    assert comparison["precision_delta"]["strict"] == pytest.approx(0.07)
+    assert comparison["ranking_delta"]["roc_auc"] == pytest.approx(0.17)
+
+
+def test_supported_verdict_enum_is_stable() -> None:
+    assert JUDGE_VERDICTS == (
+        "supported",
+        "partially_supported",
+        "not_supported",
+        "contradicted",
+    )
