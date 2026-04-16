@@ -8,6 +8,7 @@ from reproduce.evaluate_source_grounded_judge import (
     build_comparison_summary,
     calibrate_judge_result,
     evaluate_variant_async,
+    localize_source_texts,
     prepare_source_texts,
     score_verdict,
     summarize_variant_rows,
@@ -52,6 +53,42 @@ def test_prepare_source_texts_limits_chunk_count_and_char_budget() -> None:
     assert len(prepared) == 1
     assert len(prepared[0]) <= 120
     assert "[...truncated]" in prepared[0]
+
+
+def test_localize_source_texts_prefers_relevant_passage() -> None:
+    localized = localize_source_texts(
+        "Alex Randolph created the board game TwixT.",
+        [
+            (
+                "Passage 1:\nBoard game culture includes many titles.\n\n"
+                "Passage 2:\nAlex Randolph created the board game TwixT in 1962.\n"
+                "TwixT later became a classic abstract strategy game."
+            )
+        ],
+        max_source_chars=180,
+        snippet_window_sentences=2,
+    )
+
+    assert localized
+    assert "Alex Randolph created the board game TwixT" in localized[0]
+    assert "Board game culture includes many titles" not in localized[0]
+
+
+def test_prepare_source_texts_uses_localized_snippets_before_raw_truncation() -> None:
+    prepared = prepare_source_texts(
+        [
+            (
+                "Passage 1:\nAshanti's debut album charted in 2002.\n\n"
+                "Passage 2:\nAshanti premiered her single Only U at the 2004 Vibe Music Awards."
+            )
+        ],
+        claim="Ashanti premiered her single Only U at the 2004 Vibe Music Awards.",
+        max_source_chars=120,
+    )
+
+    assert prepared
+    assert "Only U" in prepared[0]
+    assert "charted in 2002" not in prepared[0]
 
 
 def test_calibrate_judge_result_downgrades_unsupported_supported_verdict() -> None:
@@ -137,6 +174,7 @@ async def test_evaluate_variant_async_summarizes_judge_scores() -> None:
     assert summary["binary_ranking"]["roc_auc"] == pytest.approx(1.0)
     assert summary["verdict_counts"]["supported"] == 1
     assert summary["rows"][0]["judge_anchored_evidence"] is True
+    assert "Alice joined Acme in 2020." in summary["rows"][0]["judge_localized_sources"]
 
 
 def test_summarize_variant_rows_aggregates_verdicts() -> None:

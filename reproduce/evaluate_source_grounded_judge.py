@@ -6,6 +6,7 @@ import csv
 import json
 import logging
 import os
+import re
 import sys
 import time
 from pathlib import Path
@@ -39,6 +40,8 @@ _RETRY_BACKOFF_BASE = 2.0
 _DEFAULT_MAX_SOURCE_CHUNKS = int(os.getenv("JUDGE_MAX_SOURCE_CHUNKS", "3"))
 _DEFAULT_MAX_SOURCE_CHARS = int(os.getenv("JUDGE_MAX_SOURCE_CHARS", "2400"))
 _DEFAULT_REQUEST_DELAY_MS = int(os.getenv("JUDGE_REQUEST_DELAY_MS", "0"))
+_DEFAULT_SNIPPET_WINDOW_SENTENCES = int(os.getenv("JUDGE_SNIPPET_WINDOW_SENTENCES", "3"))
+_DEFAULT_MAX_SNIPPETS_PER_CHUNK = int(os.getenv("JUDGE_MAX_SNIPPETS_PER_CHUNK", "2"))
 
 JUDGE_VERDICTS = (
     "supported",
@@ -57,6 +60,39 @@ If the source text is truncated or only partially supports the claim, choose par
 If the source text mentions related entities or topics but does not explicitly state the relation, choose not_supported.
 Return valid JSON only.
 """
+
+_TOKEN_RE = re.compile(r"[a-z0-9]+")
+_PASSAGE_SPLIT_RE = re.compile(r"(?=Passage\s+\d+\s*:)", re.IGNORECASE)
+_SENTENCE_SPLIT_RE = re.compile(r"(?<=[.!?])\s+|\n+")
+_STOPWORDS = {
+    "a",
+    "an",
+    "and",
+    "are",
+    "as",
+    "at",
+    "be",
+    "by",
+    "for",
+    "from",
+    "in",
+    "into",
+    "is",
+    "it",
+    "of",
+    "on",
+    "or",
+    "that",
+    "the",
+    "their",
+    "then",
+    "this",
+    "to",
+    "was",
+    "were",
+    "which",
+    "with",
+}
 
 
 def build_claim(row: dict[str, Any]) -> str:
@@ -88,6 +124,157 @@ def _normalize_verdict(raw: str | None) -> str:
     return verdict if verdict in JUDGE_VERDICTS else "not_supported"
 
 
+def _normalize_whitespace(text: str) -> str:
+    return " ".join(str(text or "").split())
+
+
+def _normalize_text(text: str) -> str:
+    return " ".join(_TOKEN_RE.findall(str(text or "").lower()))
+
+
+def _tokenize_text(text: str) -> list[str]:
+    return _TOKEN_RE.findall(str(text or "").lower())
+
+
+def _extract_claim_terms(claim: str, *, max_terms: int = 12) -> list[str]:
+    terms: list[str] = []
+    seen: set[str] = set()
+    for token in sorted(_tokenize_text(claim), key=lambda value: (-len(value), value)):
+        if token in seen:
+            continue
+        if token in _STOPWORDS:
+            continue
+        if len(token) < 3 and not token.isdigit():
+            continue
+        seen.add(token)
+        terms.append(token)
+        if len(terms) >= max_terms:
+            break
+    return terms
+
+
+def _split_passage_blocks(text: str) -> list[str]:
+    raw = str(text or "").strip()
+    if not raw:
+        return []
+    if _PASSAGE_SPLIT_RE.search(raw):
+        return [
+            block.strip()
+            for block in _PASSAGE_SPLIT_RE.split(raw)
+            if block and block.strip()
+        ]
+    return [block.strip() for block in re.split(r"\n\s*\n", raw) if block.strip()]
+
+
+def _split_sentence_windows(text: str, *, window_sentences: int) -> list[str]:
+    normalized = str(text or "").strip()
+    if not normalized:
+        return []
+    sentences = [
+        sentence.strip()
+        for sentence in _SENTENCE_SPLIT_RE.split(normalized)
+        if sentence and sentence.strip()
+    ]
+    if not sentences:
+        return []
+    if len(sentences) <= window_sentences:
+        return [" ".join(sentences)]
+    windows: list[str] = []
+    for start in range(0, len(sentences) - window_sentences + 1):
+        windows.append(" ".join(sentences[start : start + window_sentences]))
+    return windows
+
+
+def _score_candidate_text(candidate_text: str, claim_terms: list[str]) -> float:
+    normalized_candidate = _normalize_text(candidate_text)
+    if not normalized_candidate:
+        return 0.0
+    if not claim_terms:
+        return 0.0
+    score = 0.0
+    unique_hits = 0
+    for term in claim_terms:
+        if term in normalized_candidate:
+            unique_hits += 1
+            score += 1.0 + min(len(term), 12) / 12.0
+    score += 2.0 if unique_hits >= 2 else 0.0
+    score += 3.0 if unique_hits >= 4 else 0.0
+    return score
+
+
+def localize_source_texts(
+    claim: str,
+    source_texts: list[str],
+    *,
+    max_source_chunks: int = _DEFAULT_MAX_SOURCE_CHUNKS,
+    max_source_chars: int = _DEFAULT_MAX_SOURCE_CHARS,
+    snippet_window_sentences: int = _DEFAULT_SNIPPET_WINDOW_SENTENCES,
+    max_snippets_per_chunk: int = _DEFAULT_MAX_SNIPPETS_PER_CHUNK,
+) -> list[str]:
+    claim_terms = _extract_claim_terms(claim)
+    candidates: list[tuple[float, int, str]] = []
+
+    for chunk_index, raw_text in enumerate(source_texts[: max(1, max_source_chunks)]):
+        passage_blocks = _split_passage_blocks(raw_text)
+        block_candidates = passage_blocks if passage_blocks else [str(raw_text or "").strip()]
+        chunk_candidates: list[tuple[float, str]] = []
+
+        for block in block_candidates:
+            block = block.strip()
+            if not block:
+                continue
+            score = _score_candidate_text(block, claim_terms)
+            chunk_candidates.append((score, block))
+
+            if len(block) > 500:
+                for window in _split_sentence_windows(
+                    block,
+                    window_sentences=max(1, snippet_window_sentences),
+                ):
+                    window_score = _score_candidate_text(window, claim_terms)
+                    chunk_candidates.append((window_score + 0.25, window))
+
+        if not chunk_candidates:
+            continue
+
+        deduped: list[tuple[float, str]] = []
+        seen_texts: set[str] = set()
+        for score, text in sorted(chunk_candidates, key=lambda item: (-item[0], len(item[1]))):
+            normalized = _normalize_whitespace(text)
+            if not normalized or normalized in seen_texts:
+                continue
+            seen_texts.add(normalized)
+            deduped.append((score, normalized))
+            if len(deduped) >= max(1, max_snippets_per_chunk):
+                break
+
+        for score, text in deduped:
+            candidates.append((score, chunk_index, text))
+
+    if not candidates:
+        return []
+
+    localized: list[str] = []
+    seen_texts: set[str] = set()
+    remaining_chars = max(0, max_source_chars)
+    for score, _, text in sorted(candidates, key=lambda item: (-item[0], item[1], len(item[2]))):
+        if remaining_chars < 32:
+            break
+        if score <= 0 and localized:
+            break
+        truncated = _truncate_text(text, remaining_chars)
+        if len(truncated.strip()) < 32:
+            continue
+        normalized = _normalize_whitespace(truncated)
+        if normalized in seen_texts:
+            continue
+        seen_texts.add(normalized)
+        localized.append(truncated)
+        remaining_chars -= len(truncated)
+
+    return localized
+
+
 def _truncate_text(text: str, max_chars: int) -> str:
     compact = " ".join(str(text or "").split())
     if len(compact) <= max_chars:
@@ -100,9 +287,23 @@ def _truncate_text(text: str, max_chars: int) -> str:
 def prepare_source_texts(
     source_texts: list[str],
     *,
+    claim: str = "",
     max_source_chunks: int = _DEFAULT_MAX_SOURCE_CHUNKS,
     max_source_chars: int = _DEFAULT_MAX_SOURCE_CHARS,
+    snippet_window_sentences: int = _DEFAULT_SNIPPET_WINDOW_SENTENCES,
+    max_snippets_per_chunk: int = _DEFAULT_MAX_SNIPPETS_PER_CHUNK,
 ) -> list[str]:
+    localized = localize_source_texts(
+        claim,
+        source_texts,
+        max_source_chunks=max_source_chunks,
+        max_source_chars=max_source_chars,
+        snippet_window_sentences=snippet_window_sentences,
+        max_snippets_per_chunk=max_snippets_per_chunk,
+    )
+    if localized:
+        return localized
+
     prepared: list[str] = []
     remaining_chars = max(0, max_source_chars)
     for raw_text in source_texts[: max(1, max_source_chunks)]:
@@ -252,6 +453,9 @@ async def evaluate_variant_async(
             "judge_explanation": str(result.get("explanation", "")).strip(),
             "judge_evidence": json.dumps(result.get("evidence", []), ensure_ascii=False),
             "judge_anchored_evidence": bool(result.get("anchored_evidence", False)),
+            "judge_localized_sources": json.dumps(
+                result.get("localized_source_texts", source_texts), ensure_ascii=False
+            ),
             "resolved_source_chunk_count": len(source_texts),
         }
 
@@ -352,6 +556,8 @@ class RemoteSourceJudge:
         max_retries: int = _DEFAULT_MAX_RETRIES,
         max_source_chunks: int = _DEFAULT_MAX_SOURCE_CHUNKS,
         max_source_chars: int = _DEFAULT_MAX_SOURCE_CHARS,
+        snippet_window_sentences: int = _DEFAULT_SNIPPET_WINDOW_SENTENCES,
+        max_snippets_per_chunk: int = _DEFAULT_MAX_SNIPPETS_PER_CHUNK,
         request_delay_ms: int = _DEFAULT_REQUEST_DELAY_MS,
     ) -> None:
         import httpx
@@ -367,17 +573,21 @@ class RemoteSourceJudge:
         self._max_retries = max_retries
         self._max_source_chunks = max(1, max_source_chunks)
         self._max_source_chars = max(256, max_source_chars)
+        self._snippet_window_sentences = max(1, snippet_window_sentences)
+        self._max_snippets_per_chunk = max(1, max_snippets_per_chunk)
         self._request_delay_s = max(0.0, request_delay_ms / 1000.0)
         self._next_request_at = 0.0
         self._request_gate = asyncio.Lock()
         logger.info(
-            "RemoteSourceJudge: model=%s base_url=%s timeout=%.0fs max_retries=%d max_source_chunks=%d max_source_chars=%d request_delay_ms=%d",
+            "RemoteSourceJudge: model=%s base_url=%s timeout=%.0fs max_retries=%d max_source_chunks=%d max_source_chars=%d snippet_window_sentences=%d max_snippets_per_chunk=%d request_delay_ms=%d",
             model,
             base_url or "(default)",
             timeout,
             max_retries,
             self._max_source_chunks,
             self._max_source_chars,
+            self._snippet_window_sentences,
+            self._max_snippets_per_chunk,
             request_delay_ms,
         )
 
@@ -398,8 +608,11 @@ class RemoteSourceJudge:
 
         prepared_source_texts = prepare_source_texts(
             source_texts,
+            claim=claim,
             max_source_chunks=self._max_source_chunks,
             max_source_chars=self._max_source_chars,
+            snippet_window_sentences=self._snippet_window_sentences,
+            max_snippets_per_chunk=self._max_snippets_per_chunk,
         )
         messages = [
             {"role": "system", "content": SYSTEM_PROMPT},
@@ -423,7 +636,7 @@ class RemoteSourceJudge:
                     str(parsed.get("explanation", "")).strip(),
                     _normalize_evidence_snippets(parsed.get("evidence")),
                     prepared_source_texts,
-                )
+                ) | {"localized_source_texts": prepared_source_texts}
             except (APITimeoutError, APIConnectionError, httpx.ReadTimeout, httpx.ConnectTimeout) as exc:
                 last_exc = exc
                 wait = _RETRY_BACKOFF_BASE ** (attempt - 1)
@@ -449,7 +662,12 @@ class RemoteSourceJudge:
                 break
 
         logger.error("Judge failed after %d attempts: %s", self._max_retries, last_exc)
-        return {"verdict": "not_supported", "support_score": 0.0, "explanation": f"error: {last_exc}"}
+        return {
+            "verdict": "not_supported",
+            "support_score": 0.0,
+            "explanation": f"error: {last_exc}",
+            "localized_source_texts": prepared_source_texts,
+        }
 
     async def close(self) -> None:
         await self._client.close()
@@ -641,6 +859,18 @@ def parse_args() -> argparse.Namespace:
         help="Maximum total source characters passed to the judge per edge (default: 2400)",
     )
     parser.add_argument(
+        "--snippet-window-sentences",
+        type=int,
+        default=_DEFAULT_SNIPPET_WINDOW_SENTENCES,
+        help="Sentence window size for evidence localization inside long chunks (default: 3)",
+    )
+    parser.add_argument(
+        "--max-snippets-per-chunk",
+        type=int,
+        default=_DEFAULT_MAX_SNIPPETS_PER_CHUNK,
+        help="Maximum localized snippets retained from each source chunk (default: 2)",
+    )
+    parser.add_argument(
         "--request-delay-ms",
         type=int,
         default=_DEFAULT_REQUEST_DELAY_MS,
@@ -661,7 +891,7 @@ def main() -> None:
     text_chunk_files = _parse_mapping(args.text_chunks_file)
 
     logger.info(
-        "Starting source-grounded judge evaluation — model=%s host=%s timeout=%.0fs retries=%d concurrency=%d max_source_chunks=%d max_source_chars=%d request_delay_ms=%d",
+        "Starting source-grounded judge evaluation — model=%s host=%s timeout=%.0fs retries=%d concurrency=%d max_source_chunks=%d max_source_chars=%d snippet_window_sentences=%d max_snippets_per_chunk=%d request_delay_ms=%d",
         args.judge_model,
         args.judge_host or "(default)",
         args.judge_timeout,
@@ -669,6 +899,8 @@ def main() -> None:
         args.concurrency,
         args.max_source_chunks,
         args.max_source_chars,
+        args.snippet_window_sentences,
+        args.max_snippets_per_chunk,
         args.request_delay_ms,
     )
     logger.info("Variants: %s", list(variant_files.keys()))
@@ -682,6 +914,8 @@ def main() -> None:
             max_retries=args.judge_max_retries,
             max_source_chunks=args.max_source_chunks,
             max_source_chars=args.max_source_chars,
+            snippet_window_sentences=args.snippet_window_sentences,
+            max_snippets_per_chunk=args.max_snippets_per_chunk,
             request_delay_ms=args.request_delay_ms,
         )
         try:
