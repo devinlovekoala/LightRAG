@@ -49,6 +49,7 @@ JUDGE_VERDICTS = (
     "not_supported",
     "contradicted",
 )
+SOURCE_MODES = ("auto", "exported", "resolved")
 
 SYSTEM_PROMPT = """You are a strict fact-checking judge for graph edges.
 
@@ -122,6 +123,34 @@ def score_verdict(verdict: str) -> float:
 def _normalize_verdict(raw: str | None) -> str:
     verdict = str(raw or "").strip().lower()
     return verdict if verdict in JUDGE_VERDICTS else "not_supported"
+
+
+def resolve_judge_source_texts(
+    row: dict[str, Any],
+    *,
+    text_chunk_lookup: dict[str, str] | None = None,
+    source_mode: str = "auto",
+) -> list[str]:
+    normalized_mode = str(source_mode or "auto").strip().lower()
+    if normalized_mode not in SOURCE_MODES:
+        raise ValueError(
+            f"Unsupported source_mode: {source_mode}. Expected one of {SOURCE_MODES}."
+        )
+
+    exported_source_texts = [
+        str(chunk)
+        for chunk in row.get("source_chunks", [])
+        if str(chunk or "").strip()
+    ]
+
+    if normalized_mode == "exported":
+        return exported_source_texts
+
+    resolved_source_texts = resolve_source_texts(row, text_chunk_lookup)
+    if normalized_mode == "resolved":
+        return resolved_source_texts
+
+    return resolved_source_texts or exported_source_texts
 
 
 def _normalize_whitespace(text: str) -> str:
@@ -414,6 +443,7 @@ async def evaluate_variant_async(
     judge_func: Callable[[str, list[str]], Awaitable[dict[str, Any]]],
     text_chunk_lookup: dict[str, str] | None = None,
     concurrency: int = 4,
+    source_mode: str = "auto",
 ) -> dict[str, Any]:
     filtered_rows = [
         row
@@ -430,7 +460,11 @@ async def evaluate_variant_async(
     async def _judge_row(row: dict[str, Any]) -> dict[str, Any]:
         nonlocal completed
         claim = build_claim(row)
-        source_texts = resolve_source_texts(row, text_chunk_lookup)
+        source_texts = resolve_judge_source_texts(
+            row,
+            text_chunk_lookup=text_chunk_lookup,
+            source_mode=source_mode,
+        )
         async with semaphore:
             result = await judge_func(claim, source_texts)
         verdict = _normalize_verdict(result.get("verdict"))
@@ -679,6 +713,7 @@ async def build_report_async(
     text_chunk_files: dict[str, Path],
     judge_func: Callable[[str, list[str]], Awaitable[dict[str, Any]]],
     concurrency: int,
+    source_mode: str,
 ) -> dict[str, Any]:
     variants: dict[str, dict[str, Any]] = {}
     total_variants = len(variant_files)
@@ -699,6 +734,7 @@ async def build_report_async(
             judge_func=judge_func,
             text_chunk_lookup=lookup,
             concurrency=concurrency,
+            source_mode=source_mode,
         )
     return {
         "variants": variants,
@@ -847,6 +883,12 @@ def parse_args() -> argparse.Namespace:
         help="Number of retry attempts on timeout/connection errors (default: 3)",
     )
     parser.add_argument(
+        "--source-mode",
+        choices=SOURCE_MODES,
+        default="auto",
+        help="Which source texts to judge against: exported preview chunks, resolved chunk-id texts, or auto fallback (default: auto)",
+    )
+    parser.add_argument(
         "--max-source-chunks",
         type=int,
         default=_DEFAULT_MAX_SOURCE_CHUNKS,
@@ -891,12 +933,13 @@ def main() -> None:
     text_chunk_files = _parse_mapping(args.text_chunks_file)
 
     logger.info(
-        "Starting source-grounded judge evaluation — model=%s host=%s timeout=%.0fs retries=%d concurrency=%d max_source_chunks=%d max_source_chars=%d snippet_window_sentences=%d max_snippets_per_chunk=%d request_delay_ms=%d",
+        "Starting source-grounded judge evaluation — model=%s host=%s timeout=%.0fs retries=%d concurrency=%d source_mode=%s max_source_chunks=%d max_source_chars=%d snippet_window_sentences=%d max_snippets_per_chunk=%d request_delay_ms=%d",
         args.judge_model,
         args.judge_host or "(default)",
         args.judge_timeout,
         args.judge_max_retries,
         args.concurrency,
+        args.source_mode,
         args.max_source_chunks,
         args.max_source_chars,
         args.snippet_window_sentences,
@@ -924,6 +967,7 @@ def main() -> None:
                 text_chunk_files=text_chunk_files,
                 judge_func=judge,
                 concurrency=args.concurrency,
+                source_mode=args.source_mode,
             )
         finally:
             await judge.close()

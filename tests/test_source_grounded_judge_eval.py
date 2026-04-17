@@ -4,12 +4,14 @@ import pytest
 
 from reproduce.evaluate_source_grounded_judge import (
     JUDGE_VERDICTS,
+    SOURCE_MODES,
     build_claim,
     build_comparison_summary,
     calibrate_judge_result,
     evaluate_variant_async,
     localize_source_texts,
     prepare_source_texts,
+    resolve_judge_source_texts,
     score_verdict,
     summarize_variant_rows,
 )
@@ -37,6 +39,10 @@ def test_score_verdict_orders_supported_above_partial_and_rejected() -> None:
     assert score_verdict("supported") > score_verdict("partially_supported")
     assert score_verdict("partially_supported") > score_verdict("not_supported")
     assert score_verdict("contradicted") == 0.0
+
+
+def test_source_modes_enum_is_stable() -> None:
+    assert SOURCE_MODES == ("auto", "exported", "resolved")
 
 
 def test_prepare_source_texts_limits_chunk_count_and_char_budget() -> None:
@@ -89,6 +95,26 @@ def test_prepare_source_texts_uses_localized_snippets_before_raw_truncation() ->
     assert prepared
     assert "Only U" in prepared[0]
     assert "charted in 2002" not in prepared[0]
+
+
+def test_resolve_judge_source_texts_respects_source_mode() -> None:
+    row = {
+        "src": "Alice",
+        "dst": "Acme",
+        "chunk_ids": ["c1"],
+        "source_chunks": ["exported preview"],
+    }
+    lookup = {"c1": "resolved full chunk"}
+
+    assert resolve_judge_source_texts(row, text_chunk_lookup=lookup, source_mode="exported") == [
+        "exported preview"
+    ]
+    assert resolve_judge_source_texts(row, text_chunk_lookup=lookup, source_mode="resolved") == [
+        "resolved full chunk"
+    ]
+    assert resolve_judge_source_texts(row, text_chunk_lookup=lookup, source_mode="auto") == [
+        "resolved full chunk"
+    ]
 
 
 def test_calibrate_judge_result_downgrades_unsupported_supported_verdict() -> None:
@@ -175,6 +201,42 @@ async def test_evaluate_variant_async_summarizes_judge_scores() -> None:
     assert summary["verdict_counts"]["supported"] == 1
     assert summary["rows"][0]["judge_anchored_evidence"] is True
     assert "Alice joined Acme in 2020." in summary["rows"][0]["judge_localized_sources"]
+
+
+@pytest.mark.asyncio
+async def test_evaluate_variant_async_can_force_exported_source_mode() -> None:
+    rows = [
+        {
+            "variant": "baseline",
+            "src": "Alice",
+            "dst": "Acme",
+            "description": "Alice works at Acme.",
+            "manual_label": "correct",
+            "source_chunks": ["exported preview only"],
+            "chunk_ids": ["c1"],
+        }
+    ]
+
+    async def fake_judge(claim: str, source_texts: list[str]) -> dict[str, str | float]:
+        assert source_texts == ["exported preview only"]
+        return {
+            "verdict": "partially_supported",
+            "support_score": 0.55,
+            "explanation": "preview path used",
+            "evidence": [],
+            "anchored_evidence": False,
+        }
+
+    summary = await evaluate_variant_async(
+        "baseline",
+        rows,
+        judge_func=fake_judge,
+        text_chunk_lookup={"c1": "resolved full chunk"},
+        concurrency=1,
+        source_mode="exported",
+    )
+
+    assert summary["rows"][0]["judge_verdict"] == "partially_supported"
 
 
 def test_summarize_variant_rows_aggregates_verdicts() -> None:
