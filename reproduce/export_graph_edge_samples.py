@@ -42,7 +42,7 @@ def edge_record_from_graph(
         relation_chunk_entry.get("chunk_ids", data.get("source_id"))
     )
     source_chunks: list[str] = []
-    for chunk_id in chunk_ids[:3]:
+    for chunk_id in chunk_ids:
         chunk = text_chunks.get(chunk_id, {})
         source_chunks.append(str(chunk.get("content", "")))
 
@@ -61,6 +61,7 @@ def edge_record_from_graph(
         "conf_semantic_score": float(data.get("conf_semantic_score", 0.0) or 0.0),
         "conf_support": int(float(data.get("conf_support", 0) or 0)),
         "chunk_ids": chunk_ids,
+        "source_chunk_count": len(source_chunks),
         "source_chunks": source_chunks,
         "manual_label": "",
         "manual_notes": "",

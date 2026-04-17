@@ -5,6 +5,7 @@ from pathlib import Path
 import asyncio
 import json
 import json_repair
+import re
 from typing import Any, AsyncIterator, overload, Literal
 from collections import Counter, defaultdict
 
@@ -97,6 +98,34 @@ def _truncate_entity_identifier(
         preview,
     )
     return display_value
+
+
+_ANCHOR_NON_WORD_RE = re.compile(r"[^a-z0-9]+")
+
+
+def _normalize_anchor_text(text: str) -> str:
+    return " ".join(_ANCHOR_NON_WORD_RE.sub(" ", text.lower()).split())
+
+
+def _entity_anchor_score(entity: str, chunk_text: str) -> float:
+    normalized_entity = _normalize_anchor_text(entity)
+    normalized_chunk = _normalize_anchor_text(chunk_text)
+    if not normalized_entity or not normalized_chunk:
+        return 0.0
+    if normalized_entity in normalized_chunk:
+        return 1.0
+
+    entity_tokens = [token for token in normalized_entity.split() if len(token) >= 2]
+    if not entity_tokens:
+        return 0.0
+
+    chunk_tokens = set(normalized_chunk.split())
+    overlap = sum(token in chunk_tokens for token in entity_tokens) / len(entity_tokens)
+    if overlap >= 1.0:
+        return 0.85
+    if overlap >= 0.6:
+        return 0.5
+    return 0.0
 
 
 def chunking_by_token_size(
@@ -939,6 +968,8 @@ async def _process_extraction_result(
     result: str,
     chunk_key: str,
     timestamp: int,
+    chunk_text: str | None = None,
+    enable_relation_chunk_entity_gate: bool = False,
     file_path: str = "unknown_source",
     tuple_delimiter: str = "<|#|>",
     completion_delimiter: str = "<|COMPLETE|>",
@@ -1057,6 +1088,19 @@ async def _process_extraction_result(
             )
             relationship_data["src_id"] = truncated_source
             relationship_data["tgt_id"] = truncated_target
+
+            if enable_relation_chunk_entity_gate and chunk_text:
+                src_anchor_score = _entity_anchor_score(truncated_source, chunk_text)
+                dst_anchor_score = _entity_anchor_score(truncated_target, chunk_text)
+                if src_anchor_score <= 0.0 and dst_anchor_score <= 0.0:
+                    logger.warning(
+                        "%s: Rejected relation `%s`~`%s` because neither endpoint is anchored in the source chunk",
+                        chunk_key,
+                        truncated_source,
+                        truncated_target,
+                    )
+                    await _cooperative_yield(i, every=8)
+                    continue
             maybe_edges[(truncated_source, truncated_target)].append(relationship_data)
         await _cooperative_yield(i, every=8)
 
@@ -1093,7 +1137,7 @@ async def _rebuild_from_extraction_result(
         extraction_result,
         chunk_id,
         timestamp,
-        file_path,
+        file_path=file_path,
         tuple_delimiter=PROMPTS["DEFAULT_TUPLE_DELIMITER"],
         completion_delimiter=PROMPTS["DEFAULT_COMPLETION_DELIMITER"],
     )
@@ -2906,6 +2950,9 @@ async def extract_entities(
     entity_types = global_config["addon_params"].get(
         "entity_types", DEFAULT_ENTITY_TYPES
     )
+    enable_relation_chunk_entity_gate = bool(
+        global_config["addon_params"].get("enable_relation_chunk_entity_gate", False)
+    )
 
     examples = "\n".join(PROMPTS["entity_extraction_examples"])
 
@@ -2979,7 +3026,9 @@ async def extract_entities(
             final_result,
             chunk_key,
             timestamp,
-            file_path,
+            chunk_text=content,
+            enable_relation_chunk_entity_gate=enable_relation_chunk_entity_gate,
+            file_path=file_path,
             tuple_delimiter=context_base["tuple_delimiter"],
             completion_delimiter=context_base["completion_delimiter"],
         )
@@ -3022,7 +3071,9 @@ async def extract_entities(
                     glean_result,
                     chunk_key,
                     timestamp,
-                    file_path,
+                    chunk_text=content,
+                    enable_relation_chunk_entity_gate=enable_relation_chunk_entity_gate,
+                    file_path=file_path,
                     tuple_delimiter=context_base["tuple_delimiter"],
                     completion_delimiter=context_base["completion_delimiter"],
                 )

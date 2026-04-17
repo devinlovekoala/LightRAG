@@ -112,6 +112,11 @@ def parse_args(*, fixed_variant: str | None = None) -> argparse.Namespace:
         default=None,
         help="Override LightRAG embedding timeout in seconds for this run only.",
     )
+    parser.add_argument(
+        "--enable-chunk-binding-gate",
+        action="store_true",
+        help="Enable relation chunk/entity binding gate during extraction for this run only.",
+    )
     return parser.parse_args()
 
 
@@ -131,6 +136,10 @@ async def _run(args: argparse.Namespace) -> None:
         w_cons=args.w_cons,
         w_sem=args.w_sem,
     )
+    addon_params = {}
+    if args.enable_chunk_binding_gate:
+        addon_params["enable_relation_chunk_entity_gate"] = True
+
     runtime_overrides = build_runtime_overrides(
         chunk_size=args.chunk_size,
         chunk_overlap_size=args.chunk_overlap_size,
@@ -141,6 +150,7 @@ async def _run(args: argparse.Namespace) -> None:
         max_extract_input_tokens=args.max_extract_input_tokens,
         llm_timeout=args.llm_timeout,
         embedding_timeout=args.embedding_timeout,
+        addon_params=addon_params or None,
     )
 
     rag = None

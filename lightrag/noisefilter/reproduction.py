@@ -233,6 +233,7 @@ def build_runtime_overrides(
     max_extract_input_tokens: int | None = None,
     llm_timeout: int | None = None,
     embedding_timeout: int | None = None,
+    addon_params: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     mappings = {
         "chunk_token_size": chunk_size,
@@ -253,6 +254,9 @@ def build_runtime_overrides(
         if value <= 0:
             raise ValueError(f"{key} must be > 0 when provided, got {value}")
         overrides[key] = value
+
+    if addon_params:
+        overrides["addon_params"] = dict(addon_params)
 
     return overrides
 
@@ -323,14 +327,19 @@ async def create_formal_rag(
 ) -> LightRAG:
     from lightrag import LightRAG
 
+    runtime_overrides = dict(runtime_overrides or {})
+    addon_params_override = runtime_overrides.pop("addon_params", None)
+
     rag = LightRAG(
         working_dir=str(working_dir),
         llm_model_func=_build_llm_model_func(),
         embedding_func=_build_embedding_func(),
         enable_noise_filter=variant_settings.enable_noise_filter,
         noise_filter_config=variant_settings.noise_filter_config,
-        **(runtime_overrides or {}),
+        **runtime_overrides,
     )
+    if addon_params_override:
+        rag.addon_params = {**rag.addon_params, **addon_params_override}
     await rag.initialize_storages()
     return rag
 
