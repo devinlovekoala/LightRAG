@@ -20,13 +20,14 @@ class DummyTokenizer(TokenizerInterface):
 def _make_global_config(
     max_extract_input_tokens: int = 20480,
     entity_extract_max_gleaning: int = 1,
+    addon_params: dict | None = None,
 ) -> dict:
     """Build a minimal global_config dict for extract_entities."""
     tokenizer = Tokenizer("dummy", DummyTokenizer())
     return {
         "llm_model_func": AsyncMock(return_value=""),
         "entity_extract_max_gleaning": entity_extract_max_gleaning,
-        "addon_params": {},
+        "addon_params": addon_params or {},
         "tokenizer": tokenizer,
         "max_extract_input_tokens": max_extract_input_tokens,
         "llm_model_max_async": 1,
@@ -36,6 +37,15 @@ def _make_global_config(
 # Minimal valid extraction result that _process_extraction_result can parse
 _EXTRACTION_RESULT = (
     "(entity<|#|>TEST_ENTITY<|#|>CONCEPT<|#|>A test entity)<|COMPLETE|>"
+)
+
+_RELATION_EXTRACTION_RESULT = "\n".join(
+    [
+        "entity<|#|>Alice<|#|>person<|#|>Alice is a person.",
+        "entity<|#|>Acme<|#|>organization<|#|>Acme is an organization.",
+        "relation<|#|>Alice<|#|>Acme<|#|>employment<|#|>Alice works at Acme.",
+        "<|COMPLETE|>",
+    ]
 )
 
 
@@ -127,3 +137,35 @@ async def test_no_gleaning_when_max_gleaning_zero():
 
     # LLM should be called exactly once (initial extraction only)
     assert llm_func.await_count == 1
+
+
+@pytest.mark.offline
+@pytest.mark.asyncio
+async def test_chunk_entity_gate_rejects_ungrounded_relation():
+    """Chunk-entity gate should drop relations whose endpoints are absent from the chunk."""
+    from lightrag.operate import extract_entities
+
+    global_config = _make_global_config(
+        entity_extract_max_gleaning=0,
+        addon_params={"enable_relation_chunk_entity_gate": True},
+    )
+    llm_func = global_config["llm_model_func"]
+    llm_func.return_value = _RELATION_EXTRACTION_RESULT
+
+    chunk_results = await extract_entities(
+        chunks=_make_chunks("This passage only describes a sports event."),
+        global_config=global_config,
+    )
+
+    nodes, edges = chunk_results[0]
+    assert {"Alice", "Acme"} == set(nodes.keys())
+    assert edges == {}
+
+
+def test_entity_extraction_prompt_contains_grounding_constraints():
+    from lightrag.prompt import PROMPTS
+
+    prompt = PROMPTS["entity_extraction_system_prompt"]
+    assert "EXPLICITLY stated or DIRECTLY supported" in prompt
+    assert "Do NOT infer relationships based on your own knowledge" in prompt
+    assert "do NOT create a relationship between them" in prompt
