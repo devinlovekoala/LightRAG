@@ -1,5 +1,16 @@
 # NoiseFilter-RAG Reproduction on LightRAG
 
+> **Quick navigation for reviewers**
+> | What to look at | Where |
+> | --- | --- |
+> | Key results (pairwise + grounding) | [Results Snapshot](#results-snapshot) |
+> | Pairwise judge report (130 queries) | [`reproduce/results/formal/mix/pairwise_hybrid_eval.md`](reproduce/results/formal/mix/pairwise_hybrid_eval.md) |
+> | Source-grounded judge evaluation | [`reproduce/results/formal/mix/source_grounded_judge_eval_qwen3_exported.md`](reproduce/results/formal/mix/source_grounded_judge_eval_qwen3_exported.md) |
+> | Labeled edge analysis | [`reproduce/results/formal/mix/labeled_edge_analysis.md`](reproduce/results/formal/mix/labeled_edge_analysis.md) |
+> | Core method implementation | [`lightrag/noisefilter/`](lightrag/noisefilter/) |
+> | Reproduction runner | [`lightrag/noisefilter/reproduction.py`](lightrag/noisefilter/reproduction.py) |
+> | Unit / regression tests | [`tests/test_noise_filter_formal_reproduction.py`](tests/test_noise_filter_formal_reproduction.py) |
+
 Research-engineering reproduction fork focused on graph noise diagnosis, confidence-aware retrieval, and evidence-backed evaluation for NoiseFilter-RAG.
 
 This repository is built on top of the upstream [HKUDS/LightRAG](https://github.com/HKUDS/LightRAG) project and its paper:
