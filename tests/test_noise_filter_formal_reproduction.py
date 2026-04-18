@@ -140,6 +140,50 @@ def test_build_runtime_overrides_rejects_non_positive_values():
 
 
 @pytest.mark.asyncio
+async def test_formal_llm_func_disables_thinking_for_non_streaming_calls(monkeypatch):
+    from lightrag.noisefilter.reproduction import _build_llm_model_func
+
+    captured: dict = {}
+
+    async def fake_openai_complete_if_cache(model, prompt, **kwargs):
+        captured["model"] = model
+        captured["prompt"] = prompt
+        captured["kwargs"] = kwargs
+        return "ok"
+
+    monkeypatch.setattr(
+        "lightrag.llm.openai.openai_complete_if_cache", fake_openai_complete_if_cache
+    )
+
+    llm_func = _build_llm_model_func()
+    result = await llm_func("hello")
+
+    assert result == "ok"
+    extra_body = captured["kwargs"]["extra_body"]
+    assert extra_body["chat_template_kwargs"]["enable_thinking"] is False
+
+
+@pytest.mark.asyncio
+async def test_formal_llm_func_preserves_streaming_calls(monkeypatch):
+    from lightrag.noisefilter.reproduction import _build_llm_model_func
+
+    captured: dict = {}
+
+    async def fake_openai_complete_if_cache(model, prompt, **kwargs):
+        captured["kwargs"] = kwargs
+        return "ok"
+
+    monkeypatch.setattr(
+        "lightrag.llm.openai.openai_complete_if_cache", fake_openai_complete_if_cache
+    )
+
+    llm_func = _build_llm_model_func()
+    await llm_func("hello", stream=True)
+
+    assert "extra_body" not in captured["kwargs"]
+
+
+@pytest.mark.asyncio
 async def test_insert_contexts_batches_large_input(tmp_path):
     from lightrag.noisefilter.reproduction import insert_contexts
 

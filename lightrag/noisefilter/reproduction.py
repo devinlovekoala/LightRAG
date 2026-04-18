@@ -275,9 +275,30 @@ def _build_llm_model_func():
     api_key = _get_env("LLM_BINDING_API_KEY") or _get_env("OPENAI_API_KEY")
     base_url = _get_env("LLM_BINDING_HOST")
 
+    # Some OpenAI-compatible Qwen providers require disabling thinking for
+    # non-streaming calls, but only accept it inside extra_body chat template
+    # kwargs rather than as a top-level request parameter.
+    def _merge_extra_body_with_thinking_disabled(
+        payload: dict[str, Any] | None,
+    ) -> dict[str, Any]:
+        merged = dict(payload or {})
+        chat_template_kwargs = merged.get("chat_template_kwargs")
+        if not isinstance(chat_template_kwargs, dict):
+            chat_template_kwargs = {}
+            merged["chat_template_kwargs"] = chat_template_kwargs
+        chat_template_kwargs.setdefault("enable_thinking", False)
+        return merged
+
     async def llm_model_func(
         prompt, system_prompt=None, history_messages=None, **kwargs
     ) -> str:
+        stream = kwargs.get("stream", None)
+        # Only apply fallback for non-streaming requests.
+        if not stream:
+            kwargs["extra_body"] = _merge_extra_body_with_thinking_disabled(
+                kwargs.get("extra_body")
+            )
+
         return await openai_complete_if_cache(
             model,
             prompt,
