@@ -1,0 +1,66 @@
+{
+  "variants": {
+    "baseline": {
+      "variant": "baseline",
+      "total_edges": 100,
+      "label_counts": {
+        "correct": 15,
+        "wrong": 50,
+        "ambiguous": 35
+      },
+      "strict_precision": 0.15,
+      "lenient_precision": 0.5,
+      "judge_score_means_by_label": {
+        "correct": 0.8666666666666667,
+        "wrong": 0.81,
+        "ambiguous": 0.47
+      },
+      "verdict_counts": {
+        "supported": 56,
+        "partially_supported": 31,
+        "not_supported": 13,
+        "contradicted": 0
+      },
+      "binary_ranking": {
+        "roc_auc": 0.52,
+        "average_precision": 0.5363744324090042
+      }
+    },
+    "noisefilter": {
+      "variant": "noisefilter",
+      "total_edges": 100,
+      "label_counts": {
+        "correct": 22,
+        "wrong": 43,
+        "ambiguous": 35
+      },
+      "strict_precision": 0.22,
+      "lenient_precision": 0.57,
+      "judge_score_means_by_label": {
+        "correct": 0.6727272727272727,
+        "wrong": 0.6930232558139535,
+        "ambiguous": 0.5085714285714286
+      },
+      "verdict_counts": {
+        "supported": 49,
+        "partially_supported": 29,
+        "not_supported": 22,
+        "contradicted": 0
+      },
+      "binary_ranking": {
+        "roc_auc": 0.48150105708245244,
+        "average_precision": 0.43163668372166486
+      }
+    }
+  },
+  "comparison": {
+    "precision_delta": {
+      "strict": 0.07,
+      "lenient": 0.06999999999999995
+    },
+    "ranking_delta": {
+      "roc_auc": -0.038498942917547574,
+      "average_precision": -0.10473774868733932
+    }
+  }
+}

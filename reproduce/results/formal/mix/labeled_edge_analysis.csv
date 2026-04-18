@@ -1,0 +1,3 @@
+variant,total_edges,correct,wrong,ambiguous,strict_precision,lenient_precision,conf_score_correct_minus_wrong,conf_freq_score_correct_minus_wrong,conf_consistency_score_correct_minus_wrong,conf_semantic_score_correct_minus_wrong
+baseline,100,15,50,35,0.15,0.5,0.0,0.0,0.0,0.0
+noisefilter,100,22,43,35,0.22,0.57,-0.004465281309601277,0.0,0.0,-0.022326406548006453

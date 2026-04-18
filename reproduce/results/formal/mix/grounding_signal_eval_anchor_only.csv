@@ -1,0 +1,3 @@
+variant,total_edges,correct,wrong,ambiguous,strict_precision,lenient_precision,src_anchor_score_roc_auc,src_anchor_score_average_precision,dst_anchor_score_roc_auc,dst_anchor_score_average_precision,endpoint_anchor_score_roc_auc,endpoint_anchor_score_average_precision,cooccurrence_score_roc_auc,cooccurrence_score_average_precision,nli_support_score_roc_auc,nli_support_score_average_precision
+baseline,100,15,50,35,0.15,0.5,0.5,0.6447807427064395,0.5,0.6447807427064395,0.5,0.6447807427064395,0.5,0.6447807427064395,0.5,0.6447807427064395
+noisefilter,100,22,43,35,0.22,0.57,0.5,0.5559854549712704,0.5,0.5559854549712704,0.5,0.5559854549712704,0.5,0.5559854549712704,0.5,0.5559854549712704

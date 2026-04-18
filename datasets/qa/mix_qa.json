@@ -1,0 +1,1432 @@
+[
+  {
+    "query_id": 1,
+    "question": "What is the main objection Mary has to the poem \"The Witch of Atlas\"?",
+    "answers": [
+      "Mary objects to the poem because it lacks human interest and does not tell a story, either true or false."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 1
+    }
+  },
+  {
+    "query_id": 2,
+    "question": "Describe the transformation of the Witch of Atlas' mother.",
+    "answers": [
+      "The Witch's mother first transforms into a vapor, then a cloud, a meteor, and finally a star hidden between the Earth and Mars."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 2
+    }
+  },
+  {
+    "query_id": 3,
+    "question": "What is the significance of the Witch's cave and its surroundings?",
+    "answers": [
+      "The cave is a place of magic and beauty, where the Witch creates her enchantments and interacts with various spirits and deities. It is also a sanctuary where she can observe the world and influence it from a distance."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 3
+    }
+  },
+  {
+    "query_id": 4,
+    "question": "What significant event involving Abd al-Muttalib and the Kaaba occurred, and how did it impact the religious landscape of the region?",
+    "answers": [
+      "Abd al-Muttalib discovered the Zamzam Well, which was considered sacred. This event solidified the importance of the Kaaba and the well in the religious practices of the region, as the well became a primary source of water for pilgrims visiting the Kaaba."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 4
+    }
+  },
+  {
+    "query_id": 5,
+    "question": "What are the challenges associated with using the standard approach of maximizing the likelihood function in statistical inference?",
+    "answers": [
+      "The challenges associated with using the standard approach of maximizing the likelihood function include the need to evaluate the partition function, which in the most general case involves computations that scale exponentially with the system size, making it computationally intensive."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 5
+    }
+  },
+  {
+    "query_id": 6,
+    "question": "What is the connection between Ashrita Shetty and the film Udhayam NH4?",
+    "answers": [
+      "The connection between Ashrita Shetty and the film Udhayam NH4 is that Ashrita Shetty made her film debut in Udhayam NH4, playing the lead female role alongside Siddharth. The film was directed by Manimaran and featured a script and dialogues penned by Vetrimaaran."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 6
+    }
+  },
+  {
+    "query_id": 7,
+    "question": "How did Hans Zimmer's collaboration with Christopher Nolan on Interstellar influence the film's soundtrack?",
+    "answers": [
+      "Hans Zimmer's collaboration with Christopher Nolan on Interstellar influenced the film's soundtrack by allowing Zimmer to create a unique and emotionally resonant score that captured the essence of the story and characters. Nolan provided Zimmer with a short story about a father and child, which inspired Zimmer to compose a four-minute piano and organ piece that became the heart of the film's score. This collaboration resulted in a critically acclaimed soundtrack that enhanced the film's narrative and emotional impact."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 7
+    }
+  },
+  {
+    "query_id": 8,
+    "question": "How does environmental variability affect the reliance of artificial organisms on plasticity?",
+    "answers": [
+      "Environmental variability and uncertainty control the reliance of artificial organisms on plasticity, with higher variability and uncertainty leading to greater reliance on plasticity for adaptation."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 8
+    }
+  },
+  {
+    "query_id": 9,
+    "question": "What role does coevolution play in the development of plasticity rules in embodied agents?",
+    "answers": [
+      "Coevolution between static connectivity and interacting plasticity mechanisms in distinct sub-networks changes the function and form of the emerging plasticity rules, allowing for greater diversity in the learning rules and resulting learned connectivity."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 9
+    }
+  },
+  {
+    "query_id": 10,
+    "question": "How do minor variations in the task or network parametrization affect the plasticity rules?",
+    "answers": [
+      "Minor variations in the task or network parametrization can give rise to significantly different plasticity rules, highlighting the sensitivity of the optimization process to task details and network configurations."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 10
+    }
+  },
+  {
+    "query_id": 11,
+    "question": "What was the reason behind the change in voice actors for Meg Griffin in Family Guy?",
+    "answers": [
+      "Lacey Chabert originally voiced Meg Griffin in the first season, but she left the series due to time constraints with her acting role in Party of Five and schoolwork. Mila Kunis then took over the role starting from the second season."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 11
+    }
+  },
+  {
+    "query_id": 12,
+    "question": "How did The Cleveland Show come into existence, and what was its premise?",
+    "answers": [
+      "The Cleveland Show was conceived by Seth MacFarlane in 2007 as a spin-off of Family Guy, focusing on the character Cleveland Brown and his new family. The series follows Cleveland, his wife Donna, and their children as they navigate life in the town of Stoolbend, Virginia. The show was canceled after four seasons, and Cleveland returned to Family Guy with his family."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 12
+    }
+  },
+  {
+    "query_id": 13,
+    "question": "What were the main reasons behind the controversies surrounding the 2014-15 Oman Professional League?",
+    "answers": [
+      "The main reasons behind the controversies surrounding the 2014-15 Oman Professional League included financial issues faced by the clubs, the inability of the Oman Football Association to fulfill promises made before the introduction of the pro-league system, and disputes over payment issues with referees. These factors led to a boycott of the league by top clubs and a refusal by Omani referees to officiate matches, causing disruptions and embarrassment for the Oman Football Association."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 13
+    }
+  },
+  {
+    "query_id": 14,
+    "question": "How did the 1981 Major League Baseball strike impact the season and the structure of the playoffs?",
+    "answers": [
+      "The 1981 Major League Baseball strike, which lasted from June 12 to July 31, forced the cancellation of 713 games and resulted in a split-season format. The season was divided into two halves, with the first-half and second-half winners in each division facing each other in a best-of-five divisional playoff series. This unique structure led to teams with inferior overall records qualifying for the playoffs based on their performance in one half of the season, which was a departure from the traditional playoff format."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 14
+    }
+  },
+  {
+    "query_id": 15,
+    "question": "How does \"No Trees in the Street\" contribute to the genre of British kitchen sink realism?",
+    "answers": [
+      "The film contributes to kitchen sink realism by presenting a naturalistic depiction of slum life, focusing on the gritty realities of working-class existence, and exploring themes of crime, poverty, and social struggle in a raw and unglamorous manner."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 15
+    }
+  },
+  {
+    "query_id": 16,
+    "question": "How does the critical reception of \"No Trees in the Street\" reflect its strengths and weaknesses?",
+    "answers": [
+      "Critics praised the film for its naturalistic depiction of slum life and strong performances, particularly Sylvia Syms' role. However, they also noted weaknesses in the artificiality of plot and dialogue, and the reduction of characterizations to stereotypes, which detracted from the overall impact of the film."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 16
+    }
+  },
+  {
+    "query_id": 17,
+    "question": "What challenges did J. Lee Thompson face in his career, and how did they affect his body of work?",
+    "answers": [
+      "J. Lee Thompson faced challenges such as being blacklisted during the House Un-American Activities Committee hearings, which temporarily halted his career. This, along with his later work in lower-budget films, may have influenced the variety and quality of his filmography, which includes both acclaimed works and lesser-known productions."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 17
+    }
+  },
+  {
+    "query_id": 18,
+    "question": "What is the significance of studying puns in the context of human-computer interaction and machine translation?",
+    "answers": [
+      "Studying puns is significant because it enhances the understanding of language nuances, which can improve the performance of systems in human-computer interaction and machine translation by enabling them to better interpret and generate language with the same level of subtlety as humans."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 18
+    }
+  },
+  {
+    "query_id": 19,
+    "question": "How does the joint learning approach for pun detection and location differ from the traditional pipeline methods?",
+    "answers": [
+      "Joint learning differs from pipeline methods by addressing both pun detection and location tasks simultaneously within a single model, reducing error propagation and allowing information exchange between tasks, which can lead to improved performance."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 19
+    }
+  },
+  {
+    "query_id": 20,
+    "question": "How does the proposed approach for joint pun detection and location compare to previous methods in terms of applicability and performance?",
+    "answers": [
+      "The proposed approach is generally applicable to both heterographic and homographic puns, unlike many previous methods that were limited to specific types. Empirical results show that the proposed approach achieves state-of-the-art performance on benchmark datasets, demonstrating that the two tasks can be effectively addressed by a single model."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 20
+    }
+  },
+  {
+    "query_id": 21,
+    "question": "What is the primary challenge in numerically determining the nuclear liquid-gas transition from a gas of hadrons to a nuclear phase using conventional lattice QCD?",
+    "answers": [
+      "The primary challenge is the severe sign problem that arises at large values of the baryon chemical potential."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 21
+    }
+  },
+  {
+    "query_id": 22,
+    "question": "How is the sign problem addressed in the strong coupling limit of lattice QCD?",
+    "answers": [
+      "The sign problem is mild in the strong coupling limit and can be managed with sign reweighting, as baryons are non-relativistic and typically have loop geometries with positive signs."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 22
+    }
+  },
+  {
+    "query_id": 23,
+    "question": "What is the significance of the Spiel des Jahres award mentioned in several passages?",
+    "answers": [
+      "The Spiel des Jahres is a prestigious award in the board game industry, recognizing excellence in game design. Winning this award can significantly boost a game's popularity and sales."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 23
+    }
+  },
+  {
+    "query_id": 24,
+    "question": "What is the unique feature of the game Clans that distinguishes it from other board games?",
+    "answers": [
+      "Clans is unique in that players do not know the colors of the other players' cards, adding an element of secrecy and strategy to the gameplay."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 24
+    }
+  },
+  {
+    "query_id": 25,
+    "question": "How does the pie rule in board games help balance gameplay between two players?",
+    "answers": [
+      "The pie rule is used to mitigate the advantage of going first in two-player games. After the first player makes their initial move, the second player has the option to swap sides, thus balancing the gameplay."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 25
+    }
+  },
+  {
+    "query_id": 26,
+    "question": "What are some of Dana Blankstein-Cohen's contributions to film and television education in Israel?",
+    "answers": [
+      "Dana Blankstein-Cohen has made significant contributions to film and television education in Israel. She is the executive director of the Sam Spiegel Film and Television School, where she oversees the Sam Spiegel International Film Lab and spearheaded the launch of the new Series Lab and the film preparatory program for Arabic speakers in east Jerusalem."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 26
+    }
+  },
+  {
+    "query_id": 27,
+    "question": "What is the origin of the Billiken and how has it been used in modern times?",
+    "answers": [
+      "The Billiken is a charm doll created by American art teacher Florence Pretz, who claimed to have seen the figure in a dream. It was originally used as a good luck charm, with the belief that owning one brought luck, and receiving one as a gift brought even better luck. In modern times, the Billiken is the official mascot of Saint Louis University and St. Louis University High School, and it is also the mascot of the Royal Order of Jesters, an invitation-only Shriner group affiliated with Freemasonry."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 27
+    }
+  },
+  {
+    "query_id": 28,
+    "question": "Who was Auguste Levêque, and what were his contributions to art?",
+    "answers": [
+      "Auguste Levêque was a Belgian painter influenced by both realism and symbolism. He was also a sculptor, poet, and art theoretician. Levêque studied under Jean-François Portaels at the Académie Royale des Beaux-Arts in Brussels and received the Prix Godecharle for his painting \"Job\" in 1890. He was a member of the \"Salon d'Art Idéaliste,\" a group that contributed to the Belgian equivalent of the Parisian Rose & Cross Salon. Levêque's notable paintings include \"Job,\" \"Les Dentelles d'airain,\" and \"Mater dolorosa,\" among others."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 28
+    }
+  },
+  {
+    "query_id": 29,
+    "question": "What are the key areas of Wale Adebanwi's research, and how has his career evolved from journalism to academia?",
+    "answers": [
+      "Wale Adebanwi's key research areas include social change, nationalism and ethnicity, race relations, identity politics, elites and cultural politics, democratic process, newspaper press, and spatial politics in Africa. His career began in journalism, working as a reporter, writer, journalist, and editor for various newspapers and magazines. He then transitioned to academia, joining the University of Ibadan's Department of Political Science as a lecturer and researcher. He later became an assistant professor at the University of California, Davis, and eventually a full professor. Adebanwi has held prestigious positions such as the Rhodes Professor at St Antony's College, Oxford, and is currently a Presidential Penn Compact Professor of Africana Studies at the University of Pennsylvania."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 29
+    }
+  },
+  {
+    "query_id": 30,
+    "question": "What was Robert Day's transition like from working in the British film industry to directing in Hollywood, and what notable roles did he take on in his productions?",
+    "answers": [
+      "Robert Day transitioned from working in the British film industry to directing in Hollywood in the 1960s. He began directing TV episodes and made-for-TV movies, occasionally taking small parts in his own productions. Notable roles he took on include appearances in \"The Haunted Strangler\" (1958), \"Two-Way Stretch\" (1960), and the TV mini-series \"Peter and Paul\" (1981)."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 30
+    }
+  },
+  {
+    "query_id": 31,
+    "question": "How does the system utilize linguistic, layout, and topical features in propaganda detection?",
+    "answers": [
+      "The system utilizes linguistic features such as sentiment, readability, emotion, part-of-speech tags, and named entity tags. Layout features are also considered, though not detailed in the article. Topical features, such as document-topic proportions, are used to identify irrelevant themes that might be introduced to manipulate the discussion, such as a Red Herring."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 31
+    }
+  },
+  {
+    "query_id": 32,
+    "question": "What role do pre-trained embeddings from FastText and BERT play in the system's approach to propaganda detection?",
+    "answers": [
+      "Pre-trained embeddings from FastText and BERT are used for word and sentence representations, providing a foundation of learned features from large datasets. These embeddings help the system to better understand and classify sentences and fragments based on their semantic and syntactic properties."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 32
+    }
+  },
+  {
+    "query_id": 33,
+    "question": "How does the ensemble of classifiers (Logistic Regression, CNN, and BERT) function in the system's approach to sentence-level propaganda detection?",
+    "answers": [
+      "The ensemble collects predictions from each of the three classifiers for each sentence, resulting in multiple predictions per sentence. Two ensemble strategies are explored: majority-voting to boost precision and relax-voting to boost recall. This approach helps in making more accurate and balanced predictions about whether a sentence contains propaganda."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 33
+    }
+  },
+  {
+    "query_id": 34,
+    "question": "How does the system handle the complexity of propaganda techniques in the FLC task?",
+    "answers": [
+      "The system handles the complexity by introducing features such as polarity, POS, and NER into the LSTM-CRF model, which helps in improving F1 scores. Additionally, the system explores multi-grained LSTM-CRF with and without BERT embeddings, and performs multi-tasking with an auxiliary task of propagandistic span/fragment detection, enhancing the detection of propagandistic fragments and their types."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 34
+    }
+  },
+  {
+    "query_id": 35,
+    "question": "How did Alex Cox's career trajectory change after the commercial failure of his film \"Walker\"?",
+    "answers": [
+      "After the commercial failure of \"Walker,\" Cox's career moved towards independent films. The film's lack of box office success ended his involvement with Hollywood studios and led to a period where he did not direct a single film. Despite this, Cox and some critics maintain that \"Walker\" is his best film."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 35
+    }
+  },
+  {
+    "query_id": 36,
+    "question": "What role did Humphrey de Bohun, 3rd Earl of Hereford, play in the opposition to King Edward I over the Confirmatio Cartarum?",
+    "answers": [
+      "Humphrey de Bohun, 3rd Earl of Hereford, was an active participant in the opposition to King Edward I over the Confirmatio Cartarum. He, along with Roger Bigod, Earl of Norfolk, refused to perform feudal service and protested against the heavy burden of taxation caused by Edward's continuous warfare. Hereford and Bigod were joined by other earls and the Archbishop of Canterbury in their opposition. The conflict was eventually resolved when the king signed the Confirmatio Cartarum, and Hereford agreed to serve in the Falkirk Campaign."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 36
+    }
+  },
+  {
+    "query_id": 37,
+    "question": "What were the circumstances surrounding the death of Sir Henry de Bohun at the Battle of Bannockburn?",
+    "answers": [
+      "Sir Henry de Bohun was killed on the first day of the Battle of Bannockburn by Robert the Bruce. De Bohun, riding in the vanguard of heavy cavalry, spotted the Scottish king who was armed only with a battle-axe. De Bohun charged at Bruce with his lance, but Bruce maneuvered his mount to one side, stood up in his stirrups, and hit de Bohun with his axe, cutting through both his helmet and skull and into his brain."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 37
+    }
+  },
+  {
+    "query_id": 38,
+    "question": "What is the primary mechanism discussed in the text that leads to the two-stage Kondo screening in a system with two quantum dots (QDs) coupled to a superconducting (SC) lead?",
+    "answers": [
+      "The primary mechanism is the crossed Andreev reflection (CAR) exchange, which arises due to non-local pairing induced by the SC electrode. This mechanism can lead to the two-stage Kondo screening even in the absence of other exchange mechanisms."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 38
+    }
+  },
+  {
+    "query_id": 39,
+    "question": "What is the significance of the RKKY interaction in the context of the systems discussed in the text?",
+    "answers": [
+      "The RKKY interaction competes with the Kondo effect and can lead to quantum phase transitions of debated nature. It is a mechanism by which conduction band electrons mediate the exchange interaction between two QDs, influencing the ground state of the system."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 39
+    }
+  },
+  {
+    "query_id": 40,
+    "question": "What is the significance of Thomas Kennedy in the context of Scottish politics?",
+    "answers": [
+      "Thomas Kennedy was a Scottish judge, joint Solicitor General for Scotland, Lord Advocate, and Member of Parliament for Ayr Burghs."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 40
+    }
+  },
+  {
+    "query_id": 41,
+    "question": "What is the connection between Tom Ford and the fashion industry?",
+    "answers": [
+      "Tom Ford is an American designer who has made significant contributions to the fashion industry."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 41
+    }
+  },
+  {
+    "query_id": 42,
+    "question": "How does the proposed method handle higher-order poles and their corresponding coefficients in nonlinear systems?",
+    "answers": [
+      "The proposed method handles higher-order poles and their corresponding coefficients by decoupling the Volterra kernels using Laguerre polynomials and then analytically computing the partial response related to a single Laguerre polynomial in terms of the pole-residue method. This is a novel approach compared to the traditional pole-residue method for linear systems."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 42
+    }
+  },
+  {
+    "query_id": 43,
+    "question": "How does the proposed method compare to the fourth-order Runge-Kutta method in terms of computational efficiency?",
+    "answers": [
+      "The proposed method is much more efficient in computational time than the fourth-order Runge-Kutta method, especially for long response times. This is because the proposed method provides an explicit, continuous response function of time, eliminating the need for small time steps required for high-precision solutions in numerical methods like Runge-Kutta."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 43
+    }
+  },
+  {
+    "query_id": 44,
+    "question": "Can the proposed method be applied to systems with unknown equations of motion?",
+    "answers": [
+      "Yes, the proposed method can be applied to systems with unknown equations of motion. The paper demonstrates this by using a known input excitation and its corresponding response to identify the Volterra kernel functions, which are then used to predict system responses following the same procedure as for systems with known equations of motion."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 44
+    }
+  },
+  {
+    "query_id": 45,
+    "question": "What are the key components of the nonlinear response according to the proposed method?",
+    "answers": [
+      "The key components of the nonlinear response according to the proposed method are the natural response, which is only related to system poles; the forced response, which is related only to excitation poles; and the cross response, which is related to both system poles and excitation poles. These components are naturally obtained in the solution procedure."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 45
+    }
+  },
+  {
+    "query_id": 46,
+    "question": "What is the innovation in \"Transport of chitosan-DNA nanoparticles in human intestinal M-cell model versus normal intestinal enterocytes\" regarding gene delivery?",
+    "answers": [
+      "The innovation lies in the use of chitosan-DNA nanoparticles to facilitate gene delivery specifically through the M-cell model of the human intestine, which is different from the normal intestinal enterocytes and may offer a more efficient route for oral gene therapy."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 46
+    }
+  },
+  {
+    "query_id": 47,
+    "question": "In the publication \"Dual-Sensitive Micellar Nanoparticles Regulate DNA Unpacking and Enhance Gene-Delivery Efficiency,\" what dual sensitivity is being referred to?",
+    "answers": [
+      "The dual sensitivity refers to the micellar nanoparticles' ability to respond to two different stimuli or conditions, which in turn regulates the unpacking of DNA and enhances the efficiency of gene delivery."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 47
+    }
+  },
+  {
+    "query_id": 48,
+    "question": "What is the historical context of the area around Koh Sotin District in Cambodia?",
+    "answers": [
+      "The area around Koh Sotin District has been inhabited since ancient times. Before the arrival of the Khmer, the region was inhabited by the Austroasiatic Khmer people. The district has a history of being a strategic location due to its proximity to the Mekong River and has been influenced by various political and cultural changes throughout history."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 48
+    }
+  },
+  {
+    "query_id": 49,
+    "question": "What is the demographic makeup of Pulaski High School in Wisconsin?",
+    "answers": [
+      "Pulaski High School has a student body that is over 90% Caucasian, with smaller percentages of American Indian, Hispanic, African American, and Asian students. The school is nearly evenly split between male and female students, with a slight majority of males. Just over 22% of the students are eligible for free or reduced lunch."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 49
+    }
+  },
+  {
+    "query_id": 50,
+    "question": "What is the programming focus of CIBX-FM in Fredericton, New Brunswick, Canada?",
+    "answers": [
+      "CIBX-FM in Fredericton, New Brunswick, Canada, initially broadcasted a soft adult contemporary music format before evolving towards adult contemporary. It then shifted to a Top 40/CHR format and later to Hot AC, rebranding as Move 106.9. In 2022, the station flipped back to adult contemporary music."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 50
+    }
+  },
+  {
+    "query_id": 51,
+    "question": "What role does Jomo Kenyatta play in the narrative of \"Weep Not, Child,\" and how does his character contribute to the novel's themes?",
+    "answers": [
+      "Jomo Kenyatta is portrayed as a symbol of hope and a potential savior for the Kenyan people, embodying the aspirations for independence and the restoration of traditional values. His trial and imprisonment serve as a pivotal moment that catalyzes further resistance and repression, reinforcing the novel's themes of struggle, disillusionment, and the search for leadership in the fight against colonialism."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 51
+    }
+  },
+  {
+    "query_id": 52,
+    "question": "What are the key findings from the regression analysis regarding the types of questions that benefit from pre-training with cloze questions?",
+    "answers": [
+      "The regression analysis reveals that questions with high lexical overlap between the question and the sentence containing the answer benefit significantly from pretraining. Conversely, questions with high overlap with the entire passage tend to have lower performance. Additionally, questions with short answers and those containing tokens infrequent in the training corpus also see a boost after pretraining."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 52
+    }
+  },
+  {
+    "query_id": 53,
+    "question": "What role does fine-tuning play in the overall performance of the proposed QA system?",
+    "answers": [
+      "Fine-tuning is crucial for the system's performance, as it allows the model to adapt to the specific labeled data provided, achieving a significant proportion of the performance typically attained with much larger datasets. This step is essential after the initial pre-training with cloze questions."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 53
+    }
+  },
+  {
+    "query_id": 54,
+    "question": "What were the key contributions of Sebastian Cabot to the exploration of the New World?",
+    "answers": [
+      "Sebastian Cabot explored the Northwest Passage through North America on behalf of England and later sailed for Spain, where he explored the Rio de la Plata in South America and established two new forts. He also led expeditions from Bristol to the New World, using two ships and bringing back salted fish, suggesting commercial interests in his voyages."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 54
+    }
+  },
+  {
+    "query_id": 55,
+    "question": "How did Guilherme Marchi's consistency and dedication to bull riding contribute to his success in the sport?",
+    "answers": [
+      "Guilherme Marchi's consistency and dedication to bull riding were evident in his impressive record of qualifying for the World Finals all 15 years of his PBR career (2004 to 2018). He was known for his nearly 75% bull riding success rate, which helped him win five events and earn over $1.5 million on his way to the 2008 PBR world championship title. Marchi's commitment to the sport also led him to become the first PBR rider to reach 500 and 600 qualified rides, further solidifying his legacy in bull riding."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 55
+    }
+  },
+  {
+    "query_id": 56,
+    "question": "How did the Black Death impact the social and economic structures of Europe?",
+    "answers": [
+      "The Black Death caused significant religious, social, and economic upheavals in Europe. It led to a labor shortage, which resulted in higher wages for workers, and pushed landowners to substitute monetary rents for labor services. The pandemic also restructured the power dynamics of fiefs and city-states, and survivors enjoyed more freedom and better economic conditions."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 56
+    }
+  },
+  {
+    "query_id": 57,
+    "question": "What were the key differences in the roles and responsibilities of Archibald Acheson, 4th Earl of Gosford, compared to his predecessors?",
+    "answers": [
+      "Archibald Acheson, 4th Earl of Gosford, held the positions of Lord of the Bedchamber to Edward VII, Prince of Wales, Vice-Admiral of Ulster, and Lord Lieutenant of Armagh. He also served as Vice-Chamberlain of the Household of Queen Alexandra and was Honorary Colonel of the 3rd Battalion of the Royal Irish Fusiliers. These roles and responsibilities differed from his predecessors as they involved more direct service to the royal family and military appointments."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 57
+    }
+  },
+  {
+    "query_id": 58,
+    "question": "What is the economic significance of the Bluegrass Commerce Park in Jeffersontown, Kentucky?",
+    "answers": [
+      "The Bluegrass Commerce Park in Jeffersontown, Kentucky, is economically significant as it is home to approximately 850 businesses and employs 38,000 people, making it the largest commerce park in the state and the third-largest city of employment in Kentucky."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 58
+    }
+  },
+  {
+    "query_id": 59,
+    "question": "How did the invention of the bag-in-box system revolutionize the packaging industry?",
+    "answers": [
+      "The invention of the bag-in-box system by William R. Scholle in 1955 revolutionized the packaging industry by providing a safe and efficient method for the transportation and dispensing of liquids, initially for battery acid. This innovation led to a \"packaging revolution\" and inspired the development of various applications, including the wine cask and aseptic packaging for processed foods and dairy products."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 59
+    }
+  },
+  {
+    "query_id": 60,
+    "question": "What is the role of the bag-in-box system in the dispensing of sulfuric acid for lead-acid batteries?",
+    "answers": [
+      "The bag-in-box system is used for its original application of dispensing sulfuric acid for filling lead-acid batteries in garages and dealerships. The system ensures safe transportation and accurate dispensing of the acid, preventing spills and contamination, and making the process more efficient and safer for technicians."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 60
+    }
+  },
+  {
+    "query_id": 61,
+    "question": "How are regional plans prepared and finalized under the Act?",
+    "answers": [
+      "Regional plans are prepared by the Director of Town and Country Planning after conducting necessary surveys and obtaining relevant maps and reports. The draft plan is published for public inspection and feedback. After considering objections and suggestions, the Director submits the plan to the State Government for approval. The State Government can approve the plan with or without modifications, and once approved, it is published in the Official Gazette."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 61
+    }
+  },
+  {
+    "query_id": 62,
+    "question": "What is the role of the Town and Country Development Authority established under the Act?",
+    "answers": [
+      "The Town and Country Development Authority is responsible for the proper implementation of the town and country development plan. It oversees the development and administration of special areas and is involved in the compulsory acquisition of land required for development plans."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 62
+    }
+  },
+  {
+    "query_id": 63,
+    "question": "What was Gino Bartali's contribution to aiding Jews during World War II?",
+    "answers": [
+      "Gino Bartali used his fame to carry messages and documents to the Italian Resistance, hid a Jewish family in his cellar, and cycled through various regions to help Jews escape persecution. He was recognized as a \"Righteous Among the Nations\" by Yad Vashem for his efforts."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 63
+    }
+  },
+  {
+    "query_id": 64,
+    "question": "What was the significance of Tiberius Coruncanius in the development of Roman law?",
+    "answers": [
+      "Tiberius Coruncanius is believed to be the first teacher of Roman law to offer public instruction, which led to the creation of a class of legally skilled non-priests (jurisprudentes) and the formalization of legal education in Rome."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 64
+    }
+  },
+  {
+    "query_id": 65,
+    "question": "What were the circumstances surrounding the disappearance of Captain Mansell Richard James after World War I?",
+    "answers": [
+      "Captain Mansell Richard James disappeared after setting a postwar aviation record for prize money. He was last seen flying from Tyringham, Massachusetts, toward the south, then turning west, away from Boston. Despite extensive searches, no sign of James or his plane has ever been found."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 65
+    }
+  },
+  {
+    "query_id": 66,
+    "question": "What is a Pyrrhic victory, and can you provide an example from history?",
+    "answers": [
+      "A Pyrrhic victory is a victory that inflicts such a devastating toll on the victor that it is tantamount to defeat. An example is the Battle of Asculum in 279 BC, where Pyrrhus of Epirus defeated the Romans but suffered irreplaceable casualties, leading him to comment that another such victory would undo him."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 66
+    }
+  },
+  {
+    "query_id": 67,
+    "question": "What was the outcome of the Battle of María during the Peninsular War?",
+    "answers": [
+      "The Battle of María was a French victory led by Joaquín Blake y Joyes against an Imperial French corps under Louis Gabriel Suchet. The French defeated the Austrians, but the rest of Blake's army got away in fairly good order after abandoning most of its artillery."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 67
+    }
+  },
+  {
+    "query_id": 68,
+    "question": "What is the origin of the name \"Cropper\" in Cropper, Kentucky?",
+    "answers": [
+      "The name \"Cropper\" comes from the town's founder, James Cropper, a blacksmith and storekeeper who was the first person to build a house there in the 1790s."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 68
+    }
+  },
+  {
+    "query_id": 69,
+    "question": "How did Lesley Selander's extensive experience as an assistant director contribute to his prolific career in directing Westerns and adventure movies?",
+    "answers": [
+      "Lesley Selander's early career as an assistant director on films like \"The Cat and the Fiddle\" and \"A Night at the Opera\" likely provided him with valuable insights into film production, collaboration, and storytelling techniques. This experience would have been instrumental in shaping his directorial style and contributing to his prolific output in directing Westerns and adventure movies."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 69
+    }
+  },
+  {
+    "query_id": 70,
+    "question": "What historical event does the film \"Folgore Division\" depict, and how is it significant in the context of World War II?",
+    "answers": [
+      "\"Folgore Division\" depicts the battle of El-Alamein during World War II, focusing on the 185th Airborne Division Folgore. This battle was significant as it marked a turning point in the North African Campaign, where the Allied forces began to gain the upper hand against the Axis powers, particularly the Italian forces portrayed in the film."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 70
+    }
+  },
+  {
+    "query_id": 71,
+    "question": "What are the implications of the Eastern Division in various sports leagues and military contexts?",
+    "answers": [
+      "The Eastern Division in sports leagues like the NHL, CFL, and AFL organizes teams for competitive balance and regional rivalries. In military contexts, such as the 12th (Eastern) Division, it signifies strategic organization and regional recruitment. These divisions help in managing large-scale operations and competitions efficiently."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 71
+    }
+  },
+  {
+    "query_id": 72,
+    "question": "What challenges did Lieutenant General Sir Dudley Russell face during World War II?",
+    "answers": [
+      "Lieutenant General Sir Dudley Russell faced numerous challenges during World War II, including commanding the 8th Indian Infantry Division during the Italian Campaign, leading troops in various battles such as the East African Campaign, North Africa, and the Italian Front. He negotiated the surrender of Italian forces at Amba Alagi and was involved in intense fighting against the German Afrika Korps."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 72
+    }
+  },
+  {
+    "query_id": 73,
+    "question": "What role did Juan de Courten play in the Spanish military during the 18th century?",
+    "answers": [
+      "Juan de Courten was a Spanish military officer who had a distinguished career, participating in the War of the Austrian Succession, the Spanish–Portuguese War, the Invasion of Algiers, and the Great Siege of Gibraltar. He was the last Spanish governor of Oran and led an infantry division during the War of the Pyrenees against the First French Republic, playing a prominent role in several key battles."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 73
+    }
+  },
+  {
+    "query_id": 74,
+    "question": "How has Maximiliano Serrano's career evolved in Argentine professional football?",
+    "answers": [
+      "Maximiliano Serrano started his career with Defensores de Belgrano, where he played for seven years before moving to Almirante Brown. After a few seasons there, he joined Acassuso and later Talleres, all in the Primera B Metropolitana. Throughout his career, he has been a consistent midfielder, contributing both defensively and offensively in various clubs."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 74
+    }
+  },
+  {
+    "query_id": 75,
+    "question": "Why did Biltmore Records go out of business, and which artists' recordings did they rerelease?",
+    "answers": [
+      "Biltmore Records went out of business after RCA Victor sued them for making unauthorized reissues of material originally recorded by Victor. Biltmore rereleased recordings by Glenn Miller and His Orchestra, Benny Goodman, the Original Dixieland Jazz Band, Duke Ellington, Bix Beiderbecke, and Paul Whiteman."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 75
+    }
+  },
+  {
+    "query_id": 76,
+    "question": "What is the mission of Equity Music Group, and which artists were signed to the label?",
+    "answers": [
+      "Equity Music Group was founded to represent the equality between the artist and the label, with artists owning what they create and getting paid from the first scanned sale. Artists signed to the label included Clint Black, Laura Bryna, Carolina Rain, Kevin Fowler, Carolyn Dawn Johnson, Shannon Lawson, Little Big Town, Mark Wills, and Blake Wise."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 76
+    }
+  },
+  {
+    "query_id": 77,
+    "question": "What is the primary task addressed in the scientific article?",
+    "answers": [
+      "The primary task addressed in the article is the generation of natural language descriptions from structured data, such as infoboxes from Wikipedia biographies."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 77
+    }
+  },
+  {
+    "query_id": 78,
+    "question": "How does the gated orthogonalization mechanism contribute to the model's performance?",
+    "answers": [
+      "The gated orthogonalization mechanism models the \"stay on\" and \"never look back\" behaviors by introducing a forget gate and ensuring that subsequent field context vectors are orthogonal to previous ones, which helps in maintaining focus on current information and avoiding redundancy."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 78
+    }
+  },
+  {
+    "query_id": 79,
+    "question": "How does the model perform on multilingual datasets?",
+    "answers": [
+      "The model outperforms state-of-the-art methods on newly introduced French and German datasets, although the overall performance is lower than that for English, likely due to smaller training data and differences in description structure."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 79
+    }
+  },
+  {
+    "query_id": 80,
+    "question": "What is the significance of the film \"Group Portrait with a Lady\" in the context of German-French cinema?",
+    "answers": [
+      "\"Group Portrait with a Lady\" is a significant film in German-French cinema as it is a 1977 drama film directed by Aleksandar Petrović and was entered into the 1977 Cannes Film Festival. It is based on the novel of the same name by German Nobel-Prize winning novelist Heinrich Böll, showcasing a collaboration between German and French cinema."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 80
+    }
+  },
+  {
+    "query_id": 81,
+    "question": "What historical context led to the formation of the Yugoslav Olympic Committee and its evolution over time?",
+    "answers": [
+      "The Yugoslav Olympic Committee was established in Zagreb in 1919, recognized by the International Olympic Committee in 1920, and later moved to Belgrade in 1927. It was formed in the context of the Kingdom of Yugoslavia, which sought to represent the unified sporting interests of the region. The committee's evolution reflects the political changes in the region, with new committees being formed in the break-away countries during the dissolution of Yugoslavia, and the Federal Republic of Yugoslavia participating under different designations following the breakup."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 81
+    }
+  },
+  {
+    "query_id": 82,
+    "question": "What is the primary focus of NPO 1 Extra's programming?",
+    "answers": [
+      "NPO 1 Extra primarily focuses on broadcasting programs created by the public broadcasters from the NPO, with most programs being from the archives of the Netherlands Institute for Sound and Vision. The channel is mainly focused on programs from the eighties and nineties of the last century."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 82
+    }
+  },
+  {
+    "query_id": 83,
+    "question": "What were some of the significant achievements of the horse Charisma?",
+    "answers": [
+      "Charisma, ridden by New Zealander Mark Todd, won many competitions in the sport of eventing and is considered one of the greatest event horses ever. Some of his significant achievements include winning individual gold at the 1984 and 1988 Olympics, winning the Luhmuhlen, Germany Three-Day Event in 1986, and being voted the best NZ Sport Horse in the world in 1983 and 1985."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 83
+    }
+  },
+  {
+    "query_id": 84,
+    "question": "What role did John Ranelagh play in the establishment of Channel 4 in the UK?",
+    "answers": [
+      "John Ranelagh was part of the team that started Channel 4. He conceived the Equinox program, developed the \"commissioning system,\" and served as Board Secretary."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 84
+    }
+  },
+  {
+    "query_id": 85,
+    "question": "How does the adsorption site affect the state of indeno[1,2-a]fluorene (5)?",
+    "answers": [
+      "The adsorption site of indeno[1,2-a]fluorene (5) on the NaCl surface influences its state, with changes in the adsorption site leading to switching between open-shell (5OS) and closed-shell (5para) states."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 85
+    }
+  },
+  {
+    "query_id": 86,
+    "question": "How did Ashanti's second album, \"Chapter II,\" perform commercially?",
+    "answers": [
+      "\"Chapter II\" debuted at number one on the US Billboard 200 chart with first-week sales of 326,000 units and was eventually certified platinum."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 86
+    }
+  },
+  {
+    "query_id": 87,
+    "question": "What are the key challenges addressed by the proposed human-AI loop approach in the context of event detection?",
+    "answers": [
+      "The key challenges addressed by the human-AI loop approach include the unpredictability of event occurrences, the constantly changing dynamics of users' posting frequency, and the difficulty in estimating the expectation associated with a keyword. Additionally, the approach tackles the lack of a principled method for discovering new keywords to improve model performance."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 87
+    }
+  },
+  {
+    "query_id": 88,
+    "question": "How does the unified probabilistic model contribute to the effectiveness of the human-AI loop approach?",
+    "answers": [
+      "The unified probabilistic model contributes to the effectiveness of the human-AI loop approach by seamlessly integrating expectation inference and model training. It aggregates contributions from both the crowd and the model, improving the inference of keyword expectation while resolving the inter-dependency between expectation inference and model training."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 88
+    }
+  },
+  {
+    "query_id": 89,
+    "question": "What is the significance of the human-AI loop approach in the context of complex event detection tasks, such as using deep neural networks?",
+    "answers": [
+      "The significance of the human-AI loop approach in complex event detection tasks, such as using deep neural networks, lies in its ability to gain insight into how the model learns for specific tasks. This approach helps in understanding the intrinsically hard-to-understand deep neural networks by providing human-understandable explanations through the discovery of informative keywords."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 89
+    }
+  },
+  {
+    "query_id": 90,
+    "question": "Who was Admiral Sir Guy Reginald Archer Gaunt and what were his notable achievements?",
+    "answers": [
+      "Admiral Sir Guy Reginald Archer Gaunt was an Australian-born officer of the Royal Navy, counter-intelligence officer, and a British Conservative Party politician. He was instrumental in infiltrating the Hindu–German Conspiracy during the First World War and served as naval attaché to the United States. He was also a Member of Parliament for the Buckrose constituency in the East Riding of Yorkshire."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 90
+    }
+  },
+  {
+    "query_id": 91,
+    "question": "What impact did Marie of Brabant, Countess of Savoy, have on the cultural and political landscape of Savoy?",
+    "answers": [
+      "Marie of Brabant, Countess of Savoy, brought cultural influence from Brabant to the court of Savoy, introducing artisans and fostering closer ties between Savoy and Brabant. She also played a role as a diplomat and political adviser, influencing court affairs and contributing to the alliance between Savoy, Brabant, and France against England."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 91
+    }
+  },
+  {
+    "query_id": 92,
+    "question": "How do the Friends and EmotionPush datasets differ in terms of their characteristics?",
+    "answers": [
+      "The Friends dataset is speech-based, derived from the scripts of the Friends TV sitcom, and predominantly features utterances from six main characters, which allows for personality-based tokenization. In contrast, the EmotionPush dataset is chat-based, coming from Facebook messenger chats, and does not have identifiable speakers, requiring different processing for informal text elements like slang, acronyms, typos, hyperlinks, and emojis."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 92
+    }
+  },
+  {
+    "query_id": 93,
+    "question": "How did the Goodies television series utilize innovative techniques in its production?",
+    "answers": [
+      "The Goodies television series was one of the first shows in the UK to use chroma key and stop-motion techniques in a live action format. It also employed hand editing for repeated movement to make animals \"talk\" or \"sing,\" and play speed effects, as seen in the episode \"Kitten Kong.\""
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 93
+    }
+  },
+  {
+    "query_id": 94,
+    "question": "What is the primary goal of the study discussed in the article?",
+    "answers": [
+      "The primary goal of the study is to enhance the interpretability of word embeddings by aligning the dimensions of vector representations with predefined semantic concepts from external lexical resources, while maintaining the performance of the original embeddings."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 94
+    }
+  },
+  {
+    "query_id": 95,
+    "question": "How does the proposed method perform in standard word-similarity and word-analogy tests compared to other methods?",
+    "answers": [
+      "The proposed method shows improvements in word-similarity tests and comparable performance in word-analogy tests to the original GloVe embeddings, indicating that the semantic structure of the original vector space is preserved and even slightly improved."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 95
+    }
+  },
+  {
+    "query_id": 96,
+    "question": "What is the primary reason Miranda Hope decides to stay in Paris with Madame de Maisonrouge?",
+    "answers": [
+      "Miranda stays in Paris to improve her French and to experience real French life, as she believes that living in a French family will provide her with a better understanding of the language and culture."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 96
+    }
+  },
+  {
+    "query_id": 97,
+    "question": "How does Miss Vane describe the position of woman in England?",
+    "answers": [
+      "Miss Vane describes the position of a woman in England as dependent on the rank of her father, her eldest brother, her husband, etc., indicating a social hierarchy that influences a woman's status."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 97
+    }
+  },
+  {
+    "query_id": 98,
+    "question": "How does Miss Vane's view of the aristocracy differ from Miranda Hope's?",
+    "answers": [
+      "Miss Vane believes in the importance of social hierarchy and the aristocracy, as indicated by her concern for her own position and that of her family. In contrast, Miranda seems to have a more egalitarian view, as she is critical of the idea that one's status should depend on the rank of one's relatives."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 98
+    }
+  },
+  {
+    "query_id": 99,
+    "question": "How did the concept of British subjecthood develop historically?",
+    "answers": [
+      "Historically, the concept of British subjecthood developed from feudal allegiance, where inhabitants owed allegiance to their feudal lords, who were vassals of the monarch. This system evolved into a general establishment of subjecthood to the Crown, with the principle of jus soli established in 1608."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 99
+    }
+  },
+  {
+    "query_id": 100,
+    "question": "What impact did the British Nationality and Status of Aliens Act 1914 have on British subject status?",
+    "answers": [
+      "The British Nationality and Status of Aliens Act 1914 brought regulations for British subject status into codified statute law for the first time, standardizing it as a common nationality across the Empire. It also introduced the doctrine of coverture, where a woman's nationality was tied to her husband's upon marriage to a foreigner."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 100
+    }
+  },
+  {
+    "query_id": 101,
+    "question": "What is the etymology of the name Salamá, and what historical events shaped its development?",
+    "answers": [
+      "Salamá comes from the Kʼicheʼ Tz'alam Ha, meaning \"table on water.\" Historically, it was settled as a doctrine by the Order of Preachers in the 1550s and experienced significant events such as the Battle of Salamá in 1839 and the anticommunist rebellion in 1953."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 101
+    }
+  },
+  {
+    "query_id": 102,
+    "question": "What is the significance of the Sanjiang Church in Wenzhou, China?",
+    "answers": [
+      "The Sanjiang Church in Wenzhou, China, was significant as it was one of the largest Christian churches in the region, completed in 2013 after local Christians pooled funds for its construction. It was demolished in 2014 following a government anti-religious campaign, despite protests from local Christians."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 102
+    }
+  },
+  {
+    "query_id": 103,
+    "question": "What was the significance of the Arms Crisis in Haughey's political career?",
+    "answers": [
+      "The Arms Crisis nearly destroyed Haughey's career when he was implicated in a plot to import arms for the IRA. He was sacked from the cabinet but later acquitted at trial, which allowed him to revive his political career."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 103
+    }
+  },
+  {
+    "query_id": 104,
+    "question": "What was the outcome of the Arms Trial involving Charles Haughey and Neil Blaney?",
+    "answers": [
+      "The Arms Trial ended with charges against Neil Blaney being dropped, and Charles Haughey, along with other defendants, being found not guilty of conspiracy to illegally import arms."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 104
+    }
+  },
+  {
+    "query_id": 105,
+    "question": "How has the Southern California Edison (SCE) adapted to the deregulation of California's electricity market?",
+    "answers": [
+      "SCE adapted to the deregulation of California's electricity market by selling many of its power plants, retaining only its hydroelectric plants and a share of the San Onofre Nuclear Generating Station. The company also allows customers to obtain their electricity entirely from renewable sources through a \"green rate\" program and has invested in renewable energy projects, such as the Tehachapi Energy Storage Project."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 105
+    }
+  },
+  {
+    "query_id": 106,
+    "question": "What is the significance of the Southern Maryland Electric Cooperative (SMECO) in the region's energy landscape?",
+    "answers": [
+      "SMECO is significant as it is an electric distribution cooperative serving approximately 161,000 customers in southern Maryland. As a nonprofit cooperative, SMECO passes on its costs to its customer-members without markup or profit. It has also been recognized for its customer service and has been involved in renewable energy initiatives and regulatory challenges related to solar power."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 106
+    }
+  },
+  {
+    "query_id": 107,
+    "question": "How did Frederick Henry contribute to the arts and culture during his reign as Margrave of Brandenburg-Schwedt?",
+    "answers": [
+      "Frederick Henry was a patron of the arts, particularly theater. He acquired the Prinzessinnenpalais in Berlin and contracted the actress Henriette Hendel-Schutz to perform in his Court Theater, significantly enhancing the cultural landscape of his region."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 107
+    }
+  },
+  {
+    "query_id": 108,
+    "question": "What role did mathematics and philosophy play in the life of Frederick Henry's daughter, Frederike, and how was this influenced by Leonhard Euler?",
+    "answers": [
+      "Leonhard Euler, a renowned mathematician, corresponded with Frederike, Frederick Henry's daughter, sending her numerous letters about mathematical and philosophical subjects. These letters, published as \"Letters to a German Princess,\" aimed to explain complex issues in an understandable manner, reflecting the Enlightenment's influence on education and intellectual pursuits."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 108
+    }
+  },
+  {
+    "query_id": 109,
+    "question": "What is the primary objective of the study described in the article?",
+    "answers": [
+      "The primary objective of the study is to predict a user's industry by identifying industry-indicative text in social media, which can significantly impact targeted advertising and personalized user experience."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 109
+    }
+  },
+  {
+    "query_id": 110,
+    "question": "What are the four main contributions of the paper?",
+    "answers": [
+      "The four main contributions are: 1) building a large, industry-annotated dataset containing over 20,000 blog users; 2) constructing content-based classifiers for industry prediction and improving accuracy through meta-classification techniques; 3) building vector-space representations of word meanings to illustrate industry-specific semantic differentiation; and 4) ranking industries based on the normalized relative frequencies of emotionally charged words and examining gender correlations."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 110
+    }
+  },
+  {
+    "query_id": 111,
+    "question": "How does the study qualitatively analyze the language of different industries?",
+    "answers": [
+      "The study qualitatively analyzes the language of different industries by examining top-ranked words, industry-specific word similarities, and the relative frequency of emotionally charged words, providing insights into how industry context shapes language use."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 111
+    }
+  },
+  {
+    "query_id": 112,
+    "question": "What is the outcome of the walling up of the closet?",
+    "answers": [
+      "The closet is walled up by Gorenflot, trapping the mysterious man inside. Despite Madame de Merret's attempt to break through the wall to save him, her efforts are thwarted by her husband's return, and the man inside is left to die."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 112
+    }
+  },
+  {
+    "query_id": 113,
+    "question": "How does the story reflect themes of trust and betrayal?",
+    "answers": [
+      "The story reflects themes of trust and betrayal through the relationship between Madame de Merret and Monsieur de Merret. The husband's suspicions and the wife's secret actions lead to a tragic outcome, highlighting the consequences of betrayal and the breakdown of trust."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 113
+    }
+  },
+  {
+    "query_id": 114,
+    "question": "What is the role of Rosalie in the story?",
+    "answers": [
+      "Rosalie is Madame de Merret's maid and plays a crucial role in the unfolding events. She is aware of the secret in the closet and is instrumental in the attempt to save the trapped man, but ultimately fails due to Monsieur de Merret's intervention."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 114
+    }
+  },
+  {
+    "query_id": 115,
+    "question": "What themes are explored in the Indian Oriya film \"Indradhanura Chhai\"?",
+    "answers": [
+      "\"Indradhanura Chhai\" explores themes of urbanization, tradition, culture, religion, and gender relations in a small town in India. The film follows the lives of three generations of women as they navigate their changing perceptions of human nature and personal relationships amidst the growing influence of modern consumerism and urbanization."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 115
+    }
+  },
+  {
+    "query_id": 116,
+    "question": "How is the Turkic deity Kayra related to the concept of the \"Black King\"?",
+    "answers": [
+      "In Turkic mythology, Kayra is the creator god and the son of the sky deity Tengri. Kayra's son, Kara Han, is referred to as the \"Black King\" or \"Kara-Khan\" and is the ruler of the land. The term \"Kara\" can mean both black and land, so \"Kara Han\" can signify both \"Black Ruler\" and \"Ruler of the Land.\" This connection between Kayra and the \"Black King\" highlights the deity's importance in Turkic mythology and its role in creation and governance."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 116
+    }
+  },
+  {
+    "query_id": 117,
+    "question": "How does the study address the potential conflict of interest due to funding from Ajinomoto Co., Inc.?",
+    "answers": [
+      "The study addresses the potential conflict of interest by clearly stating that the commercial funder provided support in the form of salary for one author and some research materials, but did not influence the study design, data collection and analysis, or preparation of the manuscript. The authors had unrestricted access to the data, and the decision to publish was made without any restriction due to a confidentiality agreement."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 117
+    }
+  },
+  {
+    "query_id": 118,
+    "question": "How do cells respond to essential AA deprivation according to the study?",
+    "answers": [
+      "Cells respond to essential AA deprivation with a cell-autonomous adaptive response characterized by extensive metabolic and gene expression modifications, implementing biosynthetic, catabolic, and plasma membrane transport processes aimed at reconstituting the full AA complement."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 118
+    }
+  },
+  {
+    "query_id": 119,
+    "question": "How did George VI's role and public perception change during World War II?",
+    "answers": [
+      "During World War II, George VI was seen as sharing the hardships of the common people, which soared his popularity. He and his wife, Queen Elizabeth, stayed in London despite German bombing raids, and their public appearances visiting bomb sites, munitions factories, and troops helped portray them as symbols of national resistance."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 119
+    }
+  },
+  {
+    "query_id": 120,
+    "question": "How did the relationship between King George VI and Lionel Logue develop in the film \"The King's Speech\"?",
+    "answers": [
+      "In the film \"The King's Speech,\" the relationship between King George VI and Lionel Logue began with Logue, a speech and language therapist, helping the King cope with his stammer. As they worked together, they developed a friendship, and the King relied on Logue to help him make his first wartime radio broadcast upon Britain's declaration of war on Germany in 1939."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 120
+    }
+  },
+  {
+    "query_id": 121,
+    "question": "What is the significance of Gold Hill, North Carolina in the context of gold mining history?",
+    "answers": [
+      "Gold Hill, North Carolina is significant because it was a major site for gold mining in the 19th century, with $6 million in gold mined prior to the Civil War. It was known for having some of the richest and most productive gold mines east of the Mississippi, including the Barnhardt and Randolph mines."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 121
+    }
+  },
+  {
+    "query_id": 122,
+    "question": "What is the structure of the state government in Nigeria, and how does it relate to the federal government?",
+    "answers": [
+      "In Nigeria, each state has a semi-autonomous government structure that includes a legislature, executive, and judiciary. The state legislature is unicameral and has the power to legislate on concurrent matters. The executive is headed by a governor who appoints state executive council members. The judiciary interprets state laws and is headed by a chief justice appointed by the governor. States share powers with the federal government as enumerated in the Nigerian Constitution, and sovereignty resides with the federal government."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 122
+    }
+  },
+  {
+    "query_id": 123,
+    "question": "What are the main features of Thirukkanur, Puducherry?",
+    "answers": [
+      "Thirukkanur is a village in Puducherry, India, known for its primary health center, police station, post office, electricity office, and registrar office. The area is primarily agricultural, and Thirukkanur market serves the needs of about 20 nearby villages. There are no major industries within the village's jurisdiction."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 123
+    }
+  },
+  {
+    "query_id": 124,
+    "question": "How do communications satellites facilitate global communication?",
+    "answers": [
+      "Communications satellites relay and amplify radio telecommunication signals via transponders, creating a communication channel between different locations on Earth, and are often used for television, telephone, radio, internet, and military applications."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 124
+    }
+  },
+  {
+    "query_id": 125,
+    "question": "What was the significance of ATS-6 in the history of satellite technology?",
+    "answers": [
+      "ATS-6 was significant as it was the first 3-axis stabilized spacecraft in geostationary orbit, the first to use experimental electric propulsion in geostationary orbit, and was used for various educational and telecommunication experiments."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 125
+    }
+  },
+  {
+    "query_id": 126,
+    "question": "What is the impact of increasing the depth of the denoiser on the effectiveness of error mitigation?",
+    "answers": [
+      "Increasing the depth of the denoiser generally improves the effectiveness of error mitigation, especially for high precision Trotter circuits with large depth and short time. However, the improvements are not uniform across all scenarios, and there are diminishing returns as the denoiser depth increases beyond a certain point."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 126
+    }
+  },
+  {
+    "query_id": 127,
+    "question": "How is the sampling overhead related to the sign problem in probabilistic error cancellation?",
+    "answers": [
+      "The sampling overhead is directly related to the sign problem in probabilistic error cancellation. A large sampling overhead implies a large variance of observables for a given number of samples, requiring the cancellation of large signed terms. This makes finding optimal parameterizations that minimize the sampling overhead crucial for scalability."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 127
+    }
+  },
+  {
+    "query_id": 128,
+    "question": "What are the limitations of the optimization procedure for the denoiser?",
+    "answers": [
+      "The limitations of the optimization procedure for the denoiser include the difficulty in finding the global optimum, especially for large noise strengths, which can lead to nonmonotonic behavior as a function of noise strength. Additionally, the optimization is confined to limited system sizes due to the need to simulate the noiseless circuit and its noisy variant classically."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 128
+    }
+  },
+  {
+    "query_id": 129,
+    "question": "How did Yusuf Islam's (Cat Stevens) religious conversion affect his music career?",
+    "answers": [
+      "Following his conversion to Islam in 1977, Yusuf Islam abandoned his pop music career for nearly two decades. He initially believed that music was haram (forbidden) in Islam and decided to focus on his faith and humanitarian work. However, he later realized that music could be used for positive purposes and gradually resumed his musical career in the 1990s, incorporating Islamic themes and messages."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 129
+    }
+  },
+  {
+    "query_id": 130,
+    "question": "What is the significance of Jolyon James's 'Robot Song' and his contributions to the Arena Theatre Company?",
+    "answers": [
+      "Jolyon James's 'Robot Song' is a Helpmann Award-winning work for Arena Theatre Company, the premiere work produced by the company after its relocation to regional Victoria. This highlights James's significant contributions to the company and his ability to create impactful and successful productions for young audiences."
+    ],
+    "metadata": {
+      "source_file": "mix.jsonl",
+      "row_index": 130
+    }
+  }
+]

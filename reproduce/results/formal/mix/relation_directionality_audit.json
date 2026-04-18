@@ -1,0 +1,53 @@
+{
+  "summary": {
+    "total_findings": 6,
+    "by_severity": {
+      "high": 4,
+      "medium": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "undirected_graph_storage",
+      "severity": "high",
+      "path": "lightrag/kg/networkx_impl.py",
+      "pattern": "nx.Graph()",
+      "message": "NetworkX graph storage is undirected, so edge direction cannot be preserved."
+    },
+    {
+      "rule_id": "sorted_relation_chunk_key",
+      "severity": "high",
+      "path": "lightrag/utils.py",
+      "pattern": "sorted((src, tgt))",
+      "message": "Relation chunk storage key sorts endpoints, collapsing direction."
+    },
+    {
+      "rule_id": "sorted_confidence_edge_pair",
+      "severity": "high",
+      "path": "lightrag/noisefilter/confidence.py",
+      "pattern": "tuple(sorted((src_id, tgt_id)))",
+      "message": "Confidence evidence collection normalizes edge pairs as undirected."
+    },
+    {
+      "rule_id": "set_based_relation_match",
+      "severity": "high",
+      "path": "lightrag/noisefilter/confidence.py",
+      "pattern": "if {source, target} != {src_id, tgt_id}:",
+      "message": "Relation mention parsing matches source and target as an unordered set."
+    },
+    {
+      "rule_id": "reverse_edge_fallback",
+      "severity": "medium",
+      "path": "lightrag/noisefilter/confidence.py",
+      "pattern": "edge_data = await graph_storage.get_edge(tgt_id, src_id)",
+      "message": "Confidence lookup falls back to reversed edges, masking directionality issues."
+    },
+    {
+      "rule_id": "sorted_export_edge_key",
+      "severity": "medium",
+      "path": "reproduce/export_graph_edge_samples.py",
+      "pattern": "edge_key = \"<SEP>\".join(sorted([src, dst]))",
+      "message": "Manual edge export collapses relation chunk lookup into an undirected key."
+    }
+  ]
+}

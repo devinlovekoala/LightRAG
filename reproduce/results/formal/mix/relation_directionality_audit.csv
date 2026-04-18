@@ -1,0 +1,7 @@
+rule_id,severity,path,pattern,message
+undirected_graph_storage,high,lightrag/kg/networkx_impl.py,nx.Graph(),"NetworkX graph storage is undirected, so edge direction cannot be preserved."
+sorted_relation_chunk_key,high,lightrag/utils.py,"sorted((src, tgt))","Relation chunk storage key sorts endpoints, collapsing direction."
+sorted_confidence_edge_pair,high,lightrag/noisefilter/confidence.py,"tuple(sorted((src_id, tgt_id)))",Confidence evidence collection normalizes edge pairs as undirected.
+set_based_relation_match,high,lightrag/noisefilter/confidence.py,"if {source, target} != {src_id, tgt_id}:",Relation mention parsing matches source and target as an unordered set.
+reverse_edge_fallback,medium,lightrag/noisefilter/confidence.py,"edge_data = await graph_storage.get_edge(tgt_id, src_id)","Confidence lookup falls back to reversed edges, masking directionality issues."
+sorted_export_edge_key,medium,reproduce/export_graph_edge_samples.py,"edge_key = ""<SEP>"".join(sorted([src, dst]))",Manual edge export collapses relation chunk lookup into an undirected key.

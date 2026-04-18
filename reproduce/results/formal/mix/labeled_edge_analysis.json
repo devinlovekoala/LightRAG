@@ -1,0 +1,142 @@
+{
+  "variants": {
+    "baseline": {
+      "variant": "baseline",
+      "total_edges": 100,
+      "label_counts": {
+        "correct": 15,
+        "wrong": 50,
+        "ambiguous": 35
+      },
+      "strict_precision": 0.15,
+      "lenient_precision": 0.5,
+      "metric_means_by_label": {
+        "conf_score": {
+          "correct": 0.0,
+          "wrong": 0.0,
+          "ambiguous": 0.0
+        },
+        "conf_freq_score": {
+          "correct": 0.0,
+          "wrong": 0.0,
+          "ambiguous": 0.0
+        },
+        "conf_consistency_score": {
+          "correct": 0.0,
+          "wrong": 0.0,
+          "ambiguous": 0.0
+        },
+        "conf_semantic_score": {
+          "correct": 0.0,
+          "wrong": 0.0,
+          "ambiguous": 0.0
+        }
+      },
+      "signal_diagnostics": {
+        "conf_score": {
+          "status": "dead",
+          "correct_minus_wrong_mean": 0.0,
+          "correct_mean": 0.0,
+          "wrong_mean": 0.0,
+          "ambiguous_mean": 0.0
+        },
+        "conf_freq_score": {
+          "status": "dead",
+          "correct_minus_wrong_mean": 0.0,
+          "correct_mean": 0.0,
+          "wrong_mean": 0.0,
+          "ambiguous_mean": 0.0
+        },
+        "conf_consistency_score": {
+          "status": "dead",
+          "correct_minus_wrong_mean": 0.0,
+          "correct_mean": 0.0,
+          "wrong_mean": 0.0,
+          "ambiguous_mean": 0.0
+        },
+        "conf_semantic_score": {
+          "status": "dead",
+          "correct_minus_wrong_mean": 0.0,
+          "correct_mean": 0.0,
+          "wrong_mean": 0.0,
+          "ambiguous_mean": 0.0
+        }
+      }
+    },
+    "noisefilter": {
+      "variant": "noisefilter",
+      "total_edges": 100,
+      "label_counts": {
+        "correct": 22,
+        "wrong": 43,
+        "ambiguous": 35
+      },
+      "strict_precision": 0.22,
+      "lenient_precision": 0.57,
+      "metric_means_by_label": {
+        "conf_score": {
+          "correct": 0.47352174788953344,
+          "wrong": 0.4779870291991347,
+          "ambiguous": 0.4728276303140004
+        },
+        "conf_freq_score": {
+          "correct": 0.3333333333333333,
+          "wrong": 0.3333333333333333,
+          "ambiguous": 0.3333333333333333
+        },
+        "conf_consistency_score": {
+          "correct": 1.0,
+          "wrong": 1.0,
+          "ambiguous": 0.9857142857142858
+        },
+        "conf_semantic_score": {
+          "correct": 0.03427540611433373,
+          "wrong": 0.056601812662340184,
+          "ambiguous": 0.052233389665239625
+        }
+      },
+      "signal_diagnostics": {
+        "conf_score": {
+          "status": "inverted",
+          "correct_minus_wrong_mean": -0.004465281309601277,
+          "correct_mean": 0.47352174788953344,
+          "wrong_mean": 0.4779870291991347,
+          "ambiguous_mean": 0.4728276303140004
+        },
+        "conf_freq_score": {
+          "status": "dead",
+          "correct_minus_wrong_mean": 0.0,
+          "correct_mean": 0.3333333333333333,
+          "wrong_mean": 0.3333333333333333,
+          "ambiguous_mean": 0.3333333333333333
+        },
+        "conf_consistency_score": {
+          "status": "dead",
+          "correct_minus_wrong_mean": 0.0,
+          "correct_mean": 1.0,
+          "wrong_mean": 1.0,
+          "ambiguous_mean": 0.9857142857142858
+        },
+        "conf_semantic_score": {
+          "status": "inverted",
+          "correct_minus_wrong_mean": -0.022326406548006453,
+          "correct_mean": 0.03427540611433373,
+          "wrong_mean": 0.056601812662340184,
+          "ambiguous_mean": 0.052233389665239625
+        }
+      }
+    }
+  },
+  "comparison": {
+    "precision_delta": {
+      "strict": 0.07,
+      "lenient": 0.06999999999999995
+    },
+    "signal_delta": {
+      "conf_score": -0.004465281309601277,
+      "conf_freq_score": 0.0,
+      "conf_consistency_score": 0.0,
+      "conf_semantic_score": -0.022326406548006453
+    }
+  }
+}

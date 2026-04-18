@@ -1,0 +1,503 @@
+variant,scope,src,dst,description,relation_key,graph_chunk_ids,tracking_chunk_ids,resolved_chunk_ids,src_anchor_score,dst_anchor_score,endpoint_anchor_score,cooccurrence_score,tracking_mismatch,missing_relation_tracking,missing_graph_source,weak_endpoint_binding,both_endpoints_missing,empty_resolved_source,source_excerpt
+baseline,graph,Lyon Cohen,Warsaw Academy,"Lyon Cohen organized and lectured at the Academy of Jewish Sciences, part of the Warsaw Academy.",Lyon Cohen<SEP>Warsaw Academy,"[""chunk-4c9164e6f839a685d0d85c80ec6c479f""]","[""chunk-4c9164e6f839a685d0d85c80ec6c479f""]","[""chunk-4c9164e6f839a685d0d85c80ec6c479f""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"Passage 1:
+Friedrich von Berg
+Friedrich Wilhelm Bernhard von Berg, also von Berg-Markienen, (20 November 1866 – 9 March 1939) was a German politician and chairman of the Secret Civil Cabinet of Kaiser Wilhelm II in 1918.
+
+Biography
+Friedric"
+baseline,graph,Hans Zimmer,Christopher Nolan,Hans Zimmer collaborated with director Christopher Nolan on the score for Interstellar.,Christopher Nolan<SEP>Hans Zimmer,"[""chunk-48dabdf899dc7290d08f6f3baecde983""]","[""chunk-48dabdf899dc7290d08f6f3baecde983""]","[""chunk-48dabdf899dc7290d08f6f3baecde983""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"concept of the film, though it had not yet been written. Zimmer was originally skeptical, noting that he had written a ""tiny, tiny little fragile"" piece while Nolan had described an intense, epic space film. However, Nolan reassured Zimmer "
+baseline,graph,The Witch,Pyramids,The Witch glides upon the Nile where vapour-belted pyramids gleam amid the waters.,Pyramids<SEP>The Witch,"[""chunk-4a7b58f1da0ea7dca854ec217a6c7a63""]","[""chunk-4a7b58f1da0ea7dca854ec217a6c7a63""]","[""chunk-4a7b58f1da0ea7dca854ec217a6c7a63""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"harmonious sound
+ Wandered upon the earth where'er she passed,                  _495
+ And happy thoughts of hope, too sweet to last.
+
+ 57.
+ But her choice sport was, in the hours of sleep,
+ To glide adown old Nilus, where he threads
+ Egypt "
+baseline,graph,Lioness,Unspecified Character,A lioness finds an unspecified female character referred to as 'her'.,Lioness<SEP>Unspecified Character,"[""chunk-5ceefbb5fcf6c5381007925f70a659ff""]","[""chunk-5ceefbb5fcf6c5381007925f70a659ff""]","[""chunk-5ceefbb5fcf6c5381007925f70a659ff""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"a lioness found her. Tarzan eventually comes on Coy and Abel Banton, and in a roving battle, a ricochet from Coy's rifle kills Abel. A prolonged battle on rocks, on sand and underwater follows before Tarzan finally knocks Coy out. The film "
+baseline,graph,PLM with L2 Regularization,L2 Regularization,"L2 regularization is the specific technique incorporated into the PLM method to create the ""PLM with L2 regularization"" variant.",L2 Regularization<SEP>PLM with L2 Regularization,"[""chunk-9cfd0b99801452f2366cc5d4c7dd7769""]","[""chunk-9cfd0b99801452f2366cc5d4c7dd7769""]","[""chunk-9cfd0b99801452f2366cc5d4c7dd7769""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"\section{Introduction}
+Given a data set and a model with some unknown parameters, the inverse problem aims to find the values of the model parameters that best fit the data.  
+In this work, in which we focus on systems of interacting elemen"
+baseline,graph,Reconstruction Error (err_J),Phase Transition,"The Reconstruction Error is shown to rise sharply at low temperatures, near the model's Phase Transition temperature.",Phase Transition<SEP>Reconstruction Error (err_J),"[""chunk-6554f155cf4b05d0dcdb65622c17c839""]","[""chunk-6554f155cf4b05d0dcdb65622c17c839""]","[""chunk-6554f155cf4b05d0dcdb65622c17c839""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"\phantom{ + h_i^{I} }\label{eq:27}
+   \end{eqnarray}
+and $H_i= \sqrt{(H_i^x)^2 + (H_i^y)^2}$, $\alpha_i = \arctan H_i^y/H_i^x$   and we introduced the modified Bessel function of the first kind:
+  \begin{equation}
+  \nonumber
+   I_k(x) = \f"
+baseline,graph,George Mitchell,Bud Selig,Commissioner Bud Selig appointed former Senator George Mitchell to investigate the use of performance-enhancing drugs in MLB.,Bud Selig<SEP>George Mitchell,"[""chunk-ce6020d4fee0b4440f5e798273d00460""]","[""chunk-ce6020d4fee0b4440f5e798273d00460""]","[""chunk-ce6020d4fee0b4440f5e798273d00460""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"and away. Furthermore, each team has an interleague ""natural rival"" (in many cases its counterpart in the same metro area) with which it plays two home games and two away games each year.
+With an odd number of teams in each league (15), it "
+baseline,graph,G_min,Γ_s1,"For asymmetric coupling to the SC lead, the zero-temperature conductance is proportional to Γ_s1^2, generalized from the symmetric case.",G_min<SEP>Γ_s1,"[""chunk-f344bd28c7909e782eeb77a0ac017996""]","[""chunk-f344bd28c7909e782eeb77a0ac017996""]","[""chunk-f344bd28c7909e782eeb77a0ac017996""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"ishes $T^*$.
+For the same values of $J^{\mathrm{eff}}$, the dependence of $G(T)$ for $t=0$ and $\GS{}>0$ is hardly different 
+from the one for $\GS{}=0$ and $t>0$ for $T\geq T^*$ (results not shown).
+However, $G(T)$ saturates at residual va"
+baseline,graph,T*,Γ_sX,"For asymmetric coupling to the SC lead (x ≠ 0), the effective CAR coupling Γ_sX decreases, leading to a significant reduction in the second-stage Kondo temperature T*.",T*<SEP>Γ_sX,"[""chunk-f344bd28c7909e782eeb77a0ac017996""]","[""chunk-f344bd28c7909e782eeb77a0ac017996""]","[""chunk-f344bd28c7909e782eeb77a0ac017996""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"ishes $T^*$.
+For the same values of $J^{\mathrm{eff}}$, the dependence of $G(T)$ for $t=0$ and $\GS{}>0$ is hardly different 
+from the one for $\GS{}=0$ and $t>0$ for $T\geq T^*$ (results not shown).
+However, $G(T)$ saturates at residual va"
+baseline,graph,Γ_sX,C,"A reduced CAR efficiency factor C leads to a diminished effective CAR coupling Γ_sX, which shifts and suppresses the signatures of SC-induced two-stage Kondo screening.",C<SEP>Γ_sX,"[""chunk-f344bd28c7909e782eeb77a0ac017996""]","[""chunk-f344bd28c7909e782eeb77a0ac017996""]","[""chunk-f344bd28c7909e782eeb77a0ac017996""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"ishes $T^*$.
+For the same values of $J^{\mathrm{eff}}$, the dependence of $G(T)$ for $t=0$ and $\GS{}>0$ is hardly different 
+from the one for $\GS{}=0$ and $t>0$ for $T\geq T^*$ (results not shown).
+However, $G(T)$ saturates at residual va"
+baseline,graph,Propaganda Detection System,Ensemble Strategy,"The system employs ensemble strategies to combine predictions from Logistic Regression, CNN, and BERT for the SLC task.",Ensemble Strategy<SEP>Propaganda Detection System,"[""chunk-5970d734ccb10451fc2aa2d2d5e77155""]","[""chunk-5970d734ccb10451fc2aa2d2d5e77155""]","[""chunk-5970d734ccb10451fc2aa2d2d5e77155""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"Introduction
+In the age of information dissemination without quality control, it has enabled malicious users to spread misinformation via social media and aim individual users with propaganda campaigns to achieve political and financial gai"
+baseline,graph,Rumbi Katedza,Zimbabwe Broadcasting Corporation Radio 3,Rumbi Katedza produced and presented radio shows on similar topics for ZBC Radio 3 in Zimbabwe from 1994 to 2000.,Rumbi Katedza<SEP>Zimbabwe Broadcasting Corporation Radio 3,"[""chunk-e4d3a3cee0eadaa62506b2679e965590""]","[""chunk-e4d3a3cee0eadaa62506b2679e965590""]","[""chunk-e4d3a3cee0eadaa62506b2679e965590""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"Passage 1:
+Alex Cox
+Alexander B. H. Cox (born 15 December 1954) is an English film director, screenwriter, actor, non-fiction author and broadcaster. Cox experienced success early in his career with Repo Man and Sid and Nancy, but since the"
+baseline,graph,Queensland Cricket Team,Anonymous Cricketer,The unnamed cricketer top-scored against the Queensland cricket team as an opponent.,Anonymous Cricketer<SEP>Queensland Cricket Team,"[""chunk-e19b39106aac29303f72fd2e28f77d7a""]","[""chunk-e19b39106aac29303f72fd2e28f77d7a""]","[""chunk-e19b39106aac29303f72fd2e28f77d7a""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"1896–97, at the age of 47, he top-scored in each innings for a South Canterbury XVIII against the touring Queensland cricket team.
+Passage 9:
+Maximiliano Serrano
+Maximiliano Serrano (born 5 August 1988) is an Argentine professional football"
+baseline,graph,L'affaire est dans le sac,Artifact,"The French film ""L'affaire est dans le sac"" is known in English as ""It's in the Bag"".",Artifact<SEP>L'affaire est dans le sac,"[""chunk-2f271e7cbc21e003d8ef760748383dc6""]","[""chunk-2f271e7cbc21e003d8ef760748383dc6""]","[""chunk-2f271e7cbc21e003d8ef760748383dc6""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"Passage 1:
+The Police Serve the Citizens?
+La polizia è al servizio del cittadino? (internationally released as The Police Serve the Citizens?) is a 1973 Italian giallo-poliziottesco film directed by Romolo Guerrieri. The film is set in Geno"
+baseline,graph,John Cabot,St. Johns,"St. John's, Newfoundland, has been proposed as a possible location for John Cabot's landfall.",John Cabot<SEP>St. Johns,"[""chunk-ac964b192eb7cda8495d85c89aea8be3""]","[""chunk-ac964b192eb7cda8495d85c89aea8be3""]","[""chunk-ac964b192eb7cda8495d85c89aea8be3""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"After sailing northwards along the coast he encountered and only narrowly avoided a group of shoals, subsequently called the Houtman Abrolhos.
+De Houtman then made landfall in the region known as Eendrachtsland, which the explorer Dirk Hart"
+baseline,graph,Carreño,Candas,Candas is the capital of the Carreño municipality.,Candas<SEP>Carreño,"[""chunk-10f887f61c9389e693152d9a69a2c696""]","[""chunk-10f887f61c9389e693152d9a69a2c696""]","[""chunk-10f887f61c9389e693152d9a69a2c696""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"is and Bedoya. It now serves as a centre for exhibitions and cultural events.
+Other houses, the Casona de la Canal (18th century), the Torre de la Familia Osorio (17th century) and the 18th century San Marcial Street, bears the arms of the "
+baseline,graph,Carreño,Gijon,Gijón borders Carreño to the east and south.,Carreño<SEP>Gijon,"[""chunk-10f887f61c9389e693152d9a69a2c696""]","[""chunk-10f887f61c9389e693152d9a69a2c696""]","[""chunk-10f887f61c9389e693152d9a69a2c696""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"is and Bedoya. It now serves as a centre for exhibitions and cultural events.
+Other houses, the Casona de la Canal (18th century), the Torre de la Familia Osorio (17th century) and the 18th century San Marcial Street, bears the arms of the "
+baseline,graph,Cat Stevens,Joseph (Biblical/Qur'anic Figure),"Cat Stevens identified with the story of Joseph from the Qur'an, feeling similarly ""bought and sold"" in the music business.",Cat Stevens<SEP>Joseph (Biblical/Qur'anic Figure),"[""chunk-ffcda6c4dff81aac5d62531943db04c8""]","[""chunk-ffcda6c4dff81aac5d62531943db04c8""]","[""chunk-ffcda6c4dff81aac5d62531943db04c8""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"for two years. What I write about Patti and my family... when I sing the songs now, I learn strange things. I learn the meanings of my songs late ...""
+Having established a signature sound, Stevens enjoyed a string of successes in the follow"
+baseline,graph,NPO 1 Extra,A Vrotros,NPO 1 Extra is a television channel jointly operated by the Dutch public broadcaster AVROTROS.,A Vrotros<SEP>NPO 1 Extra,"[""chunk-ad43ab4996d0710ac74eb1501a3b467d""]","[""chunk-ad43ab4996d0710ac74eb1501a3b467d""]","[""chunk-ad43ab4996d0710ac74eb1501a3b467d""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"Passage 1:
+NPO Best
+NPO 1 Extra is a television channel jointly operated by Dutch public broadcasters AVROTROS, BNNVARA, EO, KRO-NCRV and MAX. It was originally launched as HilversumBest on 1 December 2006. NPO 1 Extra presents highlights o"
+baseline,graph,ER,Steven Spielberg,Steven Spielberg was attached to ER behind the scenes.,ER<SEP>Steven Spielberg,"[""chunk-d05c59fe3c514c26179343553b469fd3""]","[""chunk-d05c59fe3c514c26179343553b469fd3""]","[""chunk-d05c59fe3c514c26179343553b469fd3""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"in the former Linda Vista Hospital in Los Angeles, an old facility that had ceased operating in 1990. A set modeled after Los Angeles County General Hospital's emergency room was built soon afterward at the Warner Bros. studios in Burbank, "
+baseline,graph,NaCl Surface,Sodium Chloride (NaCl),The NaCl surface used for experiments is created by thermally evaporating Sodium Chloride onto metal substrates.,NaCl Surface<SEP>Sodium Chloride (NaCl),"[""chunk-70349531a09c34dbadb3a417c2fef411""]","[""chunk-70349531a09c34dbadb3a417c2fef411""]","[""chunk-70349531a09c34dbadb3a417c2fef411""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"of the orbital densities of SOMOs, and not the hybridized HOMO and LUMO, proves the open-shell ground state of assigned 5OS.
+Measurements of the monoradical species with a doublet ground state are shown in Supplementary Fig. . Unexpectedly,"
+baseline,graph,Goshen-Lempster Cooperative School,Dissolution,The cooperative operating the Goshen-Lempster Cooperative School was dissolved in June 2016.,Dissolution<SEP>Goshen-Lempster Cooperative School,"[""chunk-da8944dec9542afeb2ec4886bda7d7c1""]","[""chunk-da8944dec9542afeb2ec4886bda7d7c1""]","[""chunk-da8944dec9542afeb2ec4886bda7d7c1""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"neighboring town of Lempster maintained a combined elementary and middle school, called Goshen-Lempster Cooperative School, located in Lempster. The school served kindergarten through 8th grade. The cooperative was dissolved in June 2016.  "
+baseline,graph,Evelyn Vane,Narrator,"The narrator observes and admires Evelyn Vane as a picturesque, gracious example of English aesthetic revival.",Evelyn Vane<SEP>Narrator,"[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"earnestness in that life of hotels and railroad trains, which
+so many of our countrymen are content to lead in this strange Old World,
+and I was distressed to find how far I, myself; had been led along the
+dusty, beaten track.  I had, howev"
+baseline,graph,Balzac,Narrator,"The narrator is intensely interested in Balzac, whose novels provide a thematic backdrop for his exploration of Parisian life.",Balzac<SEP>Narrator,"[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"earnestness in that life of hotels and railroad trains, which
+so many of our countrymen are content to lead in this strange Old World,
+and I was distressed to find how far I, myself; had been led along the
+dusty, beaten track.  I had, howev"
+baseline,graph,French Life,Narrator,The narrator is intensely drawn to experiencing 'real French life' for its aesthetic and sensuous qualities.,French Life<SEP>Narrator,"[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"earnestness in that life of hotels and railroad trains, which
+so many of our countrymen are content to lead in this strange Old World,
+and I was distressed to find how far I, myself; had been led along the
+dusty, beaten track.  I had, howev"
+baseline,graph,Artistic Temperament,Narrator,"The narrator identifies strongly with an artistic temperament, which he feels is misunderstood back in Boston.",Artistic Temperament<SEP>Narrator,"[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"earnestness in that life of hotels and railroad trains, which
+so many of our countrymen are content to lead in this strange Old World,
+and I was distressed to find how far I, myself; had been led along the
+dusty, beaten track.  I had, howev"
+baseline,graph,Boston,Narrator,The narrator criticizes Boston for lacking sympathy with the artistic temperament and making everything a matter of right and wrong.,Boston<SEP>Narrator,"[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"earnestness in that life of hotels and railroad trains, which
+so many of our countrymen are content to lead in this strange Old World,
+and I was distressed to find how far I, myself; had been led along the
+dusty, beaten track.  I had, howev"
+baseline,graph,Cultural Exchange,Salon,The salon in the boarding house serves as the venue for the cosmopolitan cultural exchanges among the boarders from different nations.,Cultural Exchange<SEP>Salon,"[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"earnestness in that life of hotels and railroad trains, which
+so many of our countrymen are content to lead in this strange Old World,
+and I was distressed to find how far I, myself; had been led along the
+dusty, beaten track.  I had, howev"
+baseline,graph,The Johnsons,Narrator,Traveling with the Johnsons in the past constrained the narrator's artistic expression due to their didactic and gray worldview.,Narrator<SEP>The Johnsons,"[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"earnestness in that life of hotels and railroad trains, which
+so many of our countrymen are content to lead in this strange Old World,
+and I was distressed to find how far I, myself; had been led along the
+dusty, beaten track.  I had, howev"
+baseline,graph,Harvard,Narrator,"The narrator is writing a letter to his friend Harvard, confessing his intense desires and observations about life in Europe.",Harvard<SEP>Narrator,"[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"earnestness in that life of hotels and railroad trains, which
+so many of our countrymen are content to lead in this strange Old World,
+and I was distressed to find how far I, myself; had been led along the
+dusty, beaten track.  I had, howev"
+baseline,graph,Narrator,Theophile Gautier,The narrator admires Theophile Gautier and regrets that he died before the narrator could meet him to express his gratitude.,Narrator<SEP>Theophile Gautier,"[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"earnestness in that life of hotels and railroad trains, which
+so many of our countrymen are content to lead in this strange Old World,
+and I was distressed to find how far I, myself; had been led along the
+dusty, beaten track.  I had, howev"
+baseline,graph,Narrator,French Family,The narrator has chosen to live with a French family in Paris as a deliberate act to immerse himself in and judge European life directly.,French Family<SEP>Narrator,"[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"earnestness in that life of hotels and railroad trains, which
+so many of our countrymen are content to lead in this strange Old World,
+and I was distressed to find how far I, myself; had been led along the
+dusty, beaten track.  I had, howev"
+baseline,graph,Narrator,The Americans,"The narrator observes and critically analyzes the Americans, describing them as exhibiting a unique phenomenon of decadence and premature vitiation.",Narrator<SEP>The Americans,"[""chunk-8011e47b742851a2d9b30f31c080d1ee""]","[""chunk-8011e47b742851a2d9b30f31c080d1ee""]","[""chunk-8011e47b742851a2d9b30f31c080d1ee""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"already forgotten the convincing proofs of the fact that were presented
+to them nine years ago.  A German was something disagreeable, which they
+determined to keep out of their conception of things.  I therefore think
+that we are wrong to g"
+baseline,graph,Narrator,French Homunculus,"The narrator prefers the talk of the French homunculus over that of the young man from Boston, finding it more amusing.",French Homunculus<SEP>Narrator,"[""chunk-8011e47b742851a2d9b30f31c080d1ee""]","[""chunk-8011e47b742851a2d9b30f31c080d1ee""]","[""chunk-8011e47b742851a2d9b30f31c080d1ee""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"already forgotten the convincing proofs of the fact that were presented
+to them nine years ago.  A German was something disagreeable, which they
+determined to keep out of their conception of things.  I therefore think
+that we are wrong to g"
+baseline,graph,Narrator,Anglo-Saxon Family,"The narrator analyzes the Anglo-Saxon family, perceiving germs of extinction and predicting its self-consumption through precipitate decay and enmities.",Anglo-Saxon Family<SEP>Narrator,"[""chunk-8011e47b742851a2d9b30f31c080d1ee""]","[""chunk-8011e47b742851a2d9b30f31c080d1ee""]","[""chunk-8011e47b742851a2d9b30f31c080d1ee""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"already forgotten the convincing proofs of the fact that were presented
+to them nine years ago.  A German was something disagreeable, which they
+determined to keep out of their conception of things.  I therefore think
+that we are wrong to g"
+baseline,graph,Narrator,French Nature,The narrator analyzes the French nature as too shallow for the hypothesis of *revanche* (revenge) to govern actions upon.,French Nature<SEP>Narrator,"[""chunk-8011e47b742851a2d9b30f31c080d1ee""]","[""chunk-8011e47b742851a2d9b30f31c080d1ee""]","[""chunk-8011e47b742851a2d9b30f31c080d1ee""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"already forgotten the convincing proofs of the fact that were presented
+to them nine years ago.  A German was something disagreeable, which they
+determined to keep out of their conception of things.  I therefore think
+that we are wrong to g"
+baseline,graph,Narrator,Third Young American Person,"The three young Americans each take the narrator apart and assure him secretly that only they are the real, genuine, typical American.",Narrator<SEP>Third Young American Person,"[""chunk-8011e47b742851a2d9b30f31c080d1ee""]","[""chunk-8011e47b742851a2d9b30f31c080d1ee""]","[""chunk-8011e47b742851a2d9b30f31c080d1ee""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"already forgotten the convincing proofs of the fact that were presented
+to them nine years ago.  A German was something disagreeable, which they
+determined to keep out of their conception of things.  I therefore think
+that we are wrong to g"
+baseline,graph,William Platt,The Narrator,The narrator compares the German gentleman's fondness for discussion to that of William Platt.,The Narrator<SEP>William Platt,"[""chunk-eadba822cc2586457c795a2bc70f562d""]","[""chunk-eadba822cc2586457c795a2bc70f562d""]","[""chunk-eadba822cc2586457c795a2bc70f562d""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"all; if she were nice,
+she wouldn't have such ideas as that.  I tell Miss Vane that at Bangor we
+think such ideas vulgar; but then she looks as though she had never heard
+of Bangor.  I often want to shake her, though she _is_ so sweet.  If "
+baseline,graph,Miss Vane,The Narrator,The narrator criticizes Miss Vane's ideas as vulgar and observes her timid nature and fear of her brother.,Miss Vane<SEP>The Narrator,"[""chunk-eadba822cc2586457c795a2bc70f562d""]","[""chunk-eadba822cc2586457c795a2bc70f562d""]","[""chunk-eadba822cc2586457c795a2bc70f562d""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"all; if she were nice,
+she wouldn't have such ideas as that.  I tell Miss Vane that at Bangor we
+think such ideas vulgar; but then she looks as though she had never heard
+of Bangor.  I often want to shake her, though she _is_ so sweet.  If "
+baseline,graph,The Brother,The Narrator,"The narrator argues with the brother about treating his sister as an equal, which causes the brother to laugh loudly.",The Brother<SEP>The Narrator,"[""chunk-eadba822cc2586457c795a2bc70f562d""]","[""chunk-eadba822cc2586457c795a2bc70f562d""]","[""chunk-eadba822cc2586457c795a2bc70f562d""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"all; if she were nice,
+she wouldn't have such ideas as that.  I tell Miss Vane that at Bangor we
+think such ideas vulgar; but then she looks as though she had never heard
+of Bangor.  I often want to shake her, though she _is_ so sweet.  If "
+baseline,graph,The Narrator,The German Gentleman,"The German gentleman appreciates the narrator's remarks, asks questions, and engages in discussions, making the narrator feel mentally clear.",The German Gentleman<SEP>The Narrator,"[""chunk-eadba822cc2586457c795a2bc70f562d""]","[""chunk-eadba822cc2586457c795a2bc70f562d""]","[""chunk-eadba822cc2586457c795a2bc70f562d""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"all; if she were nice,
+she wouldn't have such ideas as that.  I tell Miss Vane that at Bangor we
+think such ideas vulgar; but then she looks as though she had never heard
+of Bangor.  I often want to shake her, though she _is_ so sweet.  If "
+baseline,graph,The Narrator,Rosalie,"The Narrator deliberately cultivated a relationship with Rosalie to persuade her to reveal the full, secret story of what happened at La Grande Breteche.",Rosalie<SEP>The Narrator,"[""chunk-e76d304272295dba12dfd7b115ecd8f3""]","[""chunk-e76d304272295dba12dfd7b115ecd8f3""]","[""chunk-e76d304272295dba12dfd7b115ecd8f3""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"""'You need have no fears,' said she; 'you will see.'
+
+""Her eagerness made me suspect that I was not the only person to whom
+my worthy landlady had communicated the secret of which I was to be the
+sole possessor, but I listened.
+
+""'Monsieur,"
+baseline,graph,Albert Reynolds,Marl,Marl did not work with Albert Reynolds when Reynolds was in government.,Albert Reynolds<SEP>Marl,"[""chunk-9125c70c25c29c8f2d48472764fdd24f""]","[""chunk-9125c70c25c29c8f2d48472764fdd24f""]","[""chunk-9125c70c25c29c8f2d48472764fdd24f""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"made innovations in how to operate public relations for the party, including holding opposition press briefings. He also tried to increase the electability of Haughey, particularly among young people. 
+Mara adopted techniques of electioneer"
+baseline,graph,Pullman Limited,Marl,"Marl operated a bank account for Pullman Limited at the Royal Bank of Scotland, which he failed to disclose to the Flood Tribunal.",Marl<SEP>Pullman Limited,"[""chunk-9125c70c25c29c8f2d48472764fdd24f""]","[""chunk-9125c70c25c29c8f2d48472764fdd24f""]","[""chunk-9125c70c25c29c8f2d48472764fdd24f""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"made innovations in how to operate public relations for the party, including holding opposition press briefings. He also tried to increase the electability of Haughey, particularly among young people. 
+Mara adopted techniques of electioneer"
+baseline,graph,Royal Bank of Scotland,Marl,Marl held an account for Pullman Limited at the Royal Bank of Scotland in the Isle of Man.,Marl<SEP>Royal Bank of Scotland,"[""chunk-9125c70c25c29c8f2d48472764fdd24f""]","[""chunk-9125c70c25c29c8f2d48472764fdd24f""]","[""chunk-9125c70c25c29c8f2d48472764fdd24f""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"made innovations in how to operate public relations for the party, including holding opposition press briefings. He also tried to increase the electability of Haughey, particularly among young people. 
+Mara adopted techniques of electioneer"
+baseline,graph,Bilgoraj County,Tarnogrod,Tarnogrod is one of the towns contained within Bilgoraj County.,Bilgoraj County<SEP>Tarnogrod,"[""chunk-82f839250235ced19f561e3085eb2299""]","[""chunk-82f839250235ced19f561e3085eb2299""]","[""chunk-82f839250235ced19f561e3085eb2299""]",0.0,0.0,0.0,0.0,False,False,False,True,True,False,"to Piraeus Bank. Laiki was split into a good and bad bank, the good bank (Cyprus operations) merged with Bank of Cyprus and the bad bank is in the process of being sold and finally shuttered. The board and CEO were replaced on 27 March. The"
+baseline,graph,Bilgoraj County,Lublin Voivodeship,Bilgoraj County is a unit of territorial administration within Lublin Voivodeship in Poland.,Bilgoraj County<SEP>Lublin Voivodeship,"[""chunk-82f839250235ced19f561e3085eb2299""]","[""chunk-82f839250235ced19f561e3085eb2299""]","[""chunk-82f839250235ced19f561e3085eb2299""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"to Piraeus Bank. Laiki was split into a good and bad bank, the good bank (Cyprus operations) merged with Bank of Cyprus and the bad bank is in the process of being sold and finally shuttered. The board and CEO were replaced on 27 March. The"
+baseline,graph,Gmina Tarnow,Tarnow County,Gmina Tarnow is a rural administrative district located within Tarnow County.,Gmina Tarnow<SEP>Tarnow County,"[""chunk-82f839250235ced19f561e3085eb2299""]","[""chunk-82f839250235ced19f561e3085eb2299""]","[""chunk-82f839250235ced19f561e3085eb2299""]",0.0,0.0,0.0,0.0,False,False,False,True,True,False,"to Piraeus Bank. Laiki was split into a good and bad bank, the good bank (Cyprus operations) merged with Bank of Cyprus and the bad bank is in the process of being sold and finally shuttered. The board and CEO were replaced on 27 March. The"
+baseline,graph,South Canterbury XVIII,Anonymous Cricketer,The unnamed cricketer played for and top-scored for the South Canterbury XVIII cricket team in a match.,Anonymous Cricketer<SEP>South Canterbury XVIII,"[""chunk-e19b39106aac29303f72fd2e28f77d7a""]","[""chunk-e19b39106aac29303f72fd2e28f77d7a""]","[""chunk-e19b39106aac29303f72fd2e28f77d7a""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"1896–97, at the age of 47, he top-scored in each innings for a South Canterbury XVIII against the touring Queensland cricket team.
+Passage 9:
+Maximiliano Serrano
+Maximiliano Serrano (born 5 August 1988) is an Argentine professional football"
+baseline,graph,MARSTEL,Mars Telecommunications Orbiter,"Dedicated communication satellites like the Mars Telecommunications Orbiter, considered under concepts such as MARSTEL, are proposed to support missions around Mars.",MARSTEL<SEP>Mars Telecommunications Orbiter,"[""chunk-29051724269aeee5d55b14823a766d47""]","[""chunk-29051724269aeee5d55b14823a766d47""]","[""chunk-29051724269aeee5d55b14823a766d47""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"only about half of the dipoles properly separated from each other, the project was able to successfully experiment and communicate using frequencies in the SHF X band spectrum.An immediate antecedent of the geostationary satellites was the "
+baseline,graph,Veera Ballala II,Kanchipuram,Veera Ballala II left a Hoysala army stationed in Kanchi (Kanchipuram) to pursue hostilities with the Telugu Chodas and Kakatiyas.,Kanchipuram<SEP>Veera Ballala II,"[""chunk-fc07e1b0e1c65abab4b71e376556976e""]","[""chunk-fc07e1b0e1c65abab4b71e376556976e""]","[""chunk-fc07e1b0e1c65abab4b71e376556976e""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"Passage 1:
+Veera Ballala II
+Veera Ballala II (Kannada: ವೀರ ಬಲ್ಲಾಳ 2) (r. 1173–1220 CE) was the most notable monarch of the Hoysala Empire. His successes against the Yadavas of Devagiri, the Southern Kalachuris, the Pandyas of Madurai and th"
+baseline,graph,David Seidler,The King's Speech,"David Seidler wrote the original screenplay for The King's Speech, for which he won an Academy Award and a BAFTA.",David Seidler<SEP>The King's Speech,"[""chunk-ab2a76c37044245be569fd15dcec3b3a""]","[""chunk-ab2a76c37044245be569fd15dcec3b3a""]","[""chunk-ab2a76c37044245be569fd15dcec3b3a""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"use ""soft light"", but Hooper wanted to use a harsher glare, which gives a more contemporary feel, and thus a greater emotional resonance. To achieve the effect, the lighting team erected huge blackout tents over the Georgian buildings and u"
+baseline,graph,Pangi Territory,Beia Sector,The Beia sector is one of the divisions that constitutes Pangi Territory.,Beia Sector<SEP>Pangi Territory,"[""chunk-4afe2a921869c50f6bd31421c9477c8b""]","[""chunk-4afe2a921869c50f6bd31421c9477c8b""]","[""chunk-4afe2a921869c50f6bd31421c9477c8b""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"Mountain climbing is permitted by the National Park Service along the Maryland Heights cliffs.
+
+Bibliography
+Whitman, T. Stephen, Antietam 1862: Gateway to Emancipation, ABC-CLIO, 2012 ISBN 0313397341.
+
+External links
+NPS Maryland Heights B"
+baseline,graph,Pangi Territory,Ikama Sector,The Ikama sector is one of the divisions that constitutes Pangi Territory.,Ikama Sector<SEP>Pangi Territory,"[""chunk-4afe2a921869c50f6bd31421c9477c8b""]","[""chunk-4afe2a921869c50f6bd31421c9477c8b""]","[""chunk-4afe2a921869c50f6bd31421c9477c8b""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"Mountain climbing is permitted by the National Park Service along the Maryland Heights cliffs.
+
+Bibliography
+Whitman, T. Stephen, Antietam 1862: Gateway to Emancipation, ABC-CLIO, 2012 ISBN 0313397341.
+
+External links
+NPS Maryland Heights B"
+baseline,graph,Pangi Territory,Wakabango Sector,The Wakabango sector is one of the divisions that constitutes Pangi Territory.,Pangi Territory<SEP>Wakabango Sector,"[""chunk-4afe2a921869c50f6bd31421c9477c8b""]","[""chunk-4afe2a921869c50f6bd31421c9477c8b""]","[""chunk-4afe2a921869c50f6bd31421c9477c8b""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"Mountain climbing is permitted by the National Park Service along the Maryland Heights cliffs.
+
+Bibliography
+Whitman, T. Stephen, Antietam 1862: Gateway to Emancipation, ABC-CLIO, 2012 ISBN 0313397341.
+
+External links
+NPS Maryland Heights B"
+baseline,graph,Essential Amino Acids,Tryptophan,"Among essential amino acids, tryptophan deprivation is a notable exception as it does not induce transgene reactivation.",Essential Amino Acids<SEP>Tryptophan,"[""chunk-18f6cac3e672e58f6d45bde489f35e72""]","[""chunk-18f6cac3e672e58f6d45bde489f35e72""]","[""chunk-18f6cac3e672e58f6d45bde489f35e72""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"<0.001 (Fisher exact test).
+As shown in Fig 1C, the clustering of differentially expressed repeats, according to their expression pattern, reveals profiles comparable to the behavior of the transgene in the same conditions, i.e. upregulatio"
+baseline,graph,Essential Amino Acids,Alanine,"Alanine, a non-essential amino acid, is used as a negative control as its deprivation does not induce transgene reactivation.",Alanine<SEP>Essential Amino Acids,"[""chunk-18f6cac3e672e58f6d45bde489f35e72""]","[""chunk-18f6cac3e672e58f6d45bde489f35e72""]","[""chunk-18f6cac3e672e58f6d45bde489f35e72""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"<0.001 (Fisher exact test).
+As shown in Fig 1C, the clustering of differentially expressed repeats, according to their expression pattern, reveals profiles comparable to the behavior of the transgene in the same conditions, i.e. upregulatio"
+noisefilter,graph,Hans Zimmer,Christopher Nolan,"Christopher Nolan collaborated with Hans Zimmer on *Interstellar*, reassuring him that his initial piano piece provided 'the heart' of the film.",Christopher Nolan<SEP>Hans Zimmer,"[""chunk-48dabdf899dc7290d08f6f3baecde983""]","[""chunk-48dabdf899dc7290d08f6f3baecde983""]","[""chunk-48dabdf899dc7290d08f6f3baecde983""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"concept of the film, though it had not yet been written. Zimmer was originally skeptical, noting that he had written a ""tiny, tiny little fragile"" piece while Nolan had described an intense, epic space film. However, Nolan reassured Zimmer "
+noisefilter,graph,The Witch of Atlas,Mythical Creatures,"The Witch's beauty and gentleness draw all manner of savage and mythical creatures to her, taming them.",Mythical Creatures<SEP>The Witch of Atlas,"[""chunk-6ee4cc76b6f9cbd8b3caa37389827b00""]","[""chunk-6ee4cc76b6f9cbd8b3caa37389827b00""]","[""chunk-6ee4cc76b6f9cbd8b3caa37389827b00""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"Produced by Sue Asscher
+
+
+
+
+
+
+
+
+
+The Witch of Atlas
+
+
+by
+
+Percy Bysshe Shelley
+
+
+
+
+
+ TO MARY
+ (ON HER OBJECTING TO THE FOLLOWING POEM, UPON THE
+ SCORE OF ITS CONTAINING NO HUMAN INTEREST).
+
+ 1.
+ How, my dear Mary,--are you critic-bitten
+ (F"
+noisefilter,graph,Mary,Reviews,"Mary is described as being ""critic-bitten"" by some review, which caused her to condemn the poet's verses.",Mary<SEP>Reviews,"[""chunk-6ee4cc76b6f9cbd8b3caa37389827b00""]","[""chunk-6ee4cc76b6f9cbd8b3caa37389827b00""]","[""chunk-6ee4cc76b6f9cbd8b3caa37389827b00""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"Produced by Sue Asscher
+
+
+
+
+
+
+
+
+
+The Witch of Atlas
+
+
+by
+
+Percy Bysshe Shelley
+
+
+
+
+
+ TO MARY
+ (ON HER OBJECTING TO THE FOLLOWING POEM, UPON THE
+ SCORE OF ITS CONTAINING NO HUMAN INTEREST).
+
+ 1.
+ How, my dear Mary,--are you critic-bitten
+ (F"
+noisefilter,graph,Dual Formulation,Worldline,The dual variables in the formulation provide more information in terms of world lines (like baryon loops) compared to the usual fermion determinant.,Dual Formulation<SEP>Worldline,"[""chunk-092937197cc2e36dfd69d4fdc8f03183""]","[""chunk-092937197cc2e36dfd69d4fdc8f03183""]","[""chunk-092937197cc2e36dfd69d4fdc8f03183""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"Paper Info
+
+Title: Nuclear Liquid-Gas Transition in the Strong Coupling Regime of Lattice QCD
+Publish Date: 28 Mar 2023
+Author List: J Kim (from Institute for Advanced Simulation (IAS-4), Forschungszentrum Jülich), P Pattanaik (from Fakultä"
+noisefilter,graph,Monomer-Dimer Enumeration,Exact Enumeration,"As part of the exact enumeration strategy for small volumes, a monomer-dimer enumeration using a depth-first algorithm is performed on available sites.",Exact Enumeration<SEP>Monomer-Dimer Enumeration,"[""chunk-092937197cc2e36dfd69d4fdc8f03183""]","[""chunk-092937197cc2e36dfd69d4fdc8f03183""]","[""chunk-092937197cc2e36dfd69d4fdc8f03183""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"Paper Info
+
+Title: Nuclear Liquid-Gas Transition in the Strong Coupling Regime of Lattice QCD
+Publish Date: 28 Mar 2023
+Author List: J Kim (from Institute for Advanced Simulation (IAS-4), Forschungszentrum Jülich), P Pattanaik (from Fakultä"
+noisefilter,graph,Pitch Clock,Game Pace,"The pitch clock was introduced by MLB for the 2023 season to regulate the pace of the game, addressing increased game times and pitcher delays.",Game Pace<SEP>Pitch Clock,"[""chunk-ed0235bedfd2b2fb10e72a09135ce0c9""]","[""chunk-ed0235bedfd2b2fb10e72a09135ce0c9""]","[""chunk-ed0235bedfd2b2fb10e72a09135ce0c9""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"to the reserve-clause contracts. The agreement also set up a formal classification system for minor leagues, the forerunner of today's system that was refined by Branch Rickey.
+
+Other recognized leagues
+Several other early defunct baseball "
+noisefilter,graph,George Mitchell,Bud Selig,MLB Commissioner Bud Selig appointed former Senator George Mitchell to investigate the use of performance-enhancing drugs in baseball.,Bud Selig<SEP>George Mitchell,"[""chunk-ce6020d4fee0b4440f5e798273d00460""]","[""chunk-ce6020d4fee0b4440f5e798273d00460""]","[""chunk-ce6020d4fee0b4440f5e798273d00460""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"and away. Furthermore, each team has an interleague ""natural rival"" (in many cases its counterpart in the same metro area) with which it plays two home games and two away games each year.
+With an odd number of teams in each league (15), it "
+noisefilter,graph,Pun Detection,O-BIO Scheme,The O-BIO scheme yields better performance on pun detection compared to the O-C scheme by better modeling structural constraints.,O-BIO Scheme<SEP>Pun Detection,"[""chunk-bb0f7fee5d4e744557a79b1061ff32f0""]","[""chunk-bb0f7fee5d4e744557a79b1061ff32f0""]","[""chunk-bb0f7fee5d4e744557a79b1061ff32f0""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"Introduction
+There exists a class of language construction known as pun in natural language texts and utterances, where a certain word or other lexical items are used to exploit two or more separate meanings. It has been shown that understa"
+noisefilter,graph,Pun Location,O-BIO Scheme,The O-BIO scheme yields better performance on pun location compared to the O-C scheme by better modeling structural constraints.,O-BIO Scheme<SEP>Pun Location,"[""chunk-bb0f7fee5d4e744557a79b1061ff32f0""]","[""chunk-bb0f7fee5d4e744557a79b1061ff32f0""]","[""chunk-bb0f7fee5d4e744557a79b1061ff32f0""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"Introduction
+There exists a class of language construction known as pun in natural language texts and utterances, where a certain word or other lexical items are used to exploit two or more separate meanings. It has been shown that understa"
+noisefilter,graph,BiLSTM-CRF Model,O-BIO Scheme,The O-BIO tagging scheme is the specific scheme used in the BiLSTM-CRF model to enforce the structural constraint of a single pun.,BiLSTM-CRF Model<SEP>O-BIO Scheme,"[""chunk-bb0f7fee5d4e744557a79b1061ff32f0""]","[""chunk-bb0f7fee5d4e744557a79b1061ff32f0""]","[""chunk-bb0f7fee5d4e744557a79b1061ff32f0""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"Introduction
+There exists a class of language construction known as pun in natural language texts and utterances, where a certain word or other lexical items are used to exploit two or more separate meanings. It has been shown that understa"
+noisefilter,graph,Tagging Scheme,O-BIO Scheme,The term 'Tagging Scheme' refers to the 'O-BIO Scheme' specifically designed to capture the constraint of a maximum of one pun per context.,O-BIO Scheme<SEP>Tagging Scheme,"[""chunk-bb0f7fee5d4e744557a79b1061ff32f0""]","[""chunk-bb0f7fee5d4e744557a79b1061ff32f0""]","[""chunk-bb0f7fee5d4e744557a79b1061ff32f0""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"Introduction
+There exists a class of language construction known as pun in natural language texts and utterances, where a certain word or other lexical items are used to exploit two or more separate meanings. It has been shown that understa"
+noisefilter,graph,Statistical Inference,Maximum Likelihood,Maximum likelihood is a standard technique within statistical inference for predicting interaction couplings.,Maximum Likelihood<SEP>Statistical Inference,"[""chunk-9cfd0b99801452f2366cc5d4c7dd7769""]","[""chunk-9cfd0b99801452f2366cc5d4c7dd7769""]","[""chunk-9cfd0b99801452f2366cc5d4c7dd7769""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"\section{Introduction}
+Given a data set and a model with some unknown parameters, the inverse problem aims to find the values of the model parameters that best fit the data.  
+In this work, in which we focus on systems of interacting elemen"
+noisefilter,graph,Maximum Likelihood,Partition Function,"The maximum likelihood technique requires the evaluation of the partition function, which is computationally expensive.",Maximum Likelihood<SEP>Partition Function,"[""chunk-9cfd0b99801452f2366cc5d4c7dd7769""]","[""chunk-9cfd0b99801452f2366cc5d4c7dd7769""]","[""chunk-9cfd0b99801452f2366cc5d4c7dd7769""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"\section{Introduction}
+Given a data set and a model with some unknown parameters, the inverse problem aims to find the values of the model parameters that best fit the data.  
+In this work, in which we focus on systems of interacting elemen"
+noisefilter,graph,Pseudo-Likelihood Method,L2 Regularization,"The Pseudo-Likelihood Method can be used with L2 Regularization as an alternative technique for network inference, and their performances are compared in the study.",L2 Regularization<SEP>Pseudo-Likelihood Method,"[""chunk-6abbfd7b5c860164e2d417ac304faeb6""]","[""chunk-6abbfd7b5c860164e2d417ac304faeb6""]","[""chunk-6abbfd7b5c860164e2d417ac304faeb6""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"plings are plotted sorted in descending order.}  
+   	\label{Jor1_dec}
+   \end{figure}
+   
+\begin{figure}[t!]
+    	\centering
+    	\includegraphics[width=1\linewidth]{Jor3_dec_JRJI_soJRJI_TPJRJI}
+    	\caption{XY model on a 2D lattice with "
+noisefilter,graph,France,Narrator,"The narrator is intensely attracted to French culture and has taken up residence in a French family to experience ""real French life.""",France<SEP>Narrator,"[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"earnestness in that life of hotels and railroad trains, which
+so many of our countrymen are content to lead in this strange Old World,
+and I was distressed to find how far I, myself; had been led along the
+dusty, beaten track.  I had, howev"
+noisefilter,graph,Marie Ragghianti,Marie (Film),The story of Marie Ragghianti exposing corruption was adapted into the 1985 film titled *Marie*.,Marie (Film)<SEP>Marie Ragghianti,"[""chunk-0afb14a93b7e65dba7bb08d51e214828""]","[""chunk-0afb14a93b7e65dba7bb08d51e214828""]","[""chunk-0afb14a93b7e65dba7bb08d51e214828""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"-lis logo on his mask. The UFC Welterweight Champion from 2006 to 2013, Georges St-Pierre, has a tattoo of the fleur-de-lis on his right calf. The IT University of Copenhagen's soccer team ITU F.C. has it in their logo. France uses the symb"
+noisefilter,graph,T*,Numerical Renormalization Group (NRG),"The NRG method is used to calculate points for T*, which are then fitted to a theoretical formula involving coefficients a and b from equation Tstar.",Numerical Renormalization Group (NRG)<SEP>T*,"[""chunk-f344bd28c7909e782eeb77a0ac017996""]","[""chunk-f344bd28c7909e782eeb77a0ac017996""]","[""chunk-f344bd28c7909e782eeb77a0ac017996""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"ishes $T^*$.
+For the same values of $J^{\mathrm{eff}}$, the dependence of $G(T)$ for $t=0$ and $\GS{}>0$ is hardly different 
+from the one for $\GS{}=0$ and $t>0$ for $T\geq T^*$ (results not shown).
+However, $G(T)$ saturates at residual va"
+noisefilter,graph,Corbin High,Corbin Redhounds,Corbin High School's athletic teams are known as the Corbin Redhounds.,Corbin High<SEP>Corbin Redhounds,"[""chunk-6729ef0dfe123adc47bf22d012494741""]","[""chunk-6729ef0dfe123adc47bf22d012494741""]","[""chunk-6729ef0dfe123adc47bf22d012494741""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"is the current mayor. Trent Knuckles, David Grigsby Hart, Ed Tye, and Andrew Pennington are its four current commissioners.Corbin is one of the few cities in Kentucky that lie in two counties—Whitley and Knox. Many built-up areas in neighbo"
+noisefilter,graph,John Cabot,Postage Stamps,Postage stamps were issued by Newfoundland in 1897 and 1947 to commemorate anniversaries of Cabot's voyage.,John Cabot<SEP>Postage Stamps,"[""chunk-510f30f9cd1c3642f4b39cadd6811af4""]","[""chunk-510f30f9cd1c3642f4b39cadd6811af4""]","[""chunk-510f30f9cd1c3642f4b39cadd6811af4""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"400th anniversary.
+Denis William Eden painting: John Cabot and his sons receive the charter from Henry VII to sail in search of new lands (1910), at Houses of Parliament.
+Giovanni Caboto Club (est. 1925), an Italian club located in Windsor,"
+noisefilter,graph,Skull,Hyoid Bone,The Hyoid Bone is listed as part of the human skull's bone count in the text.,Hyoid Bone<SEP>Skull,"[""chunk-eead1098c1682ff41a41e3abdcdd32df""]","[""chunk-eead1098c1682ff41a41e3abdcdd32df""]","[""chunk-eead1098c1682ff41a41e3abdcdd32df""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"counted as facial)
+Ethmoid bone (sometimes counted as facial)
+Facial bones (15)
+Nasal bones (2)
+Maxillae (upper jaw) (2)
+Lacrimal bone (2)
+Zygomatic bone (cheek bones) (2)
+Palatine bone (2)
+Inferior nasal concha (2)
+Vomer (1)
+Hyoid bone (1)"
+noisefilter,graph,5para,α,"For the closed-shell 5para species, orbital α corresponds to the LUMO, as observed via STM imaging at 1.6 V.",5para<SEP>α,"[""chunk-70349531a09c34dbadb3a417c2fef411""]","[""chunk-70349531a09c34dbadb3a417c2fef411""]","[""chunk-70349531a09c34dbadb3a417c2fef411""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"of the orbital densities of SOMOs, and not the hybridized HOMO and LUMO, proves the open-shell ground state of assigned 5OS.
+Measurements of the monoradical species with a doublet ground state are shown in Supplementary Fig. . Unexpectedly,"
+noisefilter,graph,5para,β,"For the closed-shell 5para species, orbital β corresponds to the HOMO, as observed via STM imaging at -1.4 V.",5para<SEP>β,"[""chunk-70349531a09c34dbadb3a417c2fef411""]","[""chunk-70349531a09c34dbadb3a417c2fef411""]","[""chunk-70349531a09c34dbadb3a417c2fef411""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"of the orbital densities of SOMOs, and not the hybridized HOMO and LUMO, proves the open-shell ground state of assigned 5OS.
+Measurements of the monoradical species with a doublet ground state are shown in Supplementary Fig. . Unexpectedly,"
+noisefilter,graph,E.R.,Steven Spielberg,"Steven Spielberg was attached as an executive producer behind the scenes, lending his name and credibility to E.R.'s early development.",E.R.<SEP>Steven Spielberg,"[""chunk-d05c59fe3c514c26179343553b469fd3""]","[""chunk-d05c59fe3c514c26179343553b469fd3""]","[""chunk-d05c59fe3c514c26179343553b469fd3""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"in the former Linda Vista Hospital in Los Angeles, an old facility that had ceased operating in 1990. A set modeled after Los Angeles County General Hospital's emergency room was built soon afterward at the Warner Bros. studios in Burbank, "
+noisefilter,graph,E.R.,Michael Crichton,Michael Crichton was an executive producer of E.R. from its inception until his death and was credited throughout the final season.,E.R.<SEP>Michael Crichton,"[""chunk-d05c59fe3c514c26179343553b469fd3""]","[""chunk-d05c59fe3c514c26179343553b469fd3""]","[""chunk-d05c59fe3c514c26179343553b469fd3""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"in the former Linda Vista Hospital in Los Angeles, an old facility that had ceased operating in 1990. A set modeled after Los Angeles County General Hospital's emergency room was built soon afterward at the Warner Bros. studios in Burbank, "
+noisefilter,graph,Boston,Narrator,"The narrator originates from Boston but critiques it for lacking sympathy with the artistic temperament and the ability to ""live"" aesthetically.",Boston<SEP>Narrator,"[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"earnestness in that life of hotels and railroad trains, which
+so many of our countrymen are content to lead in this strange Old World,
+and I was distressed to find how far I, myself; had been led along the
+dusty, beaten track.  I had, howev"
+noisefilter,graph,Minicio River,Po River,The Mincio River flows into the Po River at the location of Governolo.,Minicio River<SEP>Po River,"[""chunk-4cfce0dba42d515dc8b4f7eb2237f017""]","[""chunk-4cfce0dba42d515dc8b4f7eb2237f017""]","[""chunk-4cfce0dba42d515dc8b4f7eb2237f017""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"(Valsugana) southward to Bassano del Grappa. An army that held both Trento and Bassano could move troops and supplies between the two places free from French interference.
+
+Operations
+Bonaparte posted General of Division Claude Vaubois with"
+noisefilter,graph,Madame de Maisonrouge,Narrator,The narrator is boarding at Madame de Maisonrouge's pension as part of his effort to immerse himself in European life.,Madame de Maisonrouge<SEP>Narrator,"[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"earnestness in that life of hotels and railroad trains, which
+so many of our countrymen are content to lead in this strange Old World,
+and I was distressed to find how far I, myself; had been led along the
+dusty, beaten track.  I had, howev"
+noisefilter,graph,Violet Ray,Mr. Ray,"Violet Ray's father, Mr. Ray, insists that she and her mother stay in Madame de Maisonrouge's boarding-house against her wishes before he returns to America.",Mr. Ray<SEP>Violet Ray,"[""chunk-9d3c390f7472d355a946c406ed799bd0""]","[""chunk-9d3c390f7472d355a946c406ed799bd0""]","[""chunk-9d3c390f7472d355a946c406ed799bd0""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"Transcribed from the 1887 Macmillan and Co. edition by David Price, email
+ccx074@coventry.ac.uk.  Proofing by Andy McLauchan and David Stapleton.
+
+
+
+
+
+A BUNDLE OF LETTERS
+by Henry James
+
+
+CHAPTER I
+
+
+FROM MISS MIRANDA MOPE, IN PARIS, TO MRS"
+noisefilter,graph,Louis Leverett,European Travel,"Louis Leverett is in Europe, specifically Paris, with the aim of truly living and feeling, seeking sensations and adventures beyond superficial tourism.",European Travel<SEP>Louis Leverett,"[""chunk-9d3c390f7472d355a946c406ed799bd0""]","[""chunk-9d3c390f7472d355a946c406ed799bd0""]","[""chunk-9d3c390f7472d355a946c406ed799bd0""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"Transcribed from the 1887 Macmillan and Co. edition by David Price, email
+ccx074@coventry.ac.uk.  Proofing by Andy McLauchan and David Stapleton.
+
+
+
+
+
+A BUNDLE OF LETTERS
+by Henry James
+
+
+CHAPTER I
+
+
+FROM MISS MIRANDA MOPE, IN PARIS, TO MRS"
+noisefilter,graph,Living,Narrator,"The narrator's central philosophy is the imperative to ""live"" consciously, freely, and sensuously, which guides his actions in Europe.",Living<SEP>Narrator,"[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"earnestness in that life of hotels and railroad trains, which
+so many of our countrymen are content to lead in this strange Old World,
+and I was distressed to find how far I, myself; had been led along the
+dusty, beaten track.  I had, howev"
+noisefilter,graph,Narrator,Harvard,"The narrator writes a letter to Harvard, sharing his thoughts on life, travel, and his artistic temperament.",Harvard<SEP>Narrator,"[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"earnestness in that life of hotels and railroad trains, which
+so many of our countrymen are content to lead in this strange Old World,
+and I was distressed to find how far I, myself; had been led along the
+dusty, beaten track.  I had, howev"
+noisefilter,graph,Narrator,Balzac,"The narrator admires Balzac for his realistic depictions of Parisian life, which have haunted his imagination.",Balzac<SEP>Narrator,"[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"earnestness in that life of hotels and railroad trains, which
+so many of our countrymen are content to lead in this strange Old World,
+and I was distressed to find how far I, myself; had been led along the
+dusty, beaten track.  I had, howev"
+noisefilter,graph,Narrator,Artistic Temperament,"The narrator possesses and advocates for the artistic temperament, feeling it is misunderstood in Boston.",Artistic Temperament<SEP>Narrator,"[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"earnestness in that life of hotels and railroad trains, which
+so many of our countrymen are content to lead in this strange Old World,
+and I was distressed to find how far I, myself; had been led along the
+dusty, beaten track.  I had, howev"
+noisefilter,graph,Narrator,The Johnsons,"The narrator previously traveled with the Johnsons, whose didactic and non-aesthetic nature contrasted with his own temperament.",Narrator<SEP>The Johnsons,"[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"earnestness in that life of hotels and railroad trains, which
+so many of our countrymen are content to lead in this strange Old World,
+and I was distressed to find how far I, myself; had been led along the
+dusty, beaten track.  I had, howev"
+noisefilter,graph,Narrator,Pater,"The narrator references Pater's idea that life is an art, aligning with his own aesthetic philosophy.",Narrator<SEP>Pater,"[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"earnestness in that life of hotels and railroad trains, which
+so many of our countrymen are content to lead in this strange Old World,
+and I was distressed to find how far I, myself; had been led along the
+dusty, beaten track.  I had, howev"
+noisefilter,graph,Narrator,Théophile Gautier,The narrator regrets that Gautier died before he could meet him to express his admiration.,Narrator<SEP>Théophile Gautier,"[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]",0.0,0.0,0.0,0.0,False,False,False,True,True,False,"earnestness in that life of hotels and railroad trains, which
+so many of our countrymen are content to lead in this strange Old World,
+and I was distressed to find how far I, myself; had been led along the
+dusty, beaten track.  I had, howev"
+noisefilter,graph,Narrator,The French Way of Looking at Life,The narrator expresses a natural tendency to enter into and sympathize with the French way of looking at life.,Narrator<SEP>The French Way of Looking at Life,"[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"earnestness in that life of hotels and railroad trains, which
+so many of our countrymen are content to lead in this strange Old World,
+and I was distressed to find how far I, myself; had been led along the
+dusty, beaten track.  I had, howev"
+noisefilter,graph,Narrator,The Cosmopolitan Circle,The narrator is part of the cosmopolitan circle at the pension and is interested in studying the national types within it.,Narrator<SEP>The Cosmopolitan Circle,"[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"earnestness in that life of hotels and railroad trains, which
+so many of our countrymen are content to lead in this strange Old World,
+and I was distressed to find how far I, myself; had been led along the
+dusty, beaten track.  I had, howev"
+noisefilter,graph,Narrator,The American Temperament,"The narrator critiques the American temperament as represented by the American girls at the pension, finding it lacking in richness and passion.",Narrator<SEP>The American Temperament,"[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]","[""chunk-7e566930a61c86601372e88f60a6eda5""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"earnestness in that life of hotels and railroad trains, which
+so many of our countrymen are content to lead in this strange Old World,
+and I was distressed to find how far I, myself; had been led along the
+dusty, beaten track.  I had, howev"
+noisefilter,graph,Narrator,German,The narrator observes that a German is perceived as something disagreeable that people wish to exclude from their worldview.,German<SEP>Narrator,"[""chunk-8011e47b742851a2d9b30f31c080d1ee""]","[""chunk-8011e47b742851a2d9b30f31c080d1ee""]","[""chunk-8011e47b742851a2d9b30f31c080d1ee""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"already forgotten the convincing proofs of the fact that were presented
+to them nine years ago.  A German was something disagreeable, which they
+determined to keep out of their conception of things.  I therefore think
+that we are wrong to g"
+noisefilter,graph,Narrator,English-Speaking Specimens,"The narrator examines English-speaking specimens, paying special attention to American varieties among them.",English-Speaking Specimens<SEP>Narrator,"[""chunk-8011e47b742851a2d9b30f31c080d1ee""]","[""chunk-8011e47b742851a2d9b30f31c080d1ee""]","[""chunk-8011e47b742851a2d9b30f31c080d1ee""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"already forgotten the convincing proofs of the fact that were presented
+to them nine years ago.  A German was something disagreeable, which they
+determined to keep out of their conception of things.  I therefore think
+that we are wrong to g"
+noisefilter,graph,Narrator,French Homunculus,"The narrator prefers the talk of the French homunculus, finding it more amusing than that of the young American man.",French Homunculus<SEP>Narrator,"[""chunk-8011e47b742851a2d9b30f31c080d1ee""]","[""chunk-8011e47b742851a2d9b30f31c080d1ee""]","[""chunk-8011e47b742851a2d9b30f31c080d1ee""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"already forgotten the convincing proofs of the fact that were presented
+to them nine years ago.  A German was something disagreeable, which they
+determined to keep out of their conception of things.  I therefore think
+that we are wrong to g"
+noisefilter,graph,Narrator,Madame Lepas,"The Narrator listens to and questions Madame Lepas, who provides the initial story about the Spanish grandee and La Grande Breteche.",Madame Lepas<SEP>Narrator,"[""chunk-e76d304272295dba12dfd7b115ecd8f3""]","[""chunk-e76d304272295dba12dfd7b115ecd8f3""]","[""chunk-e76d304272295dba12dfd7b115ecd8f3""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"""'You need have no fears,' said she; 'you will see.'
+
+""Her eagerness made me suspect that I was not the only person to whom
+my worthy landlady had communicated the secret of which I was to be the
+sole possessor, but I listened.
+
+""'Monsieur,"
+noisefilter,graph,Narrator,Rosalie,The Narrator actively questions and tries to win the confidence of Rosalie to learn the full secret of what happened at La Grande Breteche.,Narrator<SEP>Rosalie,"[""chunk-e76d304272295dba12dfd7b115ecd8f3""]","[""chunk-e76d304272295dba12dfd7b115ecd8f3""]","[""chunk-e76d304272295dba12dfd7b115ecd8f3""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"""'You need have no fears,' said she; 'you will see.'
+
+""Her eagerness made me suspect that I was not the only person to whom
+my worthy landlady had communicated the secret of which I was to be the
+sole possessor, but I listened.
+
+""'Monsieur,"
+noisefilter,graph,Narrator,Bianchon,"The story of La Grande Breteche is presented as being narrated by Bianchon, who heard it from the Narrator or another source.",Bianchon<SEP>Narrator,"[""chunk-e76d304272295dba12dfd7b115ecd8f3""]","[""chunk-e76d304272295dba12dfd7b115ecd8f3""]","[""chunk-e76d304272295dba12dfd7b115ecd8f3""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"""'You need have no fears,' said she; 'you will see.'
+
+""Her eagerness made me suspect that I was not the only person to whom
+my worthy landlady had communicated the secret of which I was to be the
+sole possessor, but I listened.
+
+""'Monsieur,"
+noisefilter,graph,Miss Vane,The Narrator,"The narrator expresses disapproval of Miss Vane's ideas, thinks them vulgar, and wants to guide her, yet also feels protective anger on her behalf.",Miss Vane<SEP>The Narrator,"[""chunk-eadba822cc2586457c795a2bc70f562d""]","[""chunk-eadba822cc2586457c795a2bc70f562d""]","[""chunk-eadba822cc2586457c795a2bc70f562d""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"all; if she were nice,
+she wouldn't have such ideas as that.  I tell Miss Vane that at Bangor we
+think such ideas vulgar; but then she looks as though she had never heard
+of Bangor.  I often want to shake her, though she _is_ so sweet.  If "
+noisefilter,graph,The Brother,The Narrator,"The narrator argues with the brother, telling him that his sister is his equal or superior, not his subordinate, which causes the brother to laugh loudly.",The Brother<SEP>The Narrator,"[""chunk-eadba822cc2586457c795a2bc70f562d""]","[""chunk-eadba822cc2586457c795a2bc70f562d""]","[""chunk-eadba822cc2586457c795a2bc70f562d""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"all; if she were nice,
+she wouldn't have such ideas as that.  I tell Miss Vane that at Bangor we
+think such ideas vulgar; but then she looks as though she had never heard
+of Bangor.  I often want to shake her, though she _is_ so sweet.  If "
+noisefilter,graph,The Narrator,The German Gentleman,"The German gentleman is interested in the narrator's remarks, appreciates them, and engages in discussions, making the narrator feel mentally clarified.",The German Gentleman<SEP>The Narrator,"[""chunk-eadba822cc2586457c795a2bc70f562d""]","[""chunk-eadba822cc2586457c795a2bc70f562d""]","[""chunk-eadba822cc2586457c795a2bc70f562d""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"all; if she were nice,
+she wouldn't have such ideas as that.  I tell Miss Vane that at Bangor we
+think such ideas vulgar; but then she looks as though she had never heard
+of Bangor.  I often want to shake her, though she _is_ so sweet.  If "
+noisefilter,graph,The Narrator,Monsieur Regnault,Monsieur Regnault visited the narrator at the inn to tell the story of La Grande Breteche and ask him to stay out of the garden.,Monsieur Regnault<SEP>The Narrator,"[""chunk-42862ed35b30f8151a168773b5fa658c""]","[""chunk-42862ed35b30f8151a168773b5fa658c""]","[""chunk-42862ed35b30f8151a168773b5fa658c""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"Produced by John Bickers, and Dagny
+
+
+
+
+
+LA GRANDE BRETECHE
+
+(Sequel to ""Another Study of Woman."")
+
+
+By Honore De Balzac
+
+
+Translated by Ellen Marriage and Clara Bell
+
+
+
+
+
+LA GRANDE BRETECHE
+
+
+""Ah! madame,"" replied the doctor, ""I have some "
+noisefilter,graph,The Narrator,Madame Lepas,Madame Lepas entered the narrator's room to share her part of the story and seek his advice.,Madame Lepas<SEP>The Narrator,"[""chunk-42862ed35b30f8151a168773b5fa658c""]","[""chunk-42862ed35b30f8151a168773b5fa658c""]","[""chunk-42862ed35b30f8151a168773b5fa658c""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"Produced by John Bickers, and Dagny
+
+
+
+
+
+LA GRANDE BRETECHE
+
+(Sequel to ""Another Study of Woman."")
+
+
+By Honore De Balzac
+
+
+Translated by Ellen Marriage and Clara Bell
+
+
+
+
+
+LA GRANDE BRETECHE
+
+
+""Ah! madame,"" replied the doctor, ""I have some "
+noisefilter,graph,Statelessness,Citizenship Removal Provision,"The provision is designed to avoid making a person stateless, imposing a constraint on the Secretary of State's power to deprive citizenship.",Citizenship Removal Provision<SEP>Statelessness,"[""chunk-4bd83d6069b07752b106f174c911e546""]","[""chunk-4bd83d6069b07752b106f174c911e546""]","[""chunk-4bd83d6069b07752b106f174c911e546""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"Between 2006 and the end of 2021 at least 464 people have had their citizenship removed by the government since the law was introduced. There is a right of appeal. This provision has been in force since 16 June 2006 when the Immigration, Na"
+noisefilter,graph,Sun-Synchronous Orbit,Russian Federation,"Before the PSLV, commercial launch services for sun-synchronous orbits were available from Russia.",Russian Federation<SEP>Sun-Synchronous Orbit,"[""chunk-2fbaf7472efcf23d72ddff0d2bb296d4""]","[""chunk-2fbaf7472efcf23d72ddff0d2bb296d4""]","[""chunk-2fbaf7472efcf23d72ddff0d2bb296d4""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"Passage 1:
+Polar Satellite Launch Vehicle
+The Polar Satellite Launch Vehicle (PSLV) is an expendable medium-lift launch vehicle designed and operated by the Indian Space Research Organisation (ISRO). It was developed to allow India to launc"
+noisefilter,graph,Denoiser D,Denoiser Depth M,"The denoiser depth M specifies the number of layers in the denoiser D, affecting its capacity and optimization.",Denoiser D<SEP>Denoiser Depth M,"[""chunk-04711d239a5534aad3cad81f621136b7""]","[""chunk-04711d239a5534aad3cad81f621136b7""]","[""chunk-04711d239a5534aad3cad81f621136b7""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"the spectrum of the ideal, unitary supercircuit C lies on the unit circle. The comparison to this case is therefore instructive. In the main text, we showed an example of the spectra in Fig. for moderate noise strength. Here, we show additi"
+noisefilter,graph,Veera Ballala II,Bhilla Ma V,Veera Ballala II and Yadava King Bhillama V contended for territories in the Krishna-Tungabhadra doab region.,Bhilla Ma V<SEP>Veera Ballala II,"[""chunk-fc07e1b0e1c65abab4b71e376556976e""]","[""chunk-fc07e1b0e1c65abab4b71e376556976e""]","[""chunk-fc07e1b0e1c65abab4b71e376556976e""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"Passage 1:
+Veera Ballala II
+Veera Ballala II (Kannada: ವೀರ ಬಲ್ಲಾಳ 2) (r. 1173–1220 CE) was the most notable monarch of the Hoysala Empire. His successes against the Yadavas of Devagiri, the Southern Kalachuris, the Pandyas of Madurai and th"
+noisefilter,graph,Tom Hooper,Cinematographic Style,Director Tom Hooper wanted to use a harsher glare for the film's lighting to achieve a contemporary feel and greater emotional resonance.,Cinematographic Style<SEP>Tom Hooper,"[""chunk-ab2a76c37044245be569fd15dcec3b3a""]","[""chunk-ab2a76c37044245be569fd15dcec3b3a""]","[""chunk-ab2a76c37044245be569fd15dcec3b3a""]",1.0,0.0,0.5,0.0,False,False,False,True,False,False,"use ""soft light"", but Hooper wanted to use a harsher glare, which gives a more contemporary feel, and thus a greater emotional resonance. To achieve the effect, the lighting team erected huge blackout tents over the Georgian buildings and u"
+noisefilter,graph,Cinematographic Style,Georgian Buildings,"To achieve the harsh lighting effect, the team erected blackout tents over the Georgian buildings and used large lights filtered through Egyptian cotton.",Cinematographic Style<SEP>Georgian Buildings,"[""chunk-ab2a76c37044245be569fd15dcec3b3a""]","[""chunk-ab2a76c37044245be569fd15dcec3b3a""]","[""chunk-ab2a76c37044245be569fd15dcec3b3a""]",0.0,1.0,0.5,0.0,False,False,False,True,False,False,"use ""soft light"", but Hooper wanted to use a harsher glare, which gives a more contemporary feel, and thus a greater emotional resonance. To achieve the effect, the lighting team erected huge blackout tents over the Georgian buildings and u"

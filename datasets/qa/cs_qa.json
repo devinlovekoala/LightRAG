@@ -1,0 +1,1102 @@
+[
+  {
+    "query_id": 1,
+    "question": "How does Spark Streaming enable real-time data processing?",
+    "answers": [
+      "Spark Streaming extends the core Spark API to process real-time data streams from sources like Kafka and Flume. It divides the streaming data into batches, which are then processed by the Spark engine to generate the final stream of results in real-time."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 1
+    }
+  },
+  {
+    "query_id": 2,
+    "question": "What does the book suggest about the use of histograms in data analysis?",
+    "answers": [
+      "The book suggests that histograms are a powerful tool for visualizing the distribution of data, especially continuous data. They help in understanding the shape, central tendency, and spread of the data, which are crucial for subsequent statistical analyses."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 2
+    }
+  },
+  {
+    "query_id": 3,
+    "question": "What are some advanced topics covered in the book related to Linux Kernel Networking?",
+    "answers": [
+      "Advanced topics covered in the book include Linux namespaces, network namespaces, cgroups, Busy Poll Sockets, the Bluetooth subsystem, the IEEE 802.15.4 subsystem, and Near Field Communication (NFC) subsystem."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 3
+    }
+  },
+  {
+    "query_id": 4,
+    "question": "What is the significance of the R tool in the context of modern optimization methods?",
+    "answers": [
+      "The R tool is significant because it is a free, open-source, and multi-platform tool specifically developed for statistical analysis, and it has an active community that continuously enhances its capabilities with new packages, including those that implement modern optimization methods."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 4
+    }
+  },
+  {
+    "query_id": 5,
+    "question": "What are the key features of this text that aid in learning object-oriented concepts in Java?",
+    "answers": [
+      "Key features include an early introduction to object-oriented programming, the use of contour diagrams to illustrate object-oriented concepts, and the inclusion of questions for readers to interact with the material, reinforcing concepts through practice."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 5
+    }
+  },
+  {
+    "query_id": 6,
+    "question": "What is the role of the RegExr tool in the book?",
+    "answers": [
+      "The RegExr tool is used in the book as a web-based, JavaScript-powered regex implementation to help readers practice and understand regular expressions through interactive examples."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 6
+    }
+  },
+  {
+    "query_id": 7,
+    "question": "How does the text compare to other Java programming texts in terms of content and detail?",
+    "answers": [
+      "The text aims to fill the gap between comprehensive texts that might cover too many details, making them difficult for beginners, and shortened introductions that might lack necessary examples and illustrations. It provides a balance by concentrating on the fundamentals and being accessible to readers with no prior programming experience."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 7
+    }
+  },
+  {
+    "query_id": 8,
+    "question": "What role do Bayesian inference and priors play in the book?",
+    "answers": [
+      "Bayesian inference and priors play a significant role in the book as they provide a framework for updating beliefs (priors) with new data to form posteriors. This approach is particularly useful in situations where prior knowledge is available and needs to be integrated with new evidence."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 8
+    }
+  },
+  {
+    "query_id": 9,
+    "question": "What is the difference between recording a macro and writing code from scratch in VBA?",
+    "answers": [
+      "Recording a macro involves using the Macro Recorder to translate user actions into VBA code, while writing code from scratch involves manually typing VBA statements in the Visual Basic Editor to create a macro."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 9
+    }
+  },
+  {
+    "query_id": 10,
+    "question": "How does the book address the implementation of IPv6 in comparison to IPv4?",
+    "answers": [
+      "The book discusses the implementation of IPv6, highlighting its larger address space, fixed-length header, and additional features like Neighbor Discovery and Multicast Listener Discovery, which enhance and replace certain functionalities of IPv4."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 10
+    }
+  },
+  {
+    "query_id": 11,
+    "question": "Can you explain the concept of standard coordinates as discussed in the book?",
+    "answers": [
+      "Standard coordinates involve normalizing data by subtracting the mean and dividing by the standard deviation for each variable. This transformation helps in comparing different datasets on a common scale, making it easier to visualize and analyze relationships between variables."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 11
+    }
+  },
+  {
+    "query_id": 12,
+    "question": "What are IP options and why might they be used?",
+    "answers": [
+      "IP options are optional fields in the IPv4 header that enable advanced features like strict or loose routing, record routing, time stamping, and router alert. They are used for specific networking tasks that require additional control over packet handling."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 12
+    }
+  },
+  {
+    "query_id": 13,
+    "question": "How does the book approach the teaching of jargon related to regular expressions?",
+    "answers": [
+      "The book approaches jargon by sharing the correct terms in small doses and emphasizing practical application over overwhelming readers with dry language."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 13
+    }
+  },
+  {
+    "query_id": 14,
+    "question": "What role do netlink sockets play in Linux Kernel Networking?",
+    "answers": [
+      "Netlink sockets provide a bidirectional communication channel between userspace and the kernel, allowing for tasks such as adding or deleting routes, configuring neighboring tables, and setting IPsec policies and states."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 14
+    }
+  },
+  {
+    "query_id": 15,
+    "question": "What is the primary purpose of \"Joe Celko's SQL Programming Style\"?",
+    "answers": [
+      "The primary purpose of the book is to improve SQL programming style and proficiency, helping individual programmers write Standard SQL without an accent or dialect and to give SQL shops a coding standard for internal use."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 15
+    }
+  },
+  {
+    "query_id": 16,
+    "question": "What is the role of the tempdb database in SQL Server?",
+    "answers": [
+      "The tempdb database is a key working area for the server. It is used for storing temporary objects such as complex query interim tables, user-created temporary tables, and other temporary storage needs. It is rebuilt from scratch every time the SQL Server restarts."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 16
+    }
+  },
+  {
+    "query_id": 17,
+    "question": "What audience is the text primarily intended for?",
+    "answers": [
+      "The text is intended primarily for readers who have not had any previous programming experience. However, it can also serve as a useful resource for others, including those who have programmed in the past but are new to Java."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 17
+    }
+  },
+  {
+    "query_id": 18,
+    "question": "How does the book recommend handling the complexity of regular expressions?",
+    "answers": [
+      "The book recommends learning by doing, encouraging readers to follow examples and try out new concepts in practical exercises."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 18
+    }
+  },
+  {
+    "query_id": 19,
+    "question": "What is a principal type in the context of type inference?",
+    "answers": [
+      "A principal type is the most general type that can be assigned to an expression without losing information. Any other type for the expression can be derived by substituting type variables in the principal type."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 19
+    }
+  },
+  {
+    "query_id": 20,
+    "question": "What are user-defined functions (UDFs) in SQL Server and how do they differ from stored procedures?",
+    "answers": [
+      "User-defined functions are similar to sprocs but can return a value of most SQL Server data types and cannot have side effects like changing tables. They are used to encapsulate reusable logic and return a single value or a table result."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 20
+    }
+  },
+  {
+    "query_id": 21,
+    "question": "What are the two categories of indexes in SQL Server and what distinguishes them?",
+    "answers": [
+      "Indexes in SQL Server fall into two categories: clustered and non-clustered. A clustered index can have only one per table and means the table is physically sorted according to that index. Non-clustered indexes are more like traditional indexes and can have many per table."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 21
+    }
+  },
+  {
+    "query_id": 22,
+    "question": "What caution does the book provide regarding the use of maximum likelihood estimation?",
+    "answers": [
+      "The book cautions that while maximum likelihood estimation is a powerful tool for estimating model parameters from data, it can be sensitive to the presence of outliers and may not always provide the best fit if the model assumptions are not met."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 22
+    }
+  },
+  {
+    "query_id": 23,
+    "question": "What is the significance of the ICMP protocol in Linux Kernel Networking?",
+    "answers": [
+      "The ICMP protocol is significant in Linux Kernel Networking for sending error and control messages about the network layer, helping to keep the system behaving correctly by providing feedback about problems in the communication environment."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 23
+    }
+  },
+  {
+    "query_id": 24,
+    "question": "What is the significance of the ALS algorithm in Spark's MLlib?",
+    "answers": [
+      "The ALS (Alternating Least Squares) algorithm is used in Spark's MLlib for collaborative filtering, particularly in recommendation systems. It is used to factorize a user-item rating matrix into user and item factor matrices, which can then be used to predict missing ratings."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 24
+    }
+  },
+  {
+    "query_id": 25,
+    "question": "What does the book recommend regarding the use of proprietary data types?",
+    "answers": [
+      "The book recommends avoiding proprietary data types as they do not port to other products or from one release to another of the same product, and standard SQL has enough data types to model most real-world situations."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 25
+    }
+  },
+  {
+    "query_id": 26,
+    "question": "How do you assign a macro to a button on the Quick Access Toolbar in Word?",
+    "answers": [
+      "To assign a macro to a button on the Quick Access Toolbar in Word, right-click the Quick Access Toolbar, choose Customize Quick Access Toolbar, select Macros from the Choose Commands From drop-down list, select the macro, click Add, and then modify the button's name and icon if desired."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 26
+    }
+  },
+  {
+    "query_id": 27,
+    "question": "What is Apache Spark and what are its key features?",
+    "answers": [
+      "Apache Spark is a framework for distributed computing designed to handle large-scale data processing tasks efficiently. Its key features include in-memory processing, fault tolerance, flexible data structures, and support for multiple programming languages like Scala, Java, and Python."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 27
+    }
+  },
+  {
+    "query_id": 28,
+    "question": "What does the dollar sign ($) signify in regular expressions?",
+    "answers": [
+      "The dollar sign ($) in regular expressions signifies the end of a line or string."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 28
+    }
+  },
+  {
+    "query_id": 29,
+    "question": "How does the book approach the topic of data encoding schemes?",
+    "answers": [
+      "The book discusses various data encoding schemes, emphasizing the importance of using existing standard encoding schemes and providing guidelines for designing encoding schemes that allow for expansion and avoid NULLs."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 29
+    }
+  },
+  {
+    "query_id": 30,
+    "question": "What are the three main techniques used for semantic definitions in programming languages?",
+    "answers": [
+      "The three main techniques are denotational semantics, big-step operational semantics, and small-step operational semantics."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 30
+    }
+  },
+  {
+    "query_id": 31,
+    "question": "What are stored procedures (sprocs) and what advantages do they offer over sending individual SQL statements?",
+    "answers": [
+      "Stored procedures are pre-compiled objects that contain a series of SQL statements. They offer advantages such as reduced network traffic, pre-optimization and precompilation, encapsulation of complex logic, and reusability."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 31
+    }
+  },
+  {
+    "query_id": 32,
+    "question": "What is the primary purpose of VBA in Office applications?",
+    "answers": [
+      "The primary purpose of VBA in Office applications is to automate tasks and operations, allowing users to streamline complex and repetitive processes."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 32
+    }
+  },
+  {
+    "query_id": 33,
+    "question": "What is the role of confluence in the operational semantics of programming languages?",
+    "answers": [
+      "Confluence ensures that regardless of the order in which reductions are applied, a term will always reduce to the same irreducible term, thus guaranteeing the uniqueness of the result of a computation."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 33
+    }
+  },
+  {
+    "query_id": 34,
+    "question": "How does the MovieLens dataset contribute to building recommendation engines?",
+    "answers": [
+      "The MovieLens dataset, containing user ratings for movies, is used to train recommendation models. It provides the necessary data to apply collaborative filtering techniques, where user preferences are used to predict and recommend other movies they might like."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 34
+    }
+  },
+  {
+    "query_id": 35,
+    "question": "What is the primary goal of the book \"Introducing Regular Expressions\"?",
+    "answers": [
+      "The primary goal of the book is to make learning regular expressions as easy as possible through examples and practical applications."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 35
+    }
+  },
+  {
+    "query_id": 36,
+    "question": "What tools or methodologies does the text use to help readers understand and design programs?",
+    "answers": [
+      "The text uses pseudocode to outline programs, making the logic clear without being tied to specific syntax. It also employs UML diagrams to visually represent the relationships among classes, aiding in the design of more complex programs."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 36
+    }
+  },
+  {
+    "query_id": 37,
+    "question": "How does the FOR XML clause in SQL Server facilitate the conversion of relational data into XML format?",
+    "answers": [
+      "The FOR XML clause is an option added to the end of a SELECT statement to instruct SQL Server to return the result set in XML format. It provides several modes (RAW, AUTO, EXPLICIT, PATH) to control the structure and formatting of the XML output."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 37
+    }
+  },
+  {
+    "query_id": 38,
+    "question": "What role do examples and exercises play in the learning process according to the text?",
+    "answers": [
+      "Examples and exercises are crucial in the learning process. The text includes numerous examples and illustrations throughout each chapter, and provides exercises at the end of each chapter to reinforce the concepts presented. Selected answers to exercises are provided in an appendix."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 38
+    }
+  },
+  {
+    "query_id": 39,
+    "question": "What is the significance of the correlation coefficient in the book?",
+    "answers": [
+      "The correlation coefficient is significant as it measures the strength and direction of the relationship between two variables. It helps in predicting one variable from another and is a key tool in understanding data relationships."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 39
+    }
+  },
+  {
+    "query_id": 40,
+    "question": "What are the three main approaches to handle multi-objective tasks discussed in the book?",
+    "answers": [
+      "The three main approaches discussed are the weighted-formula approach, lexicographic approach, and Pareto front approach."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 40
+    }
+  },
+  {
+    "query_id": 41,
+    "question": "What is a view in SQL Server and what are its primary uses?",
+    "answers": [
+      "A view is a virtual table based on the result-set of an SQL statement. It contains rows and columns, just like a real table, and is used for security (controlling what users see) and ease of use (hiding complexity and unnecessary information)."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 41
+    }
+  },
+  {
+    "query_id": 42,
+    "question": "How can you debug a macro in the Visual Basic Editor?",
+    "answers": [
+      "You can debug a macro in the Visual Basic Editor by setting breakpoints, stepping through the code line by line using the Step Into command, and examining variables and expressions in the Immediate window or other debugging windows."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 42
+    }
+  },
+  {
+    "query_id": 43,
+    "question": "How does the book differentiate between probability and statistics?",
+    "answers": [
+      "The book differentiates between probability and statistics by explaining that probability deals with predicting the likelihood of future events based on known probabilities, while statistics involves making inferences about unknown probabilities based on observed data."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 43
+    }
+  },
+  {
+    "query_id": 44,
+    "question": "What does the book consider as the biggest hurdle in learning SQL?",
+    "answers": [
+      "According to the book, the biggest hurdle in learning SQL is thinking in sets and logic instead of in sequences and processes, which is a common mistake among new programmers."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 44
+    }
+  },
+  {
+    "query_id": 45,
+    "question": "What are the four types of operators in VBA?",
+    "answers": [
+      "The four types of operators in VBA are arithmetic operators, comparison operators, logical operators, and concatenation operators."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 45
+    }
+  },
+  {
+    "query_id": 46,
+    "question": "What is the book's stance on the use of jargon in regular expressions?",
+    "answers": [
+      "The book takes a light approach to jargon, using it sparingly and only when necessary, to avoid creating barriers for readers."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 46
+    }
+  },
+  {
+    "query_id": 47,
+    "question": "How does the book advocate for the use of views in SQL?",
+    "answers": [
+      "The book advocates for the use of views to provide row- and column-level security, ensure efficient access paths, mask complexity from users, and enforce complicated integrity constraints, among other benefits."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 47
+    }
+  },
+  {
+    "query_id": 48,
+    "question": "What are some of the tools and languages covered in the book for working with regular expressions?",
+    "answers": [
+      "The book covers tools and languages such as sed, Perl, grep, RegExr, Reggy, and various programming languages like Ruby, Python, and JavaScript."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 48
+    }
+  },
+  {
+    "query_id": 49,
+    "question": "What is the significance of the Option Explicit statement in VBA?",
+    "answers": [
+      "The Option Explicit statement in VBA enforces explicit variable declarations, which helps in preventing errors and makes the code more readable and maintainable."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 49
+    }
+  },
+  {
+    "query_id": 50,
+    "question": "What is an object in the context of VBA?",
+    "answers": [
+      "In the context of VBA, an object is a representation of a part of an application, such as a document in Word, a worksheet in Excel, or a slide in PowerPoint."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 50
+    }
+  },
+  {
+    "query_id": 51,
+    "question": "What is the purpose of the Object Browser in the Visual Basic Editor?",
+    "answers": [
+      "The purpose of the Object Browser in the Visual Basic Editor is to help users find and understand objects, methods, properties, and events within VBA projects and libraries."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 51
+    }
+  },
+  {
+    "query_id": 52,
+    "question": "What is the rationale behind using full reserved words in SQL according to the book?",
+    "answers": [
+      "The book suggests using full reserved words to document the program, making it easier to read and understand the code, as uppercase words are seen as a unit and act to announce a statement or clause."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 52
+    }
+  },
+  {
+    "query_id": 53,
+    "question": "Can you name some popular modern optimization methods discussed in the book?",
+    "answers": [
+      "Some popular modern optimization methods discussed in the book include simulated annealing, tabu search, genetic algorithms, genetic programming, NSGA-II (multi-objective optimization), differential evolution, and particle swarm optimization."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 53
+    }
+  },
+  {
+    "query_id": 54,
+    "question": "What fundamental shift in thinking does the book encourage for effective SQL programming?",
+    "answers": [
+      "The book encourages a shift from thinking in sequences and processes to thinking in sets and logic, which is fundamental to mastering SQL programming."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 54
+    }
+  },
+  {
+    "query_id": 55,
+    "question": "How does the author approach the topic of statistical significance?",
+    "answers": [
+      "The author approaches statistical significance by explaining its importance in determining the reliability of evidence in experiments. It involves discussing p-values, t-tests, F-tests, and χ²-tests, emphasizing the need to avoid misinterpretation and misuse of these tools."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 55
+    }
+  },
+  {
+    "query_id": 56,
+    "question": "What is the primary purpose of the text \"Guide to Java: A Concise Introduction to Programming\"?",
+    "answers": [
+      "The primary purpose of the text is to help readers quickly learn how to program using the Java programming language, focusing on the fundamentals, providing illustrations and examples, and using visual contour diagrams to illustrate object-oriented semantics."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 56
+    }
+  },
+  {
+    "query_id": 57,
+    "question": "How can you customize the Visual Basic Editor in Office applications?",
+    "answers": [
+      "You can customize the Visual Basic Editor by adjusting settings such as editor and view preferences, window layouts, toolbar and menu customizations, and Toolbox settings to suit your workflow and preferences."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 57
+    }
+  },
+  {
+    "query_id": 58,
+    "question": "What is the significance of the QED editor in the history of regular expressions?",
+    "answers": [
+      "The QED editor, written by Ken Thompson, yielded one of the earliest practical implementations of regular expressions in computing."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 58
+    }
+  },
+  {
+    "query_id": 59,
+    "question": "How does the book address the issue of infeasible solutions in optimization problems?",
+    "answers": [
+      "The book addresses infeasible solutions through several methods, including the death-penalty approach (assigning a very large penalty value), penalty-weights (modifying the evaluation function to include penalties), repair (transforming an infeasible solution into a feasible one), and generating only feasible solutions using domain knowledge or special operators."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 59
+    }
+  },
+  {
+    "query_id": 60,
+    "question": "What are the main components of a machine learning system designed with Spark?",
+    "answers": [
+      "A machine learning system with Spark typically includes components such as data ingestion and storage, data cleansing and transformation, model training and testing, model deployment and integration, and model monitoring and feedback."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 60
+    }
+  },
+  {
+    "query_id": 61,
+    "question": "What is the purpose of the caret (^) in regular expressions?",
+    "answers": [
+      "The caret (^) in regular expressions is used to match the beginning of a line or string."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 61
+    }
+  },
+  {
+    "query_id": 62,
+    "question": "What is the significance of the `fix` construct in PCF (Programming language for computable functions)?",
+    "answers": [
+      "The `fix` construct allows for the definition of recursive functions in PCF, enabling the computation of functions that would otherwise require iteration or recursive definitions."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 62
+    }
+  },
+  {
+    "query_id": 63,
+    "question": "What does the book suggest as a strategy for testing SQL?",
+    "answers": [
+      "The book recommends testing all possible combinations of NULLs, inspecting and testing all CHECK () constraints, and being wary of character columns, as they often lack sufficient constraints."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 63
+    }
+  },
+  {
+    "query_id": 64,
+    "question": "What is the purpose of normalization in database design and what are its benefits?",
+    "answers": [
+      "Normalization is the process of organizing data in a database to reduce redundancy and improve data integrity. Its benefits include efficient data storage, fewer modification anomalies, and better adherence to the principles of relational database design."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 64
+    }
+  },
+  {
+    "query_id": 65,
+    "question": "What is the difference between a variable and a constant in VBA?",
+    "answers": [
+      "A variable in VBA is a named storage location in memory that can hold different values during the execution of a program, whereas a constant holds a fixed value that does not change."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 65
+    }
+  },
+  {
+    "query_id": 66,
+    "question": "How does the concept of \"environment\" differ between denotational and operational semantics?",
+    "answers": [
+      "In denotational semantics, an environment maps variables to their denotations (usually values or functions). In operational semantics, an environment maps variables to their current values or states during the execution of a program."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 66
+    }
+  },
+  {
+    "query_id": 67,
+    "question": "How can you ensure that a macro runs automatically when an application starts?",
+    "answers": [
+      "You can ensure that a macro runs automatically when an application starts by naming the macro \"Auto_Open\" for Excel or using the appropriate event handler for other applications, such as \"Document_Open\" for Word."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 67
+    }
+  },
+  {
+    "query_id": 68,
+    "question": "What is the significance of the XML data type introduced in SQL Server 2005?",
+    "answers": [
+      "The XML data type allows SQL Server to recognize and manage data as truly XML data, enabling advanced features like indexing, data validation through schema collections, and intrinsic methods for querying and modifying XML data."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 68
+    }
+  },
+  {
+    "query_id": 69,
+    "question": "What is the significance of the `DEoptim` package in R for optimization tasks?",
+    "answers": [
+      "The `DEoptim` package in R implements the differential evolution algorithm, which is a global optimization method useful for continuous numerical optimization. It is significant because it provides a robust and efficient way to handle complex optimization problems that may be difficult to solve using traditional methods."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 69
+    }
+  },
+  {
+    "query_id": 70,
+    "question": "How does the author suggest handling categorical data in the context of plotting?",
+    "answers": [
+      "The author suggests using bar charts, pie charts, stacked bar charts, and heat maps to visualize categorical data effectively. Each method has its advantages depending on the specific dataset and the comparisons one wishes to make."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 70
+    }
+  },
+  {
+    "query_id": 71,
+    "question": "How does the text address the potential for errors in programming?",
+    "answers": [
+      "The text acknowledges the possibility of errors and emphasizes the importance of careful program design to minimize logic errors. It also introduces debugging as a process for finding and fixing logic errors, and suggests using output statements at critical points in the program to assist in this process."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 71
+    }
+  },
+  {
+    "query_id": 72,
+    "question": "What is the role of the Immediate window in the Visual Basic Editor?",
+    "answers": [
+      "The Immediate window in the Visual Basic Editor allows users to test individual lines of code, execute statements, and debug procedures quickly without running an entire macro."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 72
+    }
+  },
+  {
+    "query_id": 73,
+    "question": "What is the concept of Pareto front in multi-objective optimization?",
+    "answers": [
+      "The Pareto front in multi-objective optimization consists of all non-dominated solutions, where a solution is non-dominated if there is no other solution that is better in all objectives. It represents the set of solutions that offer the best trade-offs between conflicting objectives."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 73
+    }
+  },
+  {
+    "query_id": 74,
+    "question": "How does the text handle the introduction of complex topics like inheritance and polymorphism?",
+    "answers": [
+      "The text introduces complex topics like inheritance and polymorphism gradually, ensuring that foundational concepts are well understood before advancing to more complex topics. It provides clear explanations and practical examples to facilitate understanding."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 74
+    }
+  },
+  {
+    "query_id": 75,
+    "question": "What is the role of the `optim` function in R when dealing with optimization problems?",
+    "answers": [
+      "The `optim` function in R is a general-purpose optimization function that includes various methods such as Nelder-Mead, BFGS, CG, L-BFGS-B, and SANN (simulated annealing) for minimizing or maximizing a function. It is used to solve optimization problems by providing the function to be optimized and other parameters like initial values and bounds."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 75
+    }
+  },
+  {
+    "query_id": 76,
+    "question": "What are the three main types of quantifiers discussed in the book?",
+    "answers": [
+      "The three main types of quantifiers discussed in the book are greedy, lazy (reluctant), and possessive quantifiers."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 76
+    }
+  },
+  {
+    "query_id": 77,
+    "question": "What are the three major types of relationships in database design and give an example of each?",
+    "answers": [
+      "The three major types of relationships are one-to-one, one-to-many, and many-to-many. Examples include a person and their social security number (one-to-one), a customer and their orders (one-to-many), and products and orders (many-to-many)."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 77
+    }
+  },
+  {
+    "query_id": 78,
+    "question": "What naming convention does the book recommend for tables and views?",
+    "answers": [
+      "The book recommends that table and view names should be industry standards, collective, class, or plural nouns, following the principle that a table is a set and not a scalar value."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 78
+    }
+  },
+  {
+    "query_id": 79,
+    "question": "What is the primary goal of the book \"Modern Optimization with R\"?",
+    "answers": [
+      "The primary goal of the book is to gather relevant concepts related to modern optimization methods and demonstrate how these concepts and methods can be addressed using the R tool, providing a self-contained document with practical application examples."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 79
+    }
+  },
+  {
+    "query_id": 80,
+    "question": "How can you run Spark on Amazon EC2?",
+    "answers": [
+      "Spark can be run on Amazon EC2 by using the provided scripts in the `ec2` directory of the Spark package. These scripts automate the process of launching a Spark cluster on EC2 instances, handling setup and configuration."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 80
+    }
+  },
+  {
+    "query_id": 81,
+    "question": "Describe the structure and function of the IPv4 header.",
+    "answers": [
+      "The IPv4 header consists of fields such as version, IHL (Internet Header Length), Type of Service (TOS), total length, identification, flags, fragment offset, TTL (Time To Live), protocol, header checksum, source address, and destination address. It provides essential information for routing and handling packets in the network."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 81
+    }
+  },
+  {
+    "query_id": 82,
+    "question": "How does the book suggest handling special characters in names?",
+    "answers": [
+      "The book advises avoiding all special characters in names to ensure compatibility across different SQL products and host language programs, recommending the use of letters, digits, and underscores only."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 82
+    }
+  },
+  {
+    "query_id": 83,
+    "question": "What are the challenges in defining a denotational semantics for a language with side effects like references and assignments?",
+    "answers": [
+      "Defining a denotational semantics for languages with side effects requires modeling the state of the program and how it changes over time, which can be complex due to the need to track and update the state consistently across different program executions."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 83
+    }
+  },
+  {
+    "query_id": 84,
+    "question": "How does the Macro Recorder work in Word and Excel?",
+    "answers": [
+      "The Macro Recorder in Word and Excel translates user actions into VBA code, allowing users to automate sequences of actions by recording them once and playing them back as needed."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 84
+    }
+  },
+  {
+    "query_id": 85,
+    "question": "What are the two types of procedures in VBA?",
+    "answers": [
+      "The two types of procedures in VBA are functions and subprocedures (subs). Functions return a value, while subprocedures do not."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 85
+    }
+  },
+  {
+    "query_id": 86,
+    "question": "How does the use of de Bruijn indices simplify the interpretation of terms in programming languages?",
+    "answers": [
+      "De Bruijn indices replace named variables with numerical indices, reducing the need for alpha-conversion and simplifying the handling of variable bindings and substitutions."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 86
+    }
+  },
+  {
+    "query_id": 87,
+    "question": "How does Spark differ from Hadoop in terms of performance?",
+    "answers": [
+      "Spark is optimized for low-latency tasks and iterative analytics, storing intermediate data in memory, which significantly improves performance over Hadoop's MapReduce, where data is stored on disk, leading to slower processing times."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 87
+    }
+  },
+  {
+    "query_id": 88,
+    "question": "How does the model database function as a template in SQL Server?",
+    "answers": [
+      "The model database serves as a template for any new database that you create. Altering the model database can change what standard, newly created databases look like, such as including audit tables or predefined user groups."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 88
+    }
+  },
+  {
+    "query_id": 89,
+    "question": "What is the primary purpose of the Linux Kernel Networking stack as described in the book?",
+    "answers": [
+      "The primary purpose of the Linux Kernel Networking stack is to handle the traversal of packets in the network stack and interact with various networking layers and subsystems, describing how various networking protocols are implemented."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 89
+    }
+  },
+  {
+    "query_id": 90,
+    "question": "How does the fixed point theorem play a role in the semantics of programming languages?",
+    "answers": [
+      "The fixed point theorem is used in operational semantics to give rise to inductive definitions and reflexive-transitive closures. In denotational semantics, it is primarily used to define the meaning of the `fix` construct."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 90
+    }
+  },
+  {
+    "query_id": 91,
+    "question": "Explain the process of IPv4 fragmentation and defragmentation.",
+    "answers": [
+      "IPv4 fragmentation occurs when a packet is larger than the MTU (Maximum Transmission Unit) of the outgoing interface, and it needs to be broken into smaller fragments. Defragmentation is the process of reassembling these fragments back into the original packet at the destination."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 91
+    }
+  },
+  {
+    "query_id": 92,
+    "question": "What is the primary purpose of the master database in SQL Server?",
+    "answers": [
+      "The master database is critical to the system and cannot be deleted. It holds a special set of tables (system tables) that keeps track of the system as a whole, including entries for new databases, extended and system stored procedures, and more."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 92
+    }
+  },
+  {
+    "query_id": 93,
+    "question": "What are some of the practical applications of Markov chains and Hidden Markov Models discussed in the book?",
+    "answers": [
+      "The book discusses practical applications of Markov chains and Hidden Markov Models in areas such as text generation, web ranking, and dynamic programming for HMMs, illustrating their utility in modeling sequences and processes where future states depend on the current state."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 93
+    }
+  },
+  {
+    "query_id": 94,
+    "question": "What is the significance of the \"dotall\" option in regular expressions?",
+    "answers": [
+      "The \"dotall\" option allows the dot (.) character in regular expressions to match all characters, including newline characters."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 94
+    }
+  },
+  {
+    "query_id": 95,
+    "question": "How can you run a macro from the Visual Basic Editor?",
+    "answers": [
+      "You can run a macro from the Visual Basic Editor by pressing the F5 key, choosing Run ⇒ Run Sub/UserForm, or clicking the Run Sub/UserForm button on the Standard toolbar."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 95
+    }
+  },
+  {
+    "query_id": 96,
+    "question": "What is the book's stance on using triggers in SQL programming?",
+    "answers": [
+      "The book advises avoiding triggers in favor of Declarative Referential Integrity (DRI) actions, as triggers are often proprietary and can complicate schema design and maintenance."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 96
+    }
+  },
+  {
+    "query_id": 97,
+    "question": "What are the challenges in using naive Bayes models with numerical features?",
+    "answers": [
+      "Naive Bayes models assume that features are conditionally independent and typically work well with categorical data. When dealing with numerical features, special handling is required, such as binning or transforming the data to fit the model's assumptions."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 97
+    }
+  },
+  {
+    "query_id": 98,
+    "question": "What is the difference between call by name and call by value reduction strategies?",
+    "answers": [
+      "Call by name evaluates arguments only when they are needed, while call by value evaluates arguments before the function is applied. Call by name can avoid unnecessary evaluations but may repeat evaluations of the same expression."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 98
+    }
+  },
+  {
+    "query_id": 99,
+    "question": "How does the book encourage the reader to engage with the R code examples?",
+    "answers": [
+      "The book encourages the reader to execute the R code examples and try to solve the proposed exercises. This hands-on approach helps readers to better understand and apply the concepts and methods discussed in the book."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 99
+    }
+  },
+  {
+    "query_id": 100,
+    "question": "How does the book introduce the concept of alternation in regular expressions?",
+    "answers": [
+      "The book introduces alternation by explaining how to use the vertical bar (|) character to separate a list of regular expressions, indicating an \"or\" condition."
+    ],
+    "metadata": {
+      "source_file": "cs.jsonl",
+      "row_index": 100
+    }
+  }
+]

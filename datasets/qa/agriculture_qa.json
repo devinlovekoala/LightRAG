@@ -1,0 +1,1102 @@
+[
+  {
+    "query_id": 1,
+    "question": "What are the steps involved in extracting and handling honey, and why is it important to strain the honey after extraction?",
+    "answers": [
+      "Steps in extracting and handling honey include uncapping the honeycomb with a knife or plane, placing the frames in an extractor, spinning the honey out using centrifugal force, straining the honey to remove impurities, and bottling the honey. Straining is important to remove particles of wax, propolis, and other debris, ensuring the honey is clear and clean."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 1
+    }
+  },
+  {
+    "query_id": 2,
+    "question": "What is the definition of a small farm according to the author?",
+    "answers": [
+      "The author defines a small farm as any farm that has 179 acres or fewer, or that has a gross income of $50,000 per year or less."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 2
+    }
+  },
+  {
+    "query_id": 3,
+    "question": "How does the Intervale in Burlington, Vermont, support new farmers?",
+    "answers": [
+      "The Intervale supports new farmers through its Farms Program, which leases land, equipment, and storage facilities to commercial farmers, provides technical assistance, and offers mentorship from experienced farmers."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 3
+    }
+  },
+  {
+    "query_id": 4,
+    "question": "What is the significance of the rest period in grass growth as described in the book?",
+    "answers": [
+      "The rest period is crucial for grass growth as it allows the grass to accumulate reserves in its roots, enabling it to grow again after being cut. This period varies with the season and climatic conditions."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 4
+    }
+  },
+  {
+    "query_id": 5,
+    "question": "What innovative practices does Greensgrow Farm in Philadelphia employ to make urban farming sustainable?",
+    "answers": [
+      "Greensgrow Farm employs innovative practices such as hydroponic growing, aquaponics, composting, and biodiesel production to make urban farming sustainable. They also focus on community engagement and education to promote sustainable food practices."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 5
+    }
+  },
+  {
+    "query_id": 6,
+    "question": "What are the two dogmas of environmental philosophy mentioned in the book?",
+    "answers": [
+      "The two dogmas of environmental philosophy are the dogma of pristine nature, which presumes that the best environment is one completely devoid of human impact, and the dogma of environmental impact, which assumes that the acceptability of an activity turns on the acceptability of the predicted outcome."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 6
+    }
+  },
+  {
+    "query_id": 7,
+    "question": "What are the benefits of direct marketing for small farmers, as highlighted in the book?",
+    "answers": [
+      "Direct marketing allows farmers to sell products directly to consumers, bypassing middlemen. This results in higher profits and greater control over pricing and product quality. It also fosters a direct relationship between farmers and consumers."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 7
+    }
+  },
+  {
+    "query_id": 8,
+    "question": "Who is the series editor of \"Culture of the Land\"?",
+    "answers": [
+      "The series editor is Norman Wirzba, from Duke University, North Carolina."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 8
+    }
+  },
+  {
+    "query_id": 9,
+    "question": "Describe the role of the varroa mite in the decline of honey bee populations.",
+    "answers": [
+      "The varroa mite is a parasitic pest that attaches itself to honey bees, feeding on their hemolymph and spreading viruses that can debilitate or kill the bees. It has been a major cause of honey bee mortality across the United States, contributing to the decline of both managed and wild bee populations."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 9
+    }
+  },
+  {
+    "query_id": 10,
+    "question": "What is the concept of \"intensity of grazing\" as defined in the book?",
+    "answers": [
+      "Intensity of grazing is defined as the product of stocking density per acre (or hectare) and the period of occupation of the paddocks, measuring the cumulative impact of grazing over time."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 10
+    }
+  },
+  {
+    "query_id": 11,
+    "question": "What are the environmental and ethical considerations in beekeeping, particularly regarding the use of pesticides and the welfare of bees?",
+    "answers": [
+      "Environmental and ethical considerations include minimizing the use of pesticides that can harm bees, ensuring bees have adequate forage and habitat, and maintaining the health and welfare of bees through proper management practices."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 11
+    }
+  },
+  {
+    "query_id": 12,
+    "question": "What are the environmental considerations in market farming?",
+    "answers": [
+      "Environmental considerations in market farming include preserving soil quality, managing water resources efficiently, and minimizing the use of chemicals. Sustainable practices such as organic farming, cover cropping, and integrated pest management are often employed to protect the environment."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 12
+    }
+  },
+  {
+    "query_id": 13,
+    "question": "What historical agricultural practices does Howard criticize, and why?",
+    "answers": [
+      "Howard criticizes the open-field system and the use of heavy soil-inverting plows, which he believes lead to soil exhaustion and erosion. He advocates for practices that maintain soil fertility and structure."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 13
+    }
+  },
+  {
+    "query_id": 14,
+    "question": "What is the primary motivation for writing \"Natural Beekeeping\"?",
+    "answers": [
+      "The primary motivation for writing \"Natural Beekeeping\" is to share insights and specific \"how to\" information on keeping bees in an ecological way, in the hope that others will find something of use that may be applied to their work in apiculture."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 14
+    }
+  },
+  {
+    "query_id": 15,
+    "question": "How does Growing Gardens support home gardeners in Portland, Oregon?",
+    "answers": [
+      "Growing Gardens supports home gardeners by installing the gardens, providing a start-up kit of seeds and tools, free workshops, a monthly newsletter, and a personal mentor who visits at least four times in the season."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 15
+    }
+  },
+  {
+    "query_id": 16,
+    "question": "How does the author define agripreneurship?",
+    "answers": [
+      "Agripreneurship is defined as the profitable marriage of agriculture and entrepreneurship, turning the farm into a business. It involves a mental attitude that combines philosophy, lifestyle, and business, aiming to break from tradition."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 16
+    }
+  },
+  {
+    "query_id": 17,
+    "question": "What is the role of cover crops in farming, according to the book?",
+    "answers": [
+      "Cover crops prevent erosion, shade out weeds, protect the soil from freezing and thawing, and reduce the use of herbicides and pesticides. They also improve soil health and microbiological activity, enhancing crop yield."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 17
+    }
+  },
+  {
+    "query_id": 18,
+    "question": "How does the book describe the influence of fertilizers on grass growth?",
+    "answers": [
+      "The book describes that fertilizers, particularly phospho-potassic and nitrogenous fertilizers, can significantly increase the vigor of grass growth and total annual yield of herbage."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 18
+    }
+  },
+  {
+    "query_id": 19,
+    "question": "How does the Stametsian Model for Permaculture integrate mushrooms into sustainable agriculture?",
+    "answers": [
+      "The Stametsian Model integrates mushrooms by utilizing them in the recycling of agricultural by-products, enhancing soil fertility, and promoting biodiversity within ecosystems."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 19
+    }
+  },
+  {
+    "query_id": 20,
+    "question": "How does a beekeeper typically control swarming in a colony?",
+    "answers": [
+      "Beekeepers control swarming by recognizing and relieving congestion in the hive, regular requeening, and understanding environmental conditions that encourage swarming. They also use manipulations such as removing adult bees or brood to prevent the swarm impulse from developing."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 20
+    }
+  },
+  {
+    "query_id": 21,
+    "question": "What is the \"Law of Return\" in agriculture, according to Howard?",
+    "answers": [
+      "The \"Law of Return\" refers to the principle that all organic wastes should be returned to the soil to maintain its fertility. This practice mimics natural cycles and ensures the sustainability of agricultural systems."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 21
+    }
+  },
+  {
+    "query_id": 22,
+    "question": "How does the book address the issue of grass tetany in livestock?",
+    "answers": [
+      "The book discusses grass tetany as a paralysis affecting animals at grass, often due to an ionic imbalance, particularly a low magnesium content in the blood. It suggests that intensive grazing systems and the use of young grass can increase the risk of tetany."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 22
+    }
+  },
+  {
+    "query_id": 23,
+    "question": "What are the financial considerations for starting a market farming business?",
+    "answers": [
+      "Starting a market farming business involves considering startup costs, potential earnings, and the need for outside income while the farm is being established. It's important to plan for slow growth to avoid debt and ensure financial sustainability."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 23
+    }
+  },
+  {
+    "query_id": 24,
+    "question": "What is the central theme of \"Growing a Revolution: Bringing Our Soil Back to Life\"?",
+    "answers": [
+      "The central theme of the book is the importance of soil health and the innovative farming practices that can restore and enhance it, ultimately leading to more sustainable and productive agriculture."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 24
+    }
+  },
+  {
+    "query_id": 25,
+    "question": "How does the book address the relationship between soil health and climate change?",
+    "answers": [
+      "The book addresses the relationship by highlighting how practices that improve soil health, such as increasing soil organic matter, can also sequester carbon from the atmosphere, helping to mitigate climate change."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 25
+    }
+  },
+  {
+    "query_id": 26,
+    "question": "What are the three principles of conservation agriculture as outlined in the book?",
+    "answers": [
+      "The three principles of conservation agriculture are: (1) minimum disturbance of the soil, (2) growing cover crops and retaining crop residue so that the soil is always covered, and (3) use of diverse crop rotations."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 26
+    }
+  },
+  {
+    "query_id": 27,
+    "question": "What are the potential downsides of beekeeping as described in the book?",
+    "answers": [
+      "The potential downsides of beekeeping include discomforts such as working in heat, dealing with bees buzzing around, and occasional infuriated bees finding ways to sting. There are also challenges like the weight of equipment and the need for regular attention to the bees."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 27
+    }
+  },
+  {
+    "query_id": 28,
+    "question": "What are the common reasons people get into market farming?",
+    "answers": [
+      "People get into market farming for reasons such as loving to grow plants, appreciating good food, wanting to be their own boss, enjoying working outdoors, and wanting to contribute to more sustainable agriculture."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 28
+    }
+  },
+  {
+    "query_id": 29,
+    "question": "What is the role of draft animals in sustainable farming, as discussed in the book?",
+    "answers": [
+      "Draft animals can be a viable power source for small farms, especially those with limited acreage. They are cost-effective and environmentally friendly, though they require time to learn and manage effectively."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 29
+    }
+  },
+  {
+    "query_id": 30,
+    "question": "What are the primary motivations for people to grow their own vegetables according to the National Gardening Association?",
+    "answers": [
+      "According to the National Gardening Association, most gardeners are motivated to grow their own vegetables because they believe they will have better quality, taste, and nutrition."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 30
+    }
+  },
+  {
+    "query_id": 31,
+    "question": "What are the three main reasons people choose to farm, as identified by the Rural Sociology Department at the University of Missouri in the 1950s?",
+    "answers": [
+      "The three main reasons are: \"I like to work outdoors,\" \"It's a good place to raise my children,\" and \"I'll always have a place to live and food to eat.\""
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 31
+    }
+  },
+  {
+    "query_id": 32,
+    "question": "What are some of the historical chores mentioned in the book that helped shape the character and skills of young people in the past?",
+    "answers": [
+      "Historical chores included chopping and gathering firewood, splitting wood for heat, picking up cow dung, and providing animal protein for chickens in the winter. These chores taught young people valuable skills, responsibility, and a sense of contribution to the household."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 32
+    }
+  },
+  {
+    "query_id": 33,
+    "question": "How has the rise of the almond industry affected commercial beekeepers like John Miller?",
+    "answers": [
+      "The rise of the almond industry has been both a boon and a bane for commercial beekeepers. On one hand, it provides a lucrative market for pollination services, allowing beekeepers to make a significant profit during the almond bloom. On the other hand, the intensive demands of almond pollination, including the need to move bees long distances and the stress of early spring pollination, have contributed to the decline of bee health and the emergence of CCD."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 33
+    }
+  },
+  {
+    "query_id": 34,
+    "question": "What are the benefits of including agriculture in planned urban developments as discussed in the book?",
+    "answers": [
+      "Including agriculture in planned urban developments can enhance community aesthetics, provide local food sources, create green jobs, and foster a sense of community. It also contributes to the resilience of urban food systems."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 34
+    }
+  },
+  {
+    "query_id": 35,
+    "question": "How does Ross Conrad describe the relationship between the honey bee and the plant kingdom?",
+    "answers": [
+      "Ross Conrad describes the relationship between the honey bee and the plant kingdom as a powerful and intricate orchestration of interdependence and cooperation, where the bee collects nectar and pollen from flowers, contributing to the abundance of the natural world through pollination."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 35
+    }
+  },
+  {
+    "query_id": 36,
+    "question": "What is the significance of soil organic matter in agriculture, as discussed in the book?",
+    "answers": [
+      "Soil organic matter is significant because it feeds the microbial life that helps make and keep soil fertile. It also improves soil structure, water infiltration, and nutrient cycling, which are essential for sustainable agriculture."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 36
+    }
+  },
+  {
+    "query_id": 37,
+    "question": "What role does agriculture play in environmental sustainability according to the book?",
+    "answers": [
+      "Agriculture plays a key role in environmental sustainability as it is a keystone for human-environment interactions. It represents the ensemble of ways in which the human species both shapes and is shaped by the ecosystems it inhabits, and sustainable land use cannot be thought of strictly as a matter of protecting island ecosystems from all human use."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 37
+    }
+  },
+  {
+    "query_id": 38,
+    "question": "What is the significance of crop rotation in sustainable farming?",
+    "answers": [
+      "Crop rotation helps maintain soil fertility, reduce pest and disease cycles, and improve soil structure. It also spreads out the workload throughout the season, making farming more efficient and sustainable."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 38
+    }
+  },
+  {
+    "query_id": 39,
+    "question": "What is the importance of farm income for small farmers, according to the author?",
+    "answers": [
+      "The author emphasizes that for a farm to be sustainable, it must be profitable. Profits are necessary to pay bills and improve the farm's fertility, ensuring its long-term viability."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 39
+    }
+  },
+  {
+    "query_id": 40,
+    "question": "How does the book differentiate between continuous grazing and rational grazing?",
+    "answers": [
+      "Continuous grazing involves grazing without rest periods, leading to low productivity, while rational grazing involves allowing optimal rest periods between grazing, resulting in higher productivity and better management of the grassland."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 40
+    }
+  },
+  {
+    "query_id": 41,
+    "question": "How does the author suggest managing risks in farming?",
+    "answers": [
+      "The author recommends diversifying enterprises, direct marketing, and adding value to products to manage risks. These strategies help spread risk and ensure a steady income, even if one crop or market fails."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 41
+    }
+  },
+  {
+    "query_id": 42,
+    "question": "How does Howard view the impact of artificial fertilizers on agriculture?",
+    "answers": [
+      "Howard views artificial fertilizers as detrimental to long-term soil health, leading to a reliance on chemical inputs and the neglect of natural soil processes that maintain fertility and structure."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 42
+    }
+  },
+  {
+    "query_id": 43,
+    "question": "What role do community gardens play in the broader food system according to the book?",
+    "answers": [
+      "Community gardens play a role in building community relationships, promoting social and physical health, and fostering community resilience. They also serve as a stepping-stone to broader community food action by increasing awareness and interest in local food production."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 43
+    }
+  },
+  {
+    "query_id": 44,
+    "question": "What role do mushrooms play in the environment, particularly in terms of waste decomposition?",
+    "answers": [
+      "Mushrooms are premier recyclers, breaking down organic waste and returning essential nutrients to the ecosystem, thereby aiding in the decomposition process."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 44
+    }
+  },
+  {
+    "query_id": 45,
+    "question": "How does the book define sustainability?",
+    "answers": [
+      "The book defines sustainability as a moral ideal that illuminates human aims and aspirations while remaining open-ended or vague in their details. It connects us to the hopes, aspirations, and wisdom of ages past, while leaving room for discovery, innovation, testing, and revision in the future."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 45
+    }
+  },
+  {
+    "query_id": 46,
+    "question": "How does the author suggest managing machinery on a small farm?",
+    "answers": [
+      "The author advises that machinery should save time or reduce the need for additional labor. If a tool or piece of machinery does not meet these criteria, it is unnecessary. The cost of machinery must be balanced against the time saved and the additional work that can be accomplished with that time."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 46
+    }
+  },
+  {
+    "query_id": 47,
+    "question": "How does the Goat Justice League advocate for urban goats in Seattle?",
+    "answers": [
+      "The Goat Justice League advocates for urban goats by campaigning to legalize backyard goats, providing education and support for homeowners interested in raising goats, and arguing for the benefits of goats in urban settings."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 47
+    }
+  },
+  {
+    "query_id": 48,
+    "question": "What are some challenges faced by market farmers in terms of food safety?",
+    "answers": [
+      "Market farmers face challenges such as complying with food safety regulations, which may require certification and adherence to strict practices. This includes using potable water for irrigation and washing produce, and keeping records of all production inputs and processes."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 48
+    }
+  },
+  {
+    "query_id": 49,
+    "question": "How does the annual migration of beekeepers and their bees impact the agricultural system in the United States?",
+    "answers": [
+      "The annual migration of beekeepers and their bees is crucial for the pollination of various crops, ensuring that farmers can meet the needs of the nation's grocery shoppers. Without the bees' pollination services, many of our nation's crops would produce only a small fraction of the harvest they generate with the help of the honey bee."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 49
+    }
+  },
+  {
+    "query_id": 50,
+    "question": "What are the potential drawbacks of using plastic hive components in beekeeping?",
+    "answers": [
+      "The potential drawbacks of using plastic hive components include increased reliance on petroleum, potential release of pollutants and toxins during manufacturing, disposal challenges due to non-biodegradability, and the bees' preference for natural materials like beeswax."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 50
+    }
+  },
+  {
+    "query_id": 51,
+    "question": "How does Ross Conrad suggest obtaining bees for beginners?",
+    "answers": [
+      "Ross Conrad suggests that beginners obtain bees by purchasing a nucleus colony or nuc from a local bee supplier, as this method is easier and less challenging than starting with packaged bees, and it allows for immediate transfer into full-sized equipment."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 51
+    }
+  },
+  {
+    "query_id": 52,
+    "question": "What are the benefits and challenges of using top bar hives compared to Langstroth hives?",
+    "answers": [
+      "The benefits of top bar hives include simplicity of design, ease of construction, and reduced disturbance to the hive during inspections. Challenges include the tricky handling of top bar combs without breaking them and the limited amount of room for honey storage, which can lead to additional feeding needs."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 52
+    }
+  },
+  {
+    "query_id": 53,
+    "question": "What is the significance of the \"P\" Value System in mushroom strain preservation?",
+    "answers": [
+      "The \"P\" Value System helps track the number of generations a mushroom strain has gone through since its initial isolation, aiding in the management of strain purity and viability."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 53
+    }
+  },
+  {
+    "query_id": 54,
+    "question": "How does Howard's approach to agriculture differ from conventional industrial agriculture?",
+    "answers": [
+      "Howard's approach emphasizes natural processes, soil health, and the integration of crop and livestock systems, in contrast to the industrial agriculture model that prioritizes efficiency, monoculture, and chemical inputs at the expense of environmental health."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 54
+    }
+  },
+  {
+    "query_id": 55,
+    "question": "What are the other hive products besides honey, and what are their potential uses?",
+    "answers": [
+      "Other hive products include beeswax, pollen, propolis, royal jelly, and bee venom. Potential uses range from natural health supplements and apitherapy treatments to industrial applications like candle-making and cosmetics."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 55
+    }
+  },
+  {
+    "query_id": 56,
+    "question": "What are some strategies for marketing farm-grown products?",
+    "answers": [
+      "Strategies for marketing farm-grown products include selling at farmers markets, participating in CSAs, selling to restaurants, and setting up on-farm markets or farm stands. Building a brand through a unique farm name, logo, and consistent marketing materials can also help attract customers."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 56
+    }
+  },
+  {
+    "query_id": 57,
+    "question": "What are microgreens and why are they considered high-value crops?",
+    "answers": [
+      "Microgreens are tiny seedlings of salad greens cut at the first true leaf stage of growth. They are considered high-value crops because chefs use them for garnish and they can command high prices, sometimes up to $75 per pound."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 57
+    }
+  },
+  {
+    "query_id": 58,
+    "question": "What are the advantages of part-time farming over full-time farming?",
+    "answers": [
+      "Part-time farming allows for financial safety by combining farming with a town job or seasonal off-farm labor. It reduces the risks involved in a weather-dependent business and provides the financial security and borrowing power of a steady paycheck."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 58
+    }
+  },
+  {
+    "query_id": 59,
+    "question": "What are the six vectors of contamination in mushroom cultivation, and why are they significant?",
+    "answers": [
+      "The six vectors of contamination are the cultivator, air, media, tools, inoculum, and mobile contamination units. They are significant because they represent potential pathways for introducing harmful microorganisms into sterile environments."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 59
+    }
+  },
+  {
+    "query_id": 60,
+    "question": "How does the book contrast industrial and agrarian philosophies of agriculture?",
+    "answers": [
+      "The book contrasts industrial philosophy of agriculture, which sees agriculture as just another sector in the industrial economy, with agrarian philosophy, which gives agriculture a moral significance that extends well beyond its capacity to produce food and fiber goods. Agrarian philosophy emphasizes concepts of virtue and moral character, and celebrates an agriculture shockingly unlike the agriculture that industrialized countries have today."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 60
+    }
+  },
+  {
+    "query_id": 61,
+    "question": "How can beekeepers treat colonies for diseases such as American foulbrood and nosema disease?",
+    "answers": [
+      "Beekeepers can treat colonies for American foulbrood with Terramycin, an antibiotic that helps the brood withstand the infection. For nosema disease, treatment with Fumidil B, an antibiotic administered in sugar syrup, helps bring the infection under control."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 61
+    }
+  },
+  {
+    "query_id": 62,
+    "question": "How does the P-Patch Community Gardening Program in Seattle manage its large network of gardens?",
+    "answers": [
+      "The P-Patch Community Gardening Program manages its network of gardens by cultivating and working with volunteer citizen leaders, providing resources such as mapping and problem-solving assistance, and ensuring that plots are maintained properly."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 62
+    }
+  },
+  {
+    "query_id": 63,
+    "question": "How does the author suggest evaluating land for farming?",
+    "answers": [
+      "The author recommends assessing the land's size, soil type, water availability, slope, and climate. Understanding these factors helps determine what crops and livestock are best suited for the property."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 63
+    }
+  },
+  {
+    "query_id": 64,
+    "question": "How does Howard propose to combat soil erosion and alkali land formation?",
+    "answers": [
+      "Howard proposes afforestation, the use of cover crops, and the maintenance of soil humus content to combat soil erosion. For alkali land, he suggests proper irrigation practices, soil aeration, and the addition of organic matter."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 64
+    }
+  },
+  {
+    "query_id": 65,
+    "question": "How can farmers manage weeds in their fields?",
+    "answers": [
+      "Farmers can manage weeds through regular cultivation, using tools like hoes and wheel hoes to remove weeds when they are small. Flame weeding is also effective for controlling weeds in certain crops, as it heats the weeds to the point where their cells burst."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 65
+    }
+  },
+  {
+    "query_id": 66,
+    "question": "What examples does the book provide of successful soil restoration by farmers?",
+    "answers": [
+      "The book provides numerous examples of successful soil restoration by farmers who have adopted regenerative practices, such as Dwayne Beck in South Dakota and Kofi Boa in Ghana, who have increased soil fertility, reduced input costs, and improved crop yields."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 66
+    }
+  },
+  {
+    "query_id": 67,
+    "question": "What is the significance of the varroa mite in the beekeeping industry?",
+    "answers": [
+      "The varroa mite, specifically _Varroa destructor_, has become the bane of the beekeeping industry in most of the world, causing significant hive losses and prompting the use of toxic chemical compounds to control its spread, which has led to resistance and other issues."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 67
+    }
+  },
+  {
+    "query_id": 68,
+    "question": "How can farmers ensure they are selling high-quality produce to restaurants?",
+    "answers": [
+      "Farmers can ensure high-quality produce by growing specialty varieties that chefs prefer, ensuring the produce is clean, trimmed, and packed professionally, and being flexible and reliable in their delivery schedules. Building a good relationship with chefs is also crucial."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 68
+    }
+  },
+  {
+    "query_id": 69,
+    "question": "What are the methods for removing honey from the supers, and what precautions should be taken during this process?",
+    "answers": [
+      "Methods for removing honey from the supers include using a bee brush, bee escape, escape board, fume board, or blower. Precautions include protecting the honey from bees trying to recover it, ensuring the honey is kept at room temperature to facilitate extraction, and preventing moisture absorption to avoid fermentation."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 69
+    }
+  },
+  {
+    "query_id": 70,
+    "question": "What is the primary definition of grazing according to the book?",
+    "answers": [
+      "Grazing is defined as the meeting of cow and grass, emphasizing the interaction between the animal and the plant."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 70
+    }
+  },
+  {
+    "query_id": 71,
+    "question": "How can market farmers extend their growing season?",
+    "answers": [
+      "Market farmers can extend their growing season using techniques such as growing in greenhouses or hoophouses, using black plastic or IRT mulch, and growing under floating row cover. These methods protect crops from early and late frosts and allow for year-round production."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 71
+    }
+  },
+  {
+    "query_id": 72,
+    "question": "What are the four universal laws of rational grazing according to the book?",
+    "answers": [
+      "The four universal laws are: (1) sufficient rest period for grass to achieve maximum productivity, (2) short total occupation periods to avoid overgrazing, (3) helping animals with high nutritional needs to harvest the most grass, and (4) limiting the stay of cows on the same paddock to maintain regular milk yields."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 72
+    }
+  },
+  {
+    "query_id": 73,
+    "question": "How does the Industrial Revolution impact agriculture according to Howard?",
+    "answers": [
+      "The Industrial Revolution led to the intensification of agriculture, with a focus on profit and efficiency at the expense of soil health. This resulted in the over-exploitation of soil fertility and the introduction of artificial fertilizers."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 73
+    }
+  },
+  {
+    "query_id": 74,
+    "question": "How does the annual population cycle of a colony affect beekeeping practices, and what are the implications for winter management?",
+    "answers": [
+      "The annual population cycle affects beekeeping practices by dictating the timing of activities such as swarm control, honey production, and winter preparation. Winter management implications include ensuring the colony has enough food reserves, maintaining a sufficient population to generate heat, and protecting the hive from the elements."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 74
+    }
+  },
+  {
+    "query_id": 75,
+    "question": "What is the significance of the mycorrhizal association in plant health, as per Howard's research?",
+    "answers": [
+      "The mycorrhizal association is crucial for plant health as it facilitates the direct transfer of nutrients from the soil to the plant, enhancing resistance to disease and improving overall growth and productivity."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 75
+    }
+  },
+  {
+    "query_id": 76,
+    "question": "What is the main mission of Storey Publishing?",
+    "answers": [
+      "The mission of Storey Publishing is to serve their customers by publishing practical information that encourages personal independence in harmony with the environment."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 76
+    }
+  },
+  {
+    "query_id": 77,
+    "question": "How much money can a market farmer expect to make per acre?",
+    "answers": [
+      "The amount of money a market farmer can make per acre varies. For example, mixed vegetables might yield $20,000 per acre, while high-dollar salad mix, herbs, or cut flowers could yield $35,000 an acre or more."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 77
+    }
+  },
+  {
+    "query_id": 78,
+    "question": "How does the book suggest adapting agrarian ideals to contemporary urban life?",
+    "answers": [
+      "The book suggests adapting agrarian ideals to contemporary urban life by focusing on food rather than farming, updating them in light of contemporary environmental science, and modifying them with respect to some of the less savory ways in which agrarian thinking has rationalized racist, paternalist, and colonial ideologies. It recommends a fresh look at the moral significance of food and farming, informed by the way agrarian ideals of past times were taken up by societies in action-guiding ways."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 78
+    }
+  },
+  {
+    "query_id": 79,
+    "question": "What role does compost play in Howard's agricultural system?",
+    "answers": [
+      "Compost is central to Howard's system as it restores and maintains soil fertility by returning organic matter to the land. It is a key component in preventing soil degradation and supporting sustainable agriculture."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 79
+    }
+  },
+  {
+    "query_id": 80,
+    "question": "What does Salatin propose as a solution to the problem of food packaging waste in the airline industry?",
+    "answers": [
+      "Salatin proposes that airlines should offer compostable containers and reusable vessels for water, reducing the amount of plastic and aluminum waste. He suggests serving meals that require less packaging and promoting a more sustainable approach to in-flight dining."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 80
+    }
+  },
+  {
+    "query_id": 81,
+    "question": "What is the role of communication in a bee colony, particularly the 'dance language'?",
+    "answers": [
+      "The 'dance language' of bees is a form of communication where bees convey information about the location of food sources. This helps the colony efficiently exploit their neighborhood for the most rewarding forage sources."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 81
+    }
+  },
+  {
+    "query_id": 82,
+    "question": "What are the recommended steps for a beginner to get started with beekeeping, and why is it advised to start with new equipment?",
+    "answers": [
+      "Recommended steps for beginners include starting with new equipment of standard design, not experimenting during the first year, learning and using basic methods, starting with Italian bees, and acquiring bees in the form of a package or nucleus hive. Starting with new equipment is advised to avoid potential problems associated with used or homemade equipment."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 82
+    }
+  },
+  {
+    "query_id": 83,
+    "question": "How does the author suggest diversifying a farm to ensure sustainability?",
+    "answers": [
+      "The author recommends raising both crops and livestock, and more than one kind of each. This diversity provides economic stability by ensuring income from different sources at different times of the year, reducing reliance on any single product or market."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 83
+    }
+  },
+  {
+    "query_id": 84,
+    "question": "What is the role of a CSA (Community-Supported Agriculture) in market farming?",
+    "answers": [
+      "A CSA involves consumers directly supporting a farm by purchasing shares of the farm's produce in advance. This provides the farmer with a stable income and helps the community by ensuring a supply of fresh, locally grown food."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 84
+    }
+  },
+  {
+    "query_id": 85,
+    "question": "What are the nutritional needs of honey bees, and how do they meet them?",
+    "answers": [
+      "Honey bees need carbohydrates from nectar, protein from pollen, vitamins, minerals, and water. They meet these needs by foraging for nectar and pollen from flowers and collecting water from various sources."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 85
+    }
+  },
+  {
+    "query_id": 86,
+    "question": "What is the significance of Thomas Jefferson in the context of agrarian ideals and sustainability?",
+    "answers": [
+      "Thomas Jefferson is significant as the emblematic progenitor of agrarian ideals in the United States. His shrewd wisdom in praising farmers as \"the most valuable citizens\" during the Revolution and early years of statehood serves as a model for present-day advocates of sustainability."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 86
+    }
+  },
+  {
+    "query_id": 87,
+    "question": "What are the benefits of using grain spawn in mushroom cultivation?",
+    "answers": [
+      "Grain spawn serves as a convenient and efficient medium for distributing mushroom mycelium, promoting rapid colonization and reducing the risk of contamination."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 87
+    }
+  },
+  {
+    "query_id": 88,
+    "question": "What is the importance of setting goals for a farming business, according to the author?",
+    "answers": [
+      "Setting clear, written goals helps farmers understand where they are going and how to get there. It provides a roadmap for success, ensuring that all efforts are directed towards achieving specific objectives."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 88
+    }
+  },
+  {
+    "query_id": 89,
+    "question": "How does Salatin describe the transition from an agrarian to an industrial society in terms of food production and consumption?",
+    "answers": [
+      "Salatin describes the transition as a shift from localized, diverse, and sustainable food production to a centralized, industrial model that relies on long-distance transportation, monoculture, and synthetic inputs. This change has led to a disconnect between producers and consumers and a loss of food security."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 89
+    }
+  },
+  {
+    "query_id": 90,
+    "question": "What strategies does the South End / Lower Roxbury Open Space Land Trust use to preserve community gardens?",
+    "answers": [
+      "The South End / Lower Roxbury Open Space Land Trust uses strategies such as forming a neighborhood-based nonprofit land trust, acquiring land outright or through long-term leases, and managing conservation easements to preserve community gardens."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 90
+    }
+  },
+  {
+    "query_id": 91,
+    "question": "What is the concept of a stale seedbed in market farming?",
+    "answers": [
+      "A stale seedbed involves tilling the soil, irrigating to encourage weed seeds to germinate, and then eradicating the weed seedlings before planting the main crop. This ensures a weed-free seedbed for the crop seeds to germinate and establish."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 91
+    }
+  },
+  {
+    "query_id": 92,
+    "question": "How does the book suggest we can reverse the trend of soil degradation?",
+    "answers": [
+      "The book suggests that we can reverse soil degradation by adopting practices such as no-till farming, using cover crops, and implementing diverse crop rotations. These practices help to reduce erosion, build soil organic matter, and promote soil health."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 92
+    }
+  },
+  {
+    "query_id": 93,
+    "question": "Can mushrooms be used for bioremediation, and if so, how?",
+    "answers": [
+      "Yes, mushrooms can be used for bioremediation by breaking down pollutants like hydrocarbons and heavy metals, detoxifying contaminated environments."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 93
+    }
+  },
+  {
+    "query_id": 94,
+    "question": "What technological innovations in beekeeping have had the most significant impact on the industry?",
+    "answers": [
+      "The most significant technological innovation in beekeeping is the Langstroth hive, invented by Lorenzo Lorraine Langstroth. This hive design, featuring movable frames, allowed beekeepers to inspect and manage colonies without destroying the honeycomb, significantly improving the efficiency and profitability of beekeeping."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 94
+    }
+  },
+  {
+    "query_id": 95,
+    "question": "What are the two parasitic mites that have become a serious problem for honey bees in North America, and what are their impacts?",
+    "answers": [
+      "The two parasitic mites are the honey bee tracheal mite (_Acarapis woodii_) and the Varroa mite (_Varroa jacobsonii_). Their impacts include shortening the lives of bees, weakening colonies, and causing significant losses of colonies."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 95
+    }
+  },
+  {
+    "query_id": 96,
+    "question": "What is the primary focus of the book \"Culture of the Land: A Series in the New Agrarianism\"?",
+    "answers": [
+      "The primary focus of the book is to explore and articulate a new agrarianism that considers the health of habitats and human communities together, demonstrating how agrarian insights and responsibilities can be applied in diverse fields such as history, science, art, politics, economics, literature, philosophy, religion, urban planning, education, and public policy."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 96
+    }
+  },
+  {
+    "query_id": 97,
+    "question": "What is the significance of John Miller's purchase of a Corvette in the context of his beekeeping career?",
+    "answers": [
+      "John Miller's purchase of a Corvette symbolizes his midlife crisis and his futile attempt to stave off the inevitability of death, which is a constant presence in his beekeeping life due to the high mortality rate of bees."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 97
+    }
+  },
+  {
+    "query_id": 98,
+    "question": "What is the significance of the \"hygiene hypothesis\" and how does it relate to the modern lifestyle?",
+    "answers": [
+      "The \"hygiene hypothesis\" suggests that modern lifestyles, which are often characterized by reduced exposure to dirt and pathogens, may contribute to an increase in allergies and autoimmune diseases. Salatin argues that traditional chores and activities that expose children to a variety of microbes can help build a stronger immune system."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 98
+    }
+  },
+  {
+    "query_id": 99,
+    "question": "How does the book challenge the conventional wisdom about industrialized agrochemical agriculture?",
+    "answers": [
+      "The book challenges the notion that industrialized agrochemical agriculture feeds the world and is more efficient. It argues that family farms produce the majority of the world's food and that small, diversified farms are more efficient in terms of total output per hectare."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 99
+    }
+  },
+  {
+    "query_id": 100,
+    "question": "What is the role of smoke in beekeeping, and how should it be used effectively?",
+    "answers": [
+      "The role of smoke in beekeeping is to confuse and distract the bees, disrupting their communication and reducing their defensive responses. Smoke should be used effectively by lighting it properly, using the right amount, and directing it strategically to avoid over-smoking or under-smoking the hive."
+    ],
+    "metadata": {
+      "source_file": "agriculture.jsonl",
+      "row_index": 100
+    }
+  }
+]

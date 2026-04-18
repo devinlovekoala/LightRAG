@@ -1,0 +1,3 @@
+variant,total_edges,correct,wrong,ambiguous,strict_precision,lenient_precision,roc_auc,average_precision,verdict_supported,verdict_partially_supported,verdict_not_supported,verdict_contradicted
+baseline,100,15,50,35,0.15,0.5,0.52,0.5363744324090042,56,31,13,0
+noisefilter,100,22,43,35,0.22,0.57,0.48150105708245244,0.43163668372166486,49,29,22,0
