@@ -84,3 +84,8 @@ CLAUDE.md
 
 # Google Jules
 .jules/
+
+# Large raw corpora — too big for GitHub (>50 MB); keep only mix.jsonl
+datasets/raw/agriculture.jsonl
+datasets/raw/cs.jsonl
+datasets/raw/legal.jsonl
