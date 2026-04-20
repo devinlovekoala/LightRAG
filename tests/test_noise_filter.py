@@ -234,6 +234,55 @@ def test_confidence_scoring_penalizes_conflicting_relations(tmp_path):
 
 
 @pytest.mark.offline
+def test_semantic_scoring_batches_embedding_requests():
+    from lightrag.noisefilter.confidence import ConfidenceScoringEngine, EdgeEvidence
+
+    batch_sizes = []
+
+    async def limited_embedding(texts, **_kwargs):
+        batch_sizes.append(len(texts))
+        if len(texts) > 4:
+            raise ValueError("batch size is invalid")
+
+        vectors = []
+        for text in texts:
+            normalized = text.lower()
+            if normalized.startswith("src"):
+                vectors.append(np.array([0.0, 0.0, 0.0], dtype=np.float32))
+            elif normalized.startswith("tgt") or "supports" in normalized:
+                vectors.append(np.array([1.0, 0.0, 0.0], dtype=np.float32))
+            else:
+                vectors.append(np.array([0.5, 0.0, 0.0], dtype=np.float32))
+        return np.stack(vectors)
+
+    evidences = {
+        (f"src-{index}", f"tgt-{index}"): EdgeEvidence(
+            src_id=f"src-{index}",
+            tgt_id=f"tgt-{index}",
+            edge_data={
+                "keywords": "supports",
+                "description": f"src-{index} supports tgt-{index}",
+            },
+            relation_mentions=[],
+        )
+        for index in range(5)
+    }
+
+    async def _run():
+        scorer = ConfidenceScoringEngine(
+            embedding_model=limited_embedding,
+            semantic_embedding_batch_size=4,
+        )
+        return await scorer._compute_semantic_scores(evidences)
+
+    scores = asyncio.run(_run())
+
+    assert batch_sizes == [4, 4, 4, 3]
+    assert set(scores) == set(evidences)
+    assert all(score > 0 for score in scores.values())
+
+
+@pytest.mark.offline
 def test_noise_aware_retriever_soft_and_hard_modes():
     from lightrag.noisefilter.retriever import NoiseAwareRetriever
 

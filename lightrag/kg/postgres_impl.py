@@ -71,6 +71,13 @@ _VECTOR_INDEX_SUFFIXES = [
 ]
 
 
+def _env_flag(name: str, default: bool = False) -> bool:
+    value = os.environ.get(name)
+    if value is None:
+        return default
+    return value.strip().lower() in {"1", "true", "yes", "on"}
+
+
 def _safe_index_name(table_name: str, index_suffix: str) -> str:
     """
     Generate a PostgreSQL-safe index name that won't be truncated.
@@ -673,14 +680,15 @@ class PostgreSQLDB:
         """
         try:
             # Apache AGE functions are exposed after loading the extension library per session.
-            try:
-                await connection.execute("LOAD 'age'")  # type: ignore
-            except asyncpg.exceptions.InsufficientPrivilegeError:
-                # Some managed PostgreSQL setups deny LOAD for non-superusers.
-                # In that case we continue and rely on server-side preloading.
-                logger.warning(
-                    "PostgreSQL user cannot LOAD 'age'; expecting AGE to be preloaded by server config"
-                )
+            if not _env_flag("POSTGRES_AGE_PRELOADED"):
+                try:
+                    await connection.execute("LOAD 'age'")  # type: ignore
+                except asyncpg.exceptions.InsufficientPrivilegeError:
+                    # Some managed PostgreSQL setups deny LOAD for non-superusers.
+                    # In that case we continue and rely on server-side preloading.
+                    logger.warning(
+                        "PostgreSQL user cannot LOAD 'age'; expecting AGE to be preloaded by server config"
+                    )
             await connection.execute(  # type: ignore
                 'SET search_path = ag_catalog, "$user", public'
             )

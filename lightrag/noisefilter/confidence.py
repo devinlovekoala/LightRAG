@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from collections import Counter
 from dataclasses import dataclass
 from typing import Any, Iterable
@@ -28,6 +29,16 @@ def _coerce_float(value: Any, default: float) -> float:
         return float(value)
     except (TypeError, ValueError):
         return default
+
+
+def _coerce_positive_int(value: Any, default: int) -> int:
+    try:
+        if value is None:
+            return default
+        coerced = int(value)
+    except (TypeError, ValueError):
+        return default
+    return coerced if coerced > 0 else default
 
 
 def compute_freq_score(support_count: int, saturation: int = 3) -> float:
@@ -63,6 +74,7 @@ class ConfidenceScoringEngine:
         w_sem: float = 0.2,
         freq_saturation: int = 3,
         semantic_fallback_score: float = 0.5,
+        semantic_embedding_batch_size: int | None = None,
     ) -> None:
         self.embedding_model = embedding_model
         self.relation_chunks_storage = relation_chunks_storage
@@ -73,6 +85,22 @@ class ConfidenceScoringEngine:
         self.w_sem = w_sem
         self.freq_saturation = max(1, freq_saturation)
         self.semantic_fallback_score = max(0.0, min(1.0, semantic_fallback_score))
+        self.semantic_embedding_batch_size = self._resolve_semantic_batch_size(
+            semantic_embedding_batch_size
+        )
+
+    def _resolve_semantic_batch_size(self, explicit_value: int | None) -> int:
+        if explicit_value is not None:
+            return _coerce_positive_int(explicit_value, 10)
+
+        env_value = os.getenv("NOISE_FILTER_SEMANTIC_EMBEDDING_BATCH_NUM")
+        if env_value:
+            return _coerce_positive_int(env_value, 10)
+
+        embedding_batch_num = _coerce_positive_int(
+            os.getenv("EMBEDDING_BATCH_NUM"), 10
+        )
+        return min(embedding_batch_num, 10)
 
     async def score_and_update_graph(
         self,
@@ -390,7 +418,7 @@ class ConfidenceScoringEngine:
             return scores
 
         try:
-            embeddings = np.asarray(await self.embedding_model(texts))
+            embeddings = await self._embed_texts_in_batches(texts)
         except Exception as exc:
             logger.warning("NoiseFilter semantic scoring fell back to default: %s", exc)
             return scores
@@ -414,3 +442,19 @@ class ConfidenceScoringEngine:
             scores[edge_pair] = max(cosine, 0.0)
 
         return scores
+
+    async def _embed_texts_in_batches(self, texts: list[str]) -> np.ndarray:
+        batches = [
+            texts[index : index + self.semantic_embedding_batch_size]
+            for index in range(0, len(texts), self.semantic_embedding_batch_size)
+        ]
+        embedding_batches = []
+        for batch in batches:
+            batch_embeddings = np.asarray(await self.embedding_model(batch))
+            if batch_embeddings.ndim == 1:
+                batch_embeddings = batch_embeddings.reshape(1, -1)
+            embedding_batches.append(batch_embeddings)
+
+        if not embedding_batches:
+            return np.empty((0, 0), dtype=np.float32)
+        return np.concatenate(embedding_batches, axis=0)

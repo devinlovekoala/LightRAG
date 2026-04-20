@@ -34,6 +34,14 @@ def make_graph_storage() -> PGGraphStorage:
     return storage
 
 
+class FakeAgeConnection:
+    def __init__(self):
+        self.statements: list[str] = []
+
+    async def execute(self, statement: str):
+        self.statements.append(statement)
+
+
 # ---------------------------------------------------------------------------
 # _normalize_node_id (still used by write paths: remove_nodes, upsert_node, etc.)
 # ---------------------------------------------------------------------------
@@ -56,6 +64,20 @@ def test_normalize_both_special_chars():
         PGGraphStorage._normalize_node_id('say \\"hello\\"')
         == 'say \\\\\\"hello\\\\\\"'
     )
+
+
+@pytest.mark.asyncio
+async def test_configure_age_skips_load_when_age_is_preloaded(monkeypatch):
+    from lightrag.kg.postgres_impl import PostgreSQLDB
+
+    connection = FakeAgeConnection()
+    monkeypatch.setenv("POSTGRES_AGE_PRELOADED", "true")
+
+    await PostgreSQLDB.configure_age(connection, "test_graph")
+
+    assert "LOAD 'age'" not in connection.statements
+    assert 'SET search_path = ag_catalog, "$user", public' in connection.statements
+    assert "select create_graph('test_graph')" in connection.statements
 
 
 # ---------------------------------------------------------------------------

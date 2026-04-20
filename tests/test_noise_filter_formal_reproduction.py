@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import asyncio
-from pathlib import Path
 
 import pytest
 
@@ -139,6 +138,74 @@ def test_build_runtime_overrides_rejects_non_positive_values():
         build_runtime_overrides(chunk_size=0)
 
 
+def test_build_runtime_overrides_allows_zero_gleaning():
+    from lightrag.noisefilter.reproduction import build_runtime_overrides
+
+    overrides = build_runtime_overrides(max_gleaning=0)
+
+    assert overrides == {"entity_extract_max_gleaning": 0}
+
+
+def test_build_storage_overrides_reads_formal_env(monkeypatch):
+    from lightrag.noisefilter.reproduction import build_storage_overrides
+
+    monkeypatch.setenv("LIGHTRAG_KV_STORAGE", "PGKVStorage")
+    monkeypatch.setenv("LIGHTRAG_VECTOR_STORAGE", "QdrantVectorDBStorage")
+    monkeypatch.setenv("LIGHTRAG_GRAPH_STORAGE", "PGGraphStorage")
+    monkeypatch.setenv("LIGHTRAG_DOC_STATUS_STORAGE", "PGDocStatusStorage")
+    monkeypatch.setenv("WORKSPACE", "noisefilter_mix_stage2")
+
+    assert build_storage_overrides() == {
+        "kv_storage": "PGKVStorage",
+        "vector_storage": "QdrantVectorDBStorage",
+        "graph_storage": "PGGraphStorage",
+        "doc_status_storage": "PGDocStatusStorage",
+        "workspace": "noisefilter_mix_stage2",
+    }
+
+
+@pytest.mark.asyncio
+async def test_create_formal_rag_passes_env_storage_to_lightrag(monkeypatch, tmp_path):
+    import lightrag
+    import lightrag.noisefilter.reproduction as reproduction
+
+    captured: dict = {}
+
+    class FakeRAG:
+        def __init__(self, **kwargs):
+            captured.update(kwargs)
+            self.addon_params = {}
+
+        async def initialize_storages(self):
+            captured["initialized"] = True
+
+    monkeypatch.setenv("LIGHTRAG_KV_STORAGE", "PGKVStorage")
+    monkeypatch.setenv("LIGHTRAG_VECTOR_STORAGE", "QdrantVectorDBStorage")
+    monkeypatch.setenv("LIGHTRAG_GRAPH_STORAGE", "PGGraphStorage")
+    monkeypatch.setenv("LIGHTRAG_DOC_STATUS_STORAGE", "PGDocStatusStorage")
+    monkeypatch.setenv("WORKSPACE", "noisefilter_mix_stage2")
+    monkeypatch.setattr(lightrag, "LightRAG", FakeRAG)
+    monkeypatch.setattr(reproduction, "_build_llm_model_func", lambda: "llm")
+    monkeypatch.setattr(reproduction, "_build_embedding_func", lambda: "embedding")
+
+    settings = reproduction.resolve_variant_settings("noisefilter")
+    rag = await reproduction.create_formal_rag(
+        working_dir=tmp_path,
+        variant_settings=settings,
+        runtime_overrides={"chunk_token_size": 2500},
+    )
+
+    assert isinstance(rag, FakeRAG)
+    assert captured["initialized"] is True
+    assert captured["kv_storage"] == "PGKVStorage"
+    assert captured["vector_storage"] == "QdrantVectorDBStorage"
+    assert captured["graph_storage"] == "PGGraphStorage"
+    assert captured["doc_status_storage"] == "PGDocStatusStorage"
+    assert captured["workspace"] == "noisefilter_mix_stage2"
+    assert captured["chunk_token_size"] == 2500
+    assert captured["enable_noise_filter"] is True
+
+
 @pytest.mark.asyncio
 async def test_formal_llm_func_disables_thinking_for_non_streaming_calls(monkeypatch):
     from lightrag.noisefilter.reproduction import _build_llm_model_func
@@ -205,6 +272,52 @@ async def test_insert_contexts_batches_large_input(tmp_path):
 
     assert inserted == 5
     assert rag.batches == [["ctx1", "ctx2"], ["ctx3", "ctx4"], ["ctx5"]]
+
+
+@pytest.mark.asyncio
+async def test_resume_contexts_enqueues_only_missing_and_processes_retryable(tmp_path):
+    from lightrag.noisefilter.reproduction import (
+        build_context_doc_ids,
+        resume_contexts,
+    )
+
+    context_file = tmp_path / "contexts.json"
+    context_file.write_text('["ctx1", "ctx2", "ctx3"]', encoding="utf-8")
+    doc_ids = build_context_doc_ids(["ctx1", "ctx2", "ctx3"])
+
+    class FakeDocStatus:
+        async def get_by_ids(self, ids):
+            assert ids == doc_ids
+            return [
+                {"status": "processed"},
+                {"status": "failed"},
+                None,
+            ]
+
+    class FakeRAG:
+        def __init__(self):
+            self.doc_status = FakeDocStatus()
+            self.enqueued = None
+            self.processed = False
+
+        async def apipeline_enqueue_documents(self, contexts, ids=None):
+            self.enqueued = (contexts, ids)
+
+        async def apipeline_process_enqueue_documents(self, **kwargs):
+            self.processed = True
+
+    rag = FakeRAG()
+    summary = await resume_contexts(rag, context_file)
+
+    assert rag.enqueued == (["ctx3"], [doc_ids[2]])
+    assert rag.processed is True
+    assert summary["missing_enqueued"] == 1
+    assert summary["retryable_before"] == 1
+    assert summary["status_counts_before"] == {
+        "failed": 1,
+        "missing": 1,
+        "processed": 1,
+    }
 
 
 @pytest.mark.asyncio

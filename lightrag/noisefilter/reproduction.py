@@ -4,11 +4,14 @@ import asyncio
 import json
 import os
 import re
+from collections import Counter
 from dataclasses import dataclass
 from functools import partial
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
+from lightrag.base import DocStatus
+from lightrag.utils import compute_mdhash_id, sanitize_text_for_encoding
 from dotenv import load_dotenv
 
 if TYPE_CHECKING:
@@ -52,6 +55,11 @@ class QARecord:
 
 SUPPORTED_VARIANTS = {"baseline", "noisefilter"}
 SUPPORTED_QUERY_MODES = {"local", "global", "hybrid", "mix", "naive"}
+RETRYABLE_DOC_STATUSES = {
+    DocStatus.FAILED.value,
+    DocStatus.PENDING.value,
+    DocStatus.PROCESSING.value,
+}
 
 
 def _normalize_variant(variant: str) -> str:
@@ -155,6 +163,31 @@ def load_unique_contexts(context_file: str | Path) -> list[str]:
     return payload
 
 
+def build_context_doc_ids(contexts: list[str]) -> list[str]:
+    return [
+        compute_mdhash_id(sanitize_text_for_encoding(context), prefix="doc-")
+        for context in contexts
+    ]
+
+
+def _normalize_doc_status(status: Any) -> str:
+    if isinstance(status, DocStatus):
+        return status.value
+    return str(status)
+
+
+def summarize_dataset_statuses(
+    status_rows: list[dict[str, Any] | None],
+) -> dict[str, int]:
+    counts: Counter[str] = Counter()
+    for row in status_rows:
+        if not row:
+            counts["missing"] += 1
+            continue
+        counts[_normalize_doc_status(row.get("status", ""))] += 1
+    return dict(sorted(counts.items()))
+
+
 def extract_queries(questions_file: str | Path) -> list[str]:
     path = Path(questions_file)
     with path.open("r", encoding="utf-8") as file:
@@ -251,8 +284,12 @@ def build_runtime_overrides(
     for key, value in mappings.items():
         if value is None:
             continue
-        if value <= 0:
-            raise ValueError(f"{key} must be > 0 when provided, got {value}")
+        minimum = 0 if key == "entity_extract_max_gleaning" else 1
+        if value < minimum:
+            requirement = ">= 0" if minimum == 0 else "> 0"
+            raise ValueError(
+                f"{key} must be {requirement} when provided, got {value}"
+            )
         overrides[key] = value
 
     if addon_params:
@@ -266,6 +303,22 @@ def _get_env(name: str, default: str | None = None) -> str | None:
     if value is None or value == "":
         return default
     return value
+
+
+def build_storage_overrides() -> dict[str, str]:
+    return {
+        "kv_storage": _get_env("LIGHTRAG_KV_STORAGE", "JsonKVStorage")
+        or "JsonKVStorage",
+        "vector_storage": _get_env("LIGHTRAG_VECTOR_STORAGE", "NanoVectorDBStorage")
+        or "NanoVectorDBStorage",
+        "graph_storage": _get_env("LIGHTRAG_GRAPH_STORAGE", "NetworkXStorage")
+        or "NetworkXStorage",
+        "doc_status_storage": _get_env(
+            "LIGHTRAG_DOC_STATUS_STORAGE", "JsonDocStatusStorage"
+        )
+        or "JsonDocStatusStorage",
+        "workspace": _get_env("WORKSPACE", "") or "",
+    }
 
 
 def _build_llm_model_func():
@@ -355,6 +408,7 @@ async def create_formal_rag(
         working_dir=str(working_dir),
         llm_model_func=_build_llm_model_func(),
         embedding_func=_build_embedding_func(),
+        **build_storage_overrides(),
         enable_noise_filter=variant_settings.enable_noise_filter,
         noise_filter_config=variant_settings.noise_filter_config,
         **runtime_overrides,
@@ -396,6 +450,47 @@ async def insert_contexts(
                 await asyncio.sleep(retry_delay_seconds)
 
     return len(unique_contexts)
+
+
+async def resume_contexts(
+    rag: LightRAG,
+    context_file: str | Path,
+    *,
+    split_by_character: str | None = None,
+    split_by_character_only: bool = False,
+) -> dict[str, Any]:
+    unique_contexts = load_unique_contexts(context_file)
+    doc_ids = build_context_doc_ids(unique_contexts)
+    before_rows = await rag.doc_status.get_by_ids(doc_ids)
+
+    missing_contexts: list[str] = []
+    missing_ids: list[str] = []
+    retryable_count = 0
+    for context, doc_id, row in zip(unique_contexts, doc_ids, before_rows):
+        if row is None:
+            missing_contexts.append(context)
+            missing_ids.append(doc_id)
+            continue
+        if _normalize_doc_status(row.get("status")) in RETRYABLE_DOC_STATUSES:
+            retryable_count += 1
+
+    if missing_contexts:
+        await rag.apipeline_enqueue_documents(missing_contexts, ids=missing_ids)
+
+    if missing_contexts or retryable_count:
+        await rag.apipeline_process_enqueue_documents(
+            split_by_character=split_by_character,
+            split_by_character_only=split_by_character_only,
+        )
+
+    after_rows = await rag.doc_status.get_by_ids(doc_ids)
+    return {
+        "dataset_contexts": len(unique_contexts),
+        "missing_enqueued": len(missing_contexts),
+        "retryable_before": retryable_count,
+        "status_counts_before": summarize_dataset_statuses(before_rows),
+        "status_counts_after": summarize_dataset_statuses(after_rows),
+    }
 
 
 async def run_queries(
