@@ -48,6 +48,13 @@ _RELATION_EXTRACTION_RESULT = "\n".join(
     ]
 )
 
+_RELATION_ONLY_EXTRACTION_RESULT = "\n".join(
+    [
+        "relation<|#|>Alice<|#|>Acme<|#|>employment<|#|>Alice works at Acme.",
+        "<|COMPLETE|>",
+    ]
+)
+
 
 def _make_chunks(content: str = "Test content.") -> dict[str, dict]:
     return {
@@ -162,6 +169,158 @@ async def test_chunk_entity_gate_rejects_ungrounded_relation():
     assert edges == {}
 
 
+@pytest.mark.offline
+@pytest.mark.asyncio
+async def test_chunk_entity_gate_both_mode_rejects_one_sided_relation():
+    """Strict gate mode should require both relation endpoints in the source chunk."""
+    from lightrag.operate import extract_entities
+
+    global_config = _make_global_config(
+        entity_extract_max_gleaning=0,
+        addon_params={
+            "enable_relation_chunk_entity_gate": True,
+            "relation_chunk_entity_gate_mode": "both",
+        },
+    )
+    llm_func = global_config["llm_model_func"]
+    llm_func.return_value = _RELATION_EXTRACTION_RESULT
+
+    chunk_results = await extract_entities(
+        chunks=_make_chunks("Alice is described in this passage."),
+        global_config=global_config,
+    )
+
+    _nodes, edges = chunk_results[0]
+    assert edges == {}
+
+
+@pytest.mark.offline
+@pytest.mark.asyncio
+async def test_chunk_entity_gate_both_mode_accepts_anchored_relation():
+    """Strict gate mode should keep relations whose endpoints are both anchored."""
+    from lightrag.operate import extract_entities
+
+    global_config = _make_global_config(
+        entity_extract_max_gleaning=0,
+        addon_params={
+            "enable_relation_chunk_entity_gate": True,
+            "relation_chunk_entity_gate_mode": "both",
+        },
+    )
+    llm_func = global_config["llm_model_func"]
+    llm_func.return_value = _RELATION_EXTRACTION_RESULT
+
+    chunk_results = await extract_entities(
+        chunks=_make_chunks("Alice works at Acme in this passage."),
+        global_config=global_config,
+    )
+
+    _nodes, edges = chunk_results[0]
+    assert set(edges) == {("Alice", "Acme")}
+
+
+@pytest.mark.offline
+@pytest.mark.asyncio
+async def test_extract_entities_skips_data_inspection_failed_chunk_when_enabled():
+    from lightrag.operate import extract_entities
+
+    global_config = _make_global_config(
+        entity_extract_max_gleaning=0,
+        addon_params={"skip_chunk_on_data_inspection_failure": True},
+    )
+    llm_func = global_config["llm_model_func"]
+    llm_func.side_effect = RuntimeError(
+        "Error code: 400 - {'error': {'message': "
+        "'<400> InternalError.Algo.DataInspectionFailed: Input text data may contain inappropriate content.', "
+        "'code': 'data_inspection_failed'}}"
+    )
+
+    chunk_results = await extract_entities(
+        chunks=_make_chunks("Some rejected passage."),
+        global_config=global_config,
+    )
+
+    assert chunk_results == [({}, {})]
+
+
+@pytest.mark.offline
+@pytest.mark.asyncio
+async def test_extract_entities_raises_data_inspection_failed_without_skip_flag():
+    from lightrag.operate import extract_entities
+
+    global_config = _make_global_config(entity_extract_max_gleaning=0)
+    llm_func = global_config["llm_model_func"]
+    llm_func.side_effect = RuntimeError(
+        "Error code: 400 - {'error': {'message': "
+        "'<400> InternalError.Algo.DataInspectionFailed: Input text data may contain inappropriate content.', "
+        "'code': 'data_inspection_failed'}}"
+    )
+
+    with pytest.raises(RuntimeError):
+        await extract_entities(
+            chunks=_make_chunks("Some rejected passage."),
+            global_config=global_config,
+        )
+
+
+@pytest.mark.offline
+@pytest.mark.asyncio
+async def test_relation_entity_gate_rejects_relation_with_missing_endpoint_entity():
+    from lightrag.operate import extract_entities
+
+    global_config = _make_global_config(
+        entity_extract_max_gleaning=0,
+        addon_params={"enable_relation_entity_set_gate": True},
+    )
+    llm_func = global_config["llm_model_func"]
+    llm_func.return_value = "\n".join(
+        [
+            "entity<|#|>Alice<|#|>person<|#|>Alice is a person.",
+            "relation<|#|>Alice<|#|>Acme<|#|>employment<|#|>Alice works at Acme.",
+            "<|COMPLETE|>",
+        ]
+    )
+
+    chunk_results = await extract_entities(
+        chunks=_make_chunks("Alice works at Acme in this passage."),
+        global_config=global_config,
+    )
+
+    nodes, edges = chunk_results[0]
+    assert set(nodes) == {"Alice"}
+    assert edges == {}
+
+
+@pytest.mark.offline
+@pytest.mark.asyncio
+async def test_relation_entity_gate_uses_cumulative_entities_across_gleaning():
+    from lightrag.operate import extract_entities
+
+    global_config = _make_global_config(
+        entity_extract_max_gleaning=1,
+        addon_params={"enable_relation_entity_set_gate": True},
+    )
+    llm_func = global_config["llm_model_func"]
+    llm_func.side_effect = [
+        "\n".join(
+            [
+                "entity<|#|>Alice<|#|>person<|#|>Alice is a person.",
+                "entity<|#|>Acme<|#|>organization<|#|>Acme is an organization.",
+                "<|COMPLETE|>",
+            ]
+        ),
+        _RELATION_ONLY_EXTRACTION_RESULT,
+    ]
+
+    chunk_results = await extract_entities(
+        chunks=_make_chunks("Alice works at Acme in this passage."),
+        global_config=global_config,
+    )
+
+    _nodes, edges = chunk_results[0]
+    assert set(edges) == {("Alice", "Acme")}
+
+
 def test_entity_extraction_prompt_contains_grounding_constraints():
     from lightrag.prompt import PROMPTS
 
@@ -169,3 +328,7 @@ def test_entity_extraction_prompt_contains_grounding_constraints():
     assert "EXPLICITLY stated or DIRECTLY supported" in prompt
     assert "Do NOT infer relationships based on your own knowledge" in prompt
     assert "do NOT create a relationship between them" in prompt
+    assert "both `source_entity` and `target_entity`" in prompt
+    assert "Preserve relationship direction" in prompt
+    assert "Do NOT output section headers" in prompt
+    assert "Do NOT invent helper concepts" in prompt

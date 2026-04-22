@@ -101,6 +101,7 @@ def _truncate_entity_identifier(
 
 
 _ANCHOR_NON_WORD_RE = re.compile(r"[^a-z0-9]+")
+_RELATION_CHUNK_ENTITY_GATE_MODES = {"any", "both"}
 
 
 def _normalize_anchor_text(text: str) -> str:
@@ -126,6 +127,89 @@ def _entity_anchor_score(entity: str, chunk_text: str) -> float:
     if overlap >= 0.6:
         return 0.5
     return 0.0
+
+
+def _normalize_relation_chunk_entity_gate_mode(value: Any) -> str:
+    mode = str(value or "any").strip().lower()
+    if mode not in _RELATION_CHUNK_ENTITY_GATE_MODES:
+        logger.warning(
+            "Invalid relation chunk/entity gate mode '%s'; falling back to 'any'",
+            value,
+        )
+        return "any"
+    return mode
+
+
+def _filter_relations_missing_chunk_entities(
+    maybe_nodes: dict[str, list[dict[str, Any]]],
+    maybe_edges: dict[tuple[str, str], list[dict[str, Any]]],
+    *,
+    chunk_key: str,
+) -> dict[tuple[str, str], list[dict[str, Any]]]:
+    entity_names = set(maybe_nodes)
+    filtered_edges: dict[tuple[str, str], list[dict[str, Any]]] = {}
+    for (src_id, tgt_id), edge_list in maybe_edges.items():
+        missing_endpoints = []
+        if src_id not in entity_names:
+            missing_endpoints.append("source")
+        if tgt_id not in entity_names:
+            missing_endpoints.append("target")
+        if missing_endpoints:
+            logger.warning(
+                "%s: Rejected relation `%s`~`%s` because %s endpoint was not extracted as an entity in the same chunk",
+                chunk_key,
+                src_id,
+                tgt_id,
+                " and ".join(missing_endpoints),
+            )
+            continue
+        filtered_edges[(src_id, tgt_id)] = edge_list
+    return filtered_edges
+
+
+def _anchor_score_passes(score: float, min_score: float) -> bool:
+    if min_score <= 0.0:
+        return score > 0.0
+    return score >= min_score
+
+
+def _relation_passes_chunk_entity_gate(
+    src_id: str,
+    tgt_id: str,
+    chunk_text: str,
+    *,
+    mode: str = "any",
+    min_score: float = 0.0,
+) -> tuple[bool, float, float]:
+    src_anchor_score = _entity_anchor_score(src_id, chunk_text)
+    dst_anchor_score = _entity_anchor_score(tgt_id, chunk_text)
+    src_anchored = _anchor_score_passes(src_anchor_score, min_score)
+    dst_anchored = _anchor_score_passes(dst_anchor_score, min_score)
+    normalized_mode = _normalize_relation_chunk_entity_gate_mode(mode)
+
+    if normalized_mode == "both":
+        return src_anchored and dst_anchored, src_anchor_score, dst_anchor_score
+    return src_anchored or dst_anchored, src_anchor_score, dst_anchor_score
+
+
+def _iter_exception_chain(exc: BaseException | None):
+    seen: set[int] = set()
+    current = exc
+    while current is not None and id(current) not in seen:
+        seen.add(id(current))
+        yield current
+        current = current.__cause__ or current.__context__
+
+
+def _is_data_inspection_failure(exc: BaseException) -> bool:
+    for error in _iter_exception_chain(exc):
+        message = str(error).lower()
+        if (
+            "data_inspection_failed" in message
+            or "input text data may contain inappropriate content" in message
+        ):
+            return True
+    return False
 
 
 def chunking_by_token_size(
@@ -970,6 +1054,8 @@ async def _process_extraction_result(
     timestamp: int,
     chunk_text: str | None = None,
     enable_relation_chunk_entity_gate: bool = False,
+    relation_chunk_entity_gate_mode: str = "any",
+    relation_chunk_entity_gate_min_score: float = 0.0,
     file_path: str = "unknown_source",
     tuple_delimiter: str = "<|#|>",
     completion_delimiter: str = "<|COMPLETE|>",
@@ -1090,14 +1176,26 @@ async def _process_extraction_result(
             relationship_data["tgt_id"] = truncated_target
 
             if enable_relation_chunk_entity_gate and chunk_text:
-                src_anchor_score = _entity_anchor_score(truncated_source, chunk_text)
-                dst_anchor_score = _entity_anchor_score(truncated_target, chunk_text)
-                if src_anchor_score <= 0.0 and dst_anchor_score <= 0.0:
+                passes_gate, src_anchor_score, dst_anchor_score = (
+                    _relation_passes_chunk_entity_gate(
+                        truncated_source,
+                        truncated_target,
+                        chunk_text,
+                        mode=relation_chunk_entity_gate_mode,
+                        min_score=relation_chunk_entity_gate_min_score,
+                    )
+                )
+                if not passes_gate:
                     logger.warning(
-                        "%s: Rejected relation `%s`~`%s` because neither endpoint is anchored in the source chunk",
+                        "%s: Rejected relation `%s`~`%s` because endpoint anchoring failed "
+                        "(mode=%s, min_score=%.3f, src_score=%.3f, dst_score=%.3f)",
                         chunk_key,
                         truncated_source,
                         truncated_target,
+                        relation_chunk_entity_gate_mode,
+                        relation_chunk_entity_gate_min_score,
+                        src_anchor_score,
+                        dst_anchor_score,
                     )
                     await _cooperative_yield(i, every=8)
                     continue
@@ -2953,6 +3051,20 @@ async def extract_entities(
     enable_relation_chunk_entity_gate = bool(
         global_config["addon_params"].get("enable_relation_chunk_entity_gate", False)
     )
+    enable_relation_entity_set_gate = bool(
+        global_config["addon_params"].get("enable_relation_entity_set_gate", False)
+    )
+    skip_chunk_on_data_inspection_failure = bool(
+        global_config["addon_params"].get(
+            "skip_chunk_on_data_inspection_failure", False
+        )
+    )
+    relation_chunk_entity_gate_mode = _normalize_relation_chunk_entity_gate_mode(
+        global_config["addon_params"].get("relation_chunk_entity_gate_mode", "any")
+    )
+    relation_chunk_entity_gate_min_score = float(
+        global_config["addon_params"].get("relation_chunk_entity_gate_min_score", 0.0)
+    )
 
     examples = "\n".join(PROMPTS["entity_extraction_examples"])
 
@@ -3028,6 +3140,8 @@ async def extract_entities(
             timestamp,
             chunk_text=content,
             enable_relation_chunk_entity_gate=enable_relation_chunk_entity_gate,
+            relation_chunk_entity_gate_mode=relation_chunk_entity_gate_mode,
+            relation_chunk_entity_gate_min_score=relation_chunk_entity_gate_min_score,
             file_path=file_path,
             tuple_delimiter=context_base["tuple_delimiter"],
             completion_delimiter=context_base["completion_delimiter"],
@@ -3073,6 +3187,8 @@ async def extract_entities(
                     timestamp,
                     chunk_text=content,
                     enable_relation_chunk_entity_gate=enable_relation_chunk_entity_gate,
+                    relation_chunk_entity_gate_mode=relation_chunk_entity_gate_mode,
+                    relation_chunk_entity_gate_min_score=relation_chunk_entity_gate_min_score,
                     file_path=file_path,
                     tuple_delimiter=context_base["tuple_delimiter"],
                     completion_delimiter=context_base["completion_delimiter"],
@@ -3119,6 +3235,13 @@ async def extract_entities(
                         maybe_edges[edge_key] = list(glean_edge_list)
                     await _cooperative_yield(i, every=8)
 
+        if enable_relation_entity_set_gate and maybe_edges:
+            maybe_edges = _filter_relations_missing_chunk_entities(
+                maybe_nodes,
+                maybe_edges,
+                chunk_key=chunk_key,
+            )
+
         # Batch update chunk's llm_cache_list with all collected cache keys
         if cache_keys_collector and text_chunks_storage:
             await update_chunk_cache_list(
@@ -3163,6 +3286,19 @@ async def extract_entities(
                 return result
             except Exception as e:
                 chunk_id = chunk[0]  # Extract chunk_id from chunk[0]
+                if skip_chunk_on_data_inspection_failure and _is_data_inspection_failure(
+                    e
+                ):
+                    log_message = (
+                        f"{chunk_id}: Skipped chunk after provider data inspection "
+                        "rejection; continuing document processing"
+                    )
+                    logger.warning(log_message)
+                    if pipeline_status is not None and pipeline_status_lock is not None:
+                        async with pipeline_status_lock:
+                            pipeline_status["latest_message"] = log_message
+                            pipeline_status["history_messages"].append(log_message)
+                    return {}, {}
                 prefixed_exception = create_prefixed_exception(e, chunk_id)
                 raise prefixed_exception from e
 

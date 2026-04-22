@@ -50,6 +50,15 @@ def parse_args(*, fixed_variant: str | None = None) -> argparse.Namespace:
         help="Root directory for indexed LightRAG workspaces.",
     )
     parser.add_argument(
+        "--workspace",
+        default=None,
+        help=(
+            "Override the LightRAG storage workspace for this run. "
+            "Use this when PostgreSQL/Qdrant backends are configured so query/eval "
+            "runs do not accidentally reuse the .env WORKSPACE."
+        ),
+    )
+    parser.add_argument(
         "--results-root",
         default="reproduce/results/formal",
         help="Root directory for query outputs.",
@@ -149,6 +158,7 @@ async def _run(args: argparse.Namespace) -> None:
         w_sem=args.w_sem,
     )
     runtime_overrides = build_runtime_overrides(
+        workspace=args.workspace,
         chunk_size=args.chunk_size,
         chunk_overlap_size=args.chunk_overlap_size,
         llm_max_async=args.max_async,

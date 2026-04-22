@@ -41,6 +41,14 @@ def parse_args(*, fixed_variant: str | None = None) -> argparse.Namespace:
         default="rag_storage/formal_runs",
         help="Root directory for indexed LightRAG workspaces.",
     )
+    parser.add_argument(
+        "--workspace",
+        default=None,
+        help=(
+            "Override the LightRAG storage workspace for this run. "
+            "Use this when PostgreSQL/Qdrant backends are configured so ablations do not reuse the .env WORKSPACE."
+        ),
+    )
     parser.add_argument("--retries", type=int, default=3)
     parser.add_argument("--retry-delay", type=float, default=10.0)
     parser.add_argument(
@@ -117,6 +125,41 @@ def parse_args(*, fixed_variant: str | None = None) -> argparse.Namespace:
         action="store_true",
         help="Enable relation chunk/entity binding gate during extraction for this run only.",
     )
+    parser.add_argument(
+        "--chunk-binding-gate-mode",
+        choices=["any", "both"],
+        default=None,
+        help=(
+            "Relation chunk/entity binding mode when the gate is enabled. "
+            "'any' keeps a relation if at least one endpoint is anchored; "
+            "'both' requires both endpoints to be anchored."
+        ),
+    )
+    parser.add_argument(
+        "--chunk-binding-gate-min-score",
+        type=float,
+        default=None,
+        help=(
+            "Minimum endpoint anchor score required by the chunk binding gate. "
+            "Use 0 for the legacy positive-anchor behavior."
+        ),
+    )
+    parser.add_argument(
+        "--skip-inspection-failed-chunks",
+        action="store_true",
+        help=(
+            "Skip only the chunk rejected by provider data inspection and continue "
+            "the document instead of failing the whole extraction."
+        ),
+    )
+    parser.add_argument(
+        "--enable-relation-entity-gate",
+        action="store_true",
+        help=(
+            "Require each relation endpoint to also be extracted as an entity from "
+            "the same chunk before the relation can be merged."
+        ),
+    )
     return parser.parse_args()
 
 
@@ -139,8 +182,21 @@ async def _run(args: argparse.Namespace) -> None:
     addon_params = {}
     if args.enable_chunk_binding_gate:
         addon_params["enable_relation_chunk_entity_gate"] = True
+        if args.chunk_binding_gate_mode:
+            addon_params["relation_chunk_entity_gate_mode"] = (
+                args.chunk_binding_gate_mode
+            )
+        if args.chunk_binding_gate_min_score is not None:
+            addon_params["relation_chunk_entity_gate_min_score"] = (
+                args.chunk_binding_gate_min_score
+            )
+    if args.skip_inspection_failed_chunks:
+        addon_params["skip_chunk_on_data_inspection_failure"] = True
+    if args.enable_relation_entity_gate:
+        addon_params["enable_relation_entity_set_gate"] = True
 
     runtime_overrides = build_runtime_overrides(
+        workspace=args.workspace,
         chunk_size=args.chunk_size,
         chunk_overlap_size=args.chunk_overlap_size,
         llm_max_async=args.max_async,

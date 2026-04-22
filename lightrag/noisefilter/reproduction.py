@@ -19,7 +19,7 @@ if TYPE_CHECKING:
     from lightrag.utils import EmbeddingFunc
 
 
-load_dotenv(dotenv_path=".env", override=False)
+load_dotenv(dotenv_path=Path(__file__).resolve().parent.parent.parent / ".env", override=False)
 
 
 @dataclass(slots=True)
@@ -257,6 +257,7 @@ def save_json_records(path: str | Path, rows: list[dict[str, Any]]) -> None:
 
 def build_runtime_overrides(
     *,
+    workspace: str | None = None,
     chunk_size: int | None = None,
     chunk_overlap_size: int | None = None,
     llm_max_async: int | None = None,
@@ -294,6 +295,11 @@ def build_runtime_overrides(
 
     if addon_params:
         overrides["addon_params"] = dict(addon_params)
+    if workspace is not None:
+        normalized_workspace = workspace.strip()
+        if not normalized_workspace:
+            raise ValueError("workspace must be non-empty when provided")
+        overrides["storage_workspace"] = normalized_workspace
 
     return overrides
 
@@ -305,7 +311,12 @@ def _get_env(name: str, default: str | None = None) -> str | None:
     return value
 
 
-def build_storage_overrides() -> dict[str, str]:
+def build_storage_overrides(*, workspace: str | None = None) -> dict[str, str]:
+    resolved_workspace = (
+        workspace.strip()
+        if workspace is not None
+        else (_get_env("WORKSPACE", "") or "")
+    )
     return {
         "kv_storage": _get_env("LIGHTRAG_KV_STORAGE", "JsonKVStorage")
         or "JsonKVStorage",
@@ -317,8 +328,19 @@ def build_storage_overrides() -> dict[str, str]:
             "LIGHTRAG_DOC_STATUS_STORAGE", "JsonDocStatusStorage"
         )
         or "JsonDocStatusStorage",
-        "workspace": _get_env("WORKSPACE", "") or "",
+        "workspace": resolved_workspace,
     }
+
+
+def apply_storage_workspace_env_override(workspace: str | None) -> None:
+    if workspace is None:
+        return
+    normalized_workspace = workspace.strip()
+    if not normalized_workspace:
+        raise ValueError("workspace must be non-empty when provided")
+    os.environ["WORKSPACE"] = normalized_workspace
+    os.environ["POSTGRES_WORKSPACE"] = normalized_workspace
+    os.environ["QDRANT_WORKSPACE"] = normalized_workspace
 
 
 def _build_llm_model_func():
@@ -403,12 +425,14 @@ async def create_formal_rag(
 
     runtime_overrides = dict(runtime_overrides or {})
     addon_params_override = runtime_overrides.pop("addon_params", None)
+    storage_workspace = runtime_overrides.pop("storage_workspace", None)
+    apply_storage_workspace_env_override(storage_workspace)
 
     rag = LightRAG(
         working_dir=str(working_dir),
         llm_model_func=_build_llm_model_func(),
         embedding_func=_build_embedding_func(),
-        **build_storage_overrides(),
+        **build_storage_overrides(workspace=storage_workspace),
         enable_noise_filter=variant_settings.enable_noise_filter,
         noise_filter_config=variant_settings.noise_filter_config,
         **runtime_overrides,

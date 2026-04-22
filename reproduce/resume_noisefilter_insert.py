@@ -37,8 +37,21 @@ async def _run() -> None:
     addon_params = {}
     if args.enable_chunk_binding_gate:
         addon_params["enable_relation_chunk_entity_gate"] = True
+        if args.chunk_binding_gate_mode:
+            addon_params["relation_chunk_entity_gate_mode"] = (
+                args.chunk_binding_gate_mode
+            )
+        if args.chunk_binding_gate_min_score is not None:
+            addon_params["relation_chunk_entity_gate_min_score"] = (
+                args.chunk_binding_gate_min_score
+            )
+    if args.skip_inspection_failed_chunks:
+        addon_params["skip_chunk_on_data_inspection_failure"] = True
+    if args.enable_relation_entity_gate:
+        addon_params["enable_relation_entity_set_gate"] = True
 
     runtime_overrides = build_runtime_overrides(
+        workspace=args.workspace,
         chunk_size=args.chunk_size,
         chunk_overlap_size=args.chunk_overlap_size,
         llm_max_async=args.max_async,

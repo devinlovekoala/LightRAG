@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import os
 
 import pytest
 
@@ -146,6 +147,21 @@ def test_build_runtime_overrides_allows_zero_gleaning():
     assert overrides == {"entity_extract_max_gleaning": 0}
 
 
+def test_build_runtime_overrides_accepts_workspace():
+    from lightrag.noisefilter.reproduction import build_runtime_overrides
+
+    overrides = build_runtime_overrides(workspace=" p0_workspace ")
+
+    assert overrides == {"storage_workspace": "p0_workspace"}
+
+
+def test_build_runtime_overrides_rejects_empty_workspace():
+    from lightrag.noisefilter.reproduction import build_runtime_overrides
+
+    with pytest.raises(ValueError):
+        build_runtime_overrides(workspace=" ")
+
+
 def test_build_storage_overrides_reads_formal_env(monkeypatch):
     from lightrag.noisefilter.reproduction import build_storage_overrides
 
@@ -162,6 +178,30 @@ def test_build_storage_overrides_reads_formal_env(monkeypatch):
         "doc_status_storage": "PGDocStatusStorage",
         "workspace": "noisefilter_mix_stage2",
     }
+
+
+def test_build_storage_overrides_accepts_workspace_override(monkeypatch):
+    from lightrag.noisefilter.reproduction import build_storage_overrides
+
+    monkeypatch.setenv("WORKSPACE", "env_workspace")
+
+    assert build_storage_overrides(workspace="cli_workspace")["workspace"] == (
+        "cli_workspace"
+    )
+
+
+def test_apply_storage_workspace_env_override_sets_backend_workspaces(monkeypatch):
+    from lightrag.noisefilter.reproduction import apply_storage_workspace_env_override
+
+    monkeypatch.setenv("WORKSPACE", "env_workspace")
+    monkeypatch.setenv("POSTGRES_WORKSPACE", "env_pg_workspace")
+    monkeypatch.setenv("QDRANT_WORKSPACE", "env_qdrant_workspace")
+
+    apply_storage_workspace_env_override(" cli_workspace ")
+
+    assert os.environ["WORKSPACE"] == "cli_workspace"
+    assert os.environ["POSTGRES_WORKSPACE"] == "cli_workspace"
+    assert os.environ["QDRANT_WORKSPACE"] == "cli_workspace"
 
 
 @pytest.mark.asyncio
@@ -204,6 +244,39 @@ async def test_create_formal_rag_passes_env_storage_to_lightrag(monkeypatch, tmp
     assert captured["workspace"] == "noisefilter_mix_stage2"
     assert captured["chunk_token_size"] == 2500
     assert captured["enable_noise_filter"] is True
+
+
+@pytest.mark.asyncio
+async def test_create_formal_rag_allows_runtime_workspace_override(
+    monkeypatch, tmp_path
+):
+    import lightrag
+    import lightrag.noisefilter.reproduction as reproduction
+
+    captured: dict = {}
+
+    class FakeRAG:
+        def __init__(self, **kwargs):
+            captured.update(kwargs)
+            self.addon_params = {}
+
+        async def initialize_storages(self):
+            captured["initialized"] = True
+
+    monkeypatch.setenv("WORKSPACE", "env_workspace")
+    monkeypatch.setattr(lightrag, "LightRAG", FakeRAG)
+    monkeypatch.setattr(reproduction, "_build_llm_model_func", lambda: "llm")
+    monkeypatch.setattr(reproduction, "_build_embedding_func", lambda: "embedding")
+
+    settings = reproduction.resolve_variant_settings("noisefilter")
+    await reproduction.create_formal_rag(
+        working_dir=tmp_path,
+        variant_settings=settings,
+        runtime_overrides={"storage_workspace": "cli_workspace"},
+    )
+
+    assert captured["workspace"] == "cli_workspace"
+    assert "storage_workspace" not in captured
 
 
 @pytest.mark.asyncio
